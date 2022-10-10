@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	time "github.com/echlebek/timeproxy"
-	corev2 "github.com/sensu/sensu-go/api/core/v2"
-	"github.com/sensu/sensu-go/api/core/v2/internal/js"
-	"github.com/sensu/sensu-go/api/core/v2/internal/types/dynamic"
+	corev2 "github.com/sensu/core/v2"
+	"github.com/sensu/core/v2/internal/js"
+	"github.com/sensu/core/v2/internal/types/dynamic"
 )
 
 func TestTimeFuncs(t *testing.T) {

@@ -1,14 +1,14 @@
 syntax = "proto3";
 
-import "github.com/gogo/protobuf@v1.3.1/gogoproto/gogo.proto";
-import "github.com/sensu/sensu-go/api/core/v2/asset.proto";
-import "github.com/sensu/sensu-go/api/core/v2/hook.proto";
-import "github.com/sensu/sensu-go/api/core/v2/meta.proto";
-import "github.com/sensu/sensu-go/api/core/v2/metric_threshold.proto";
-import "github.com/sensu/sensu-go/api/core/v2/metrics.proto";
-import "github.com/sensu/sensu-go/api/core/v2/resource_reference.proto";
-import "github.com/sensu/sensu-go/api/core/v2/secret.proto";
-import "github.com/sensu/sensu-go/api/core/v2/time_window.proto";
+import "github.com/gogo/protobuf@v1.3.2/gogoproto/gogo.proto";
+import "github.com/sensu/core/v2/asset.proto";
+import "github.com/sensu/core/v2/hook.proto";
+import "github.com/sensu/core/v2/meta.proto";
+import "github.com/sensu/core/v2/metric_threshold.proto";
+import "github.com/sensu/core/v2/metrics.proto";
+import "github.com/sensu/core/v2/resource_reference.proto";
+import "github.com/sensu/core/v2/secret.proto";
+import "github.com/sensu/core/v2/time_window.proto";
 
 package sensu.core.v2;
 

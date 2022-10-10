@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"time"
 
-	stringsutil "github.com/sensu/sensu-go/api/core/v2/internal/stringutil"
+	stringsutil "github.com/sensu/core/v2/internal/stringutil"
 )
 
 const (

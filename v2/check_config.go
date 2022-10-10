@@ -12,7 +12,7 @@ import (
 	"time"
 
 	cron "github.com/robfig/cron/v3"
-	stringsutil "github.com/sensu/sensu-go/api/core/v2/internal/stringutil"
+	stringsutil "github.com/sensu/core/v2/internal/stringutil"
 )
 
 // FixtureCheckConfig returns a fixture for a CheckConfig object.

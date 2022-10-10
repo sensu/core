@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"strings"
 
-	corev2 "github.com/sensu/sensu-go/api/core/v2"
-	stringutil "github.com/sensu/sensu-go/api/core/v3/internal/strings"
+	corev2 "github.com/sensu/core/v2"
+	stringutil "github.com/sensu/core/v3/internal/strings"
 )
 
 var entityConfigRBACName = (&corev2.Entity{}).RBACName()

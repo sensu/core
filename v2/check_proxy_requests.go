@@ -3,7 +3,7 @@ package v2
 import (
 	"errors"
 
-	"github.com/sensu/sensu-go/api/core/v2/internal/js"
+	"github.com/sensu/core/v2/internal/js"
 )
 
 // FixtureProxyRequests returns a fixture for a ProxyRequests object.

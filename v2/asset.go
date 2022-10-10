@@ -9,8 +9,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/sensu/sensu-go/api/core/v2/internal/js"
-	stringsutil "github.com/sensu/sensu-go/api/core/v2/internal/stringutil"
+	"github.com/sensu/core/v2/internal/js"
+	stringsutil "github.com/sensu/core/v2/internal/stringutil"
 )
 
 const (

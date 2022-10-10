@@ -9,7 +9,7 @@ import (
 	"time"
 
 	cron "github.com/robfig/cron/v3"
-	utilstrings "github.com/sensu/sensu-go/api/core/v2/internal/stringutil"
+	utilstrings "github.com/sensu/core/v2/internal/stringutil"
 )
 
 const (

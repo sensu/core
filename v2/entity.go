@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sensu/sensu-go/api/core/v2/internal/stringutil"
+	"github.com/sensu/core/v2/internal/stringutil"
 )
 
 const (

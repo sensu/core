@@ -10,7 +10,7 @@ import (
 	"path"
 	"reflect"
 
-	corev2 "github.com/sensu/sensu-go/api/core/v2"
+	corev2 "github.com/sensu/core/v2"
 )
 
 // implement validator to add validation to Validate methods
