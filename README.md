@@ -1,5 +1,7 @@
 # Sensu Core
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/sensu/core/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/sensu/core/tree/main)
+
 Core contains the definitions for the [sensu-go](https://github.com/sensu/sensu-go) core API.
 
 ## Codegen
