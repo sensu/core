@@ -19,7 +19,7 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/robertkrimen/otto v0.0.0-20221006114523-201ab5b34f52 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
-	github.com/sensu/core/v2 v2.0.0-20221012153755-8b8951660eb1 // indirect
+	github.com/sensu/core/v2 v2.16.0-alpha1 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.5 // indirect
 	golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4 // indirect
