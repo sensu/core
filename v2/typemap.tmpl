@@ -15,7 +15,7 @@ var typeMap = map[string]interface{}{ {{ range $index, $typename := .TypeNames }
 func init() {
     for typeAlias, typ := range typeMap {
         if _, ok := typ.(Resource); ok {
-            apis.RegisterType(apiGroup, typ, typeAlias)
+            apis.RegisterType(apiGroup, typ, apis.WithAlias(typeAlias))
         }
     }
 }
