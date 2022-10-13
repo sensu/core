@@ -5,7 +5,7 @@ import (
 	"reflect"
 
 	corev2 "github.com/sensu/core/v2"
-	types "github.com/sensu/sensu-go/types"
+	"github.com/sensu/sensu-api-tools/apis"
 )
 
 var _ corev2.Resource = &V2ResourceProxy{}
@@ -117,7 +117,7 @@ func (v V2ResourceProxy) GetTypeMeta() corev2.TypeMeta {
 		typ := reflect.Indirect(reflect.ValueOf(v.Resource)).Type()
 		tm = corev2.TypeMeta{
 			Type:       typ.Name(),
-			APIVersion: types.ApiVersion(typ.PkgPath()),
+			APIVersion: apis.ApiVersion(typ.PkgPath()),
 		}
 	}
 	return tm

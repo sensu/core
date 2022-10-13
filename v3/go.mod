@@ -5,7 +5,8 @@ go 1.18
 require (
 	github.com/gogo/protobuf v1.3.2
 	github.com/golang/protobuf v1.5.2
-	github.com/sensu/sensu-go/types v0.12.0-alpha1
+	github.com/sensu/core/v2 v2.16.0-alpha1
+	github.com/sensu/sensu-api-tools v0.0.0-20221013031257-5242d4a5ba34
 	github.com/stretchr/testify v1.8.0
 )
 
@@ -19,7 +20,6 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/robertkrimen/otto v0.0.0-20221006114523-201ab5b34f52 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
-	github.com/sensu/core/v2 v2.16.0-alpha1 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.5 // indirect
 	golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4 // indirect

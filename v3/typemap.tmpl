@@ -8,7 +8,7 @@ import (
 	"sort"
 
 	corev2 "github.com/sensu/core/v2"
-	types "github.com/sensu/sensu-go/types"
+    "github.com/sensu/sensu-api-tools/apis"
 )
 
 func init() {
@@ -18,7 +18,7 @@ func init() {
 			storeMap[r.StoreName()] = r
 		}
 	}
-	types.RegisterResolver("core/v3", ResolveRawResource)
+	apis.RegisterResolver("core/v3", ResolveRawResource)
 }
 
 // typeMap is used to dynamically look up data types from strings.
