@@ -3,16 +3,21 @@ package v3
 // automatically generated file, do not edit!
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/sensu/sensu-api-tools/apis"
 )
 
 func TestResolveClusterConfig(t *testing.T) {
 	var value interface{} = new(ClusterConfig)
 	if _, ok := value.(Resource); ok {
-		resource, err := ResolveResource("ClusterConfig")
+		raw, err := apis.Resolve("core/v3", "ClusterConfig")
 		if err != nil {
 			t.Fatal(err)
+		}
+		resource, ok := raw.(Resource)
+		if !ok {
+			t.Fatal("expected Resource")
 		}
 		meta := resource.GetMetadata()
 		if meta == nil {
@@ -26,7 +31,7 @@ func TestResolveClusterConfig(t *testing.T) {
 		}
 		return
 	}
-	_, err := ResolveResource("ClusterConfig")
+	_, err := apis.Resolve("core/v3", "ClusterConfig")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -35,76 +40,16 @@ func TestResolveClusterConfig(t *testing.T) {
 	}
 }
 
-func TestResolveClusterConfigByRBACName(t *testing.T) {
-	value := new(ClusterConfig)
-	var iface interface{} = value
-	resource, err := ResolveResourceByRBACName(value.RBACName())
-	if _, ok := iface.(Resource); ok {
-		if err != nil {
-			t.Fatal(err)
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil labels")
-		}
-		if meta.Annotations == nil {
-			t.Errorf("nil annotations")
-		}
-	} else {
-		if err == nil {
-			t.Fatal("expected non-nil error")
-		}
-	}
-}
-
-func TestResolveClusterConfigByStoreName(t *testing.T) {
-	value := new(ClusterConfig)
-	var iface interface{} = value
-	resource, err := ResolveResourceByStoreName(value.StoreName())
-	if _, ok := iface.(Resource); ok {
-		if err != nil {
-			t.Fatal(err)
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil labels")
-		}
-		if meta.Annotations == nil {
-			t.Errorf("nil annotations")
-		}
-	} else {
-		if err == nil {
-			t.Fatal("expected non-nil error")
-		}
-	}
-}
-
-func TestResolveV2ResourceClusterConfig(t *testing.T) {
-	v2Resource, err := ResolveV2Resource("ClusterConfig")
-	if err != nil {
-		t.Fatal(err)
-	}
-	v3Resource, err := ResolveResource("ClusterConfig")
-	if err != nil {
-		t.Fatal(err)
-	}
-	if got, want := v2Resource.(*V2ResourceProxy).Resource, v3Resource; !reflect.DeepEqual(got, want) {
-		t.Fatalf("bad resource: got %v, want %v", got, want)
-	}
-}
-
 func TestResolveEntityConfig(t *testing.T) {
 	var value interface{} = new(EntityConfig)
 	if _, ok := value.(Resource); ok {
-		resource, err := ResolveResource("EntityConfig")
+		raw, err := apis.Resolve("core/v3", "EntityConfig")
 		if err != nil {
 			t.Fatal(err)
+		}
+		resource, ok := raw.(Resource)
+		if !ok {
+			t.Fatal("expected Resource")
 		}
 		meta := resource.GetMetadata()
 		if meta == nil {
@@ -118,7 +63,7 @@ func TestResolveEntityConfig(t *testing.T) {
 		}
 		return
 	}
-	_, err := ResolveResource("EntityConfig")
+	_, err := apis.Resolve("core/v3", "EntityConfig")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -127,76 +72,16 @@ func TestResolveEntityConfig(t *testing.T) {
 	}
 }
 
-func TestResolveEntityConfigByRBACName(t *testing.T) {
-	value := new(EntityConfig)
-	var iface interface{} = value
-	resource, err := ResolveResourceByRBACName(value.RBACName())
-	if _, ok := iface.(Resource); ok {
-		if err != nil {
-			t.Fatal(err)
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil labels")
-		}
-		if meta.Annotations == nil {
-			t.Errorf("nil annotations")
-		}
-	} else {
-		if err == nil {
-			t.Fatal("expected non-nil error")
-		}
-	}
-}
-
-func TestResolveEntityConfigByStoreName(t *testing.T) {
-	value := new(EntityConfig)
-	var iface interface{} = value
-	resource, err := ResolveResourceByStoreName(value.StoreName())
-	if _, ok := iface.(Resource); ok {
-		if err != nil {
-			t.Fatal(err)
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil labels")
-		}
-		if meta.Annotations == nil {
-			t.Errorf("nil annotations")
-		}
-	} else {
-		if err == nil {
-			t.Fatal("expected non-nil error")
-		}
-	}
-}
-
-func TestResolveV2ResourceEntityConfig(t *testing.T) {
-	v2Resource, err := ResolveV2Resource("EntityConfig")
-	if err != nil {
-		t.Fatal(err)
-	}
-	v3Resource, err := ResolveResource("EntityConfig")
-	if err != nil {
-		t.Fatal(err)
-	}
-	if got, want := v2Resource.(*V2ResourceProxy).Resource, v3Resource; !reflect.DeepEqual(got, want) {
-		t.Fatalf("bad resource: got %v, want %v", got, want)
-	}
-}
-
 func TestResolveEntityState(t *testing.T) {
 	var value interface{} = new(EntityState)
 	if _, ok := value.(Resource); ok {
-		resource, err := ResolveResource("EntityState")
+		raw, err := apis.Resolve("core/v3", "EntityState")
 		if err != nil {
 			t.Fatal(err)
+		}
+		resource, ok := raw.(Resource)
+		if !ok {
+			t.Fatal("expected Resource")
 		}
 		meta := resource.GetMetadata()
 		if meta == nil {
@@ -210,7 +95,7 @@ func TestResolveEntityState(t *testing.T) {
 		}
 		return
 	}
-	_, err := ResolveResource("EntityState")
+	_, err := apis.Resolve("core/v3", "EntityState")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -219,76 +104,16 @@ func TestResolveEntityState(t *testing.T) {
 	}
 }
 
-func TestResolveEntityStateByRBACName(t *testing.T) {
-	value := new(EntityState)
-	var iface interface{} = value
-	resource, err := ResolveResourceByRBACName(value.RBACName())
-	if _, ok := iface.(Resource); ok {
-		if err != nil {
-			t.Fatal(err)
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil labels")
-		}
-		if meta.Annotations == nil {
-			t.Errorf("nil annotations")
-		}
-	} else {
-		if err == nil {
-			t.Fatal("expected non-nil error")
-		}
-	}
-}
-
-func TestResolveEntityStateByStoreName(t *testing.T) {
-	value := new(EntityState)
-	var iface interface{} = value
-	resource, err := ResolveResourceByStoreName(value.StoreName())
-	if _, ok := iface.(Resource); ok {
-		if err != nil {
-			t.Fatal(err)
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil labels")
-		}
-		if meta.Annotations == nil {
-			t.Errorf("nil annotations")
-		}
-	} else {
-		if err == nil {
-			t.Fatal("expected non-nil error")
-		}
-	}
-}
-
-func TestResolveV2ResourceEntityState(t *testing.T) {
-	v2Resource, err := ResolveV2Resource("EntityState")
-	if err != nil {
-		t.Fatal(err)
-	}
-	v3Resource, err := ResolveResource("EntityState")
-	if err != nil {
-		t.Fatal(err)
-	}
-	if got, want := v2Resource.(*V2ResourceProxy).Resource, v3Resource; !reflect.DeepEqual(got, want) {
-		t.Fatalf("bad resource: got %v, want %v", got, want)
-	}
-}
-
 func TestResolveNamespace(t *testing.T) {
 	var value interface{} = new(Namespace)
 	if _, ok := value.(Resource); ok {
-		resource, err := ResolveResource("Namespace")
+		raw, err := apis.Resolve("core/v3", "Namespace")
 		if err != nil {
 			t.Fatal(err)
+		}
+		resource, ok := raw.(Resource)
+		if !ok {
+			t.Fatal("expected Resource")
 		}
 		meta := resource.GetMetadata()
 		if meta == nil {
@@ -302,7 +127,7 @@ func TestResolveNamespace(t *testing.T) {
 		}
 		return
 	}
-	_, err := ResolveResource("Namespace")
+	_, err := apis.Resolve("core/v3", "Namespace")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -311,76 +136,16 @@ func TestResolveNamespace(t *testing.T) {
 	}
 }
 
-func TestResolveNamespaceByRBACName(t *testing.T) {
-	value := new(Namespace)
-	var iface interface{} = value
-	resource, err := ResolveResourceByRBACName(value.RBACName())
-	if _, ok := iface.(Resource); ok {
-		if err != nil {
-			t.Fatal(err)
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil labels")
-		}
-		if meta.Annotations == nil {
-			t.Errorf("nil annotations")
-		}
-	} else {
-		if err == nil {
-			t.Fatal("expected non-nil error")
-		}
-	}
-}
-
-func TestResolveNamespaceByStoreName(t *testing.T) {
-	value := new(Namespace)
-	var iface interface{} = value
-	resource, err := ResolveResourceByStoreName(value.StoreName())
-	if _, ok := iface.(Resource); ok {
-		if err != nil {
-			t.Fatal(err)
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil labels")
-		}
-		if meta.Annotations == nil {
-			t.Errorf("nil annotations")
-		}
-	} else {
-		if err == nil {
-			t.Fatal("expected non-nil error")
-		}
-	}
-}
-
-func TestResolveV2ResourceNamespace(t *testing.T) {
-	v2Resource, err := ResolveV2Resource("Namespace")
-	if err != nil {
-		t.Fatal(err)
-	}
-	v3Resource, err := ResolveResource("Namespace")
-	if err != nil {
-		t.Fatal(err)
-	}
-	if got, want := v2Resource.(*V2ResourceProxy).Resource, v3Resource; !reflect.DeepEqual(got, want) {
-		t.Fatalf("bad resource: got %v, want %v", got, want)
-	}
-}
-
 func TestResolveResourceTemplate(t *testing.T) {
 	var value interface{} = new(ResourceTemplate)
 	if _, ok := value.(Resource); ok {
-		resource, err := ResolveResource("ResourceTemplate")
+		raw, err := apis.Resolve("core/v3", "ResourceTemplate")
 		if err != nil {
 			t.Fatal(err)
+		}
+		resource, ok := raw.(Resource)
+		if !ok {
+			t.Fatal("expected Resource")
 		}
 		meta := resource.GetMetadata()
 		if meta == nil {
@@ -394,7 +159,7 @@ func TestResolveResourceTemplate(t *testing.T) {
 		}
 		return
 	}
-	_, err := ResolveResource("ResourceTemplate")
+	_, err := apis.Resolve("core/v3", "ResourceTemplate")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -403,76 +168,16 @@ func TestResolveResourceTemplate(t *testing.T) {
 	}
 }
 
-func TestResolveResourceTemplateByRBACName(t *testing.T) {
-	value := new(ResourceTemplate)
-	var iface interface{} = value
-	resource, err := ResolveResourceByRBACName(value.RBACName())
-	if _, ok := iface.(Resource); ok {
-		if err != nil {
-			t.Fatal(err)
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil labels")
-		}
-		if meta.Annotations == nil {
-			t.Errorf("nil annotations")
-		}
-	} else {
-		if err == nil {
-			t.Fatal("expected non-nil error")
-		}
-	}
-}
-
-func TestResolveResourceTemplateByStoreName(t *testing.T) {
-	value := new(ResourceTemplate)
-	var iface interface{} = value
-	resource, err := ResolveResourceByStoreName(value.StoreName())
-	if _, ok := iface.(Resource); ok {
-		if err != nil {
-			t.Fatal(err)
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil labels")
-		}
-		if meta.Annotations == nil {
-			t.Errorf("nil annotations")
-		}
-	} else {
-		if err == nil {
-			t.Fatal("expected non-nil error")
-		}
-	}
-}
-
-func TestResolveV2ResourceResourceTemplate(t *testing.T) {
-	v2Resource, err := ResolveV2Resource("ResourceTemplate")
-	if err != nil {
-		t.Fatal(err)
-	}
-	v3Resource, err := ResolveResource("ResourceTemplate")
-	if err != nil {
-		t.Fatal(err)
-	}
-	if got, want := v2Resource.(*V2ResourceProxy).Resource, v3Resource; !reflect.DeepEqual(got, want) {
-		t.Fatalf("bad resource: got %v, want %v", got, want)
-	}
-}
-
 func TestResolveSymmetricKey(t *testing.T) {
 	var value interface{} = new(SymmetricKey)
 	if _, ok := value.(Resource); ok {
-		resource, err := ResolveResource("SymmetricKey")
+		raw, err := apis.Resolve("core/v3", "SymmetricKey")
 		if err != nil {
 			t.Fatal(err)
+		}
+		resource, ok := raw.(Resource)
+		if !ok {
+			t.Fatal("expected Resource")
 		}
 		meta := resource.GetMetadata()
 		if meta == nil {
@@ -486,94 +191,11 @@ func TestResolveSymmetricKey(t *testing.T) {
 		}
 		return
 	}
-	_, err := ResolveResource("SymmetricKey")
+	_, err := apis.Resolve("core/v3", "SymmetricKey")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
 	if got, want := err.Error(), `"SymmetricKey" is not a Resource`; got != want {
 		t.Fatalf("unexpected error: %s", err)
-	}
-}
-
-func TestResolveSymmetricKeyByRBACName(t *testing.T) {
-	value := new(SymmetricKey)
-	var iface interface{} = value
-	resource, err := ResolveResourceByRBACName(value.RBACName())
-	if _, ok := iface.(Resource); ok {
-		if err != nil {
-			t.Fatal(err)
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil labels")
-		}
-		if meta.Annotations == nil {
-			t.Errorf("nil annotations")
-		}
-	} else {
-		if err == nil {
-			t.Fatal("expected non-nil error")
-		}
-	}
-}
-
-func TestResolveSymmetricKeyByStoreName(t *testing.T) {
-	value := new(SymmetricKey)
-	var iface interface{} = value
-	resource, err := ResolveResourceByStoreName(value.StoreName())
-	if _, ok := iface.(Resource); ok {
-		if err != nil {
-			t.Fatal(err)
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil labels")
-		}
-		if meta.Annotations == nil {
-			t.Errorf("nil annotations")
-		}
-	} else {
-		if err == nil {
-			t.Fatal("expected non-nil error")
-		}
-	}
-}
-
-func TestResolveV2ResourceSymmetricKey(t *testing.T) {
-	v2Resource, err := ResolveV2Resource("SymmetricKey")
-	if err != nil {
-		t.Fatal(err)
-	}
-	v3Resource, err := ResolveResource("SymmetricKey")
-	if err != nil {
-		t.Fatal(err)
-	}
-	if got, want := v2Resource.(*V2ResourceProxy).Resource, v3Resource; !reflect.DeepEqual(got, want) {
-		t.Fatalf("bad resource: got %v, want %v", got, want)
-	}
-}
-
-func TestResolveNotExists(t *testing.T) {
-	_, err := ResolveResource("!#$@$%@#$")
-	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-}
-
-func TestListResources(t *testing.T) {
-	resources := ListResources()
-	if got, want := len(resources), len(typeMap)/2; got != want {
-		t.Fatalf("wrong number of resources: got %d, want %d", got, want)
-	}
-	for _, r := range resources {
-		if r.GetMetadata() == nil {
-			t.Errorf("nil metadata for resource %s", r.RBACName())
-		}
 	}
 }

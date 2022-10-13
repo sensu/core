@@ -178,12 +178,3 @@ func Test{{ $typename }}GetTypeMeta(t *testing.T) {
 }
 {{ end }}
 
-func TestResourceUniqueness(t *testing.T) {
-	types := make(map[reflect.Type]GeneratedType)
-	for _, v := range typeMap {
-		types[reflect.TypeOf(v)] = v.(GeneratedType)
-	}
-	if got, want := len(types), len(typeMap)/2; got != want {
-		t.Fatalf("bad number of types: got %d, want %d", got, want)
-	}
-}

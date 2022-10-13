@@ -2,10 +2,11 @@ package v3
 
 import (
 	"encoding/json"
+	"path"
 	"reflect"
+	"strings"
 
 	corev2 "github.com/sensu/core/v2"
-	"github.com/sensu/sensu-api-tools/apis"
 )
 
 var _ corev2.Resource = &V2ResourceProxy{}
@@ -117,8 +118,19 @@ func (v V2ResourceProxy) GetTypeMeta() corev2.TypeMeta {
 		typ := reflect.Indirect(reflect.ValueOf(v.Resource)).Type()
 		tm = corev2.TypeMeta{
 			Type:       typ.Name(),
-			APIVersion: apis.ApiVersion(typ.PkgPath()),
+			APIVersion: apiVersion(typ.PkgPath()),
 		}
 	}
 	return tm
+}
+
+func apiVersion(version string) string {
+	parts := strings.Split(version, "/")
+	if len(parts) == 0 {
+		return ""
+	}
+	if len(parts) == 1 {
+		return parts[0]
+	}
+	return path.Join(parts[len(parts)-2], parts[len(parts)-1])
 }

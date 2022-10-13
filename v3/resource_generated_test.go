@@ -1000,13 +1000,3 @@ func TestSymmetricKeyGetTypeMeta(t *testing.T) {
 		t.Errorf("bad type: got %s, want %s", got, want)
 	}
 }
-
-func TestResourceUniqueness(t *testing.T) {
-	types := make(map[reflect.Type]GeneratedType)
-	for _, v := range typeMap {
-		types[reflect.TypeOf(v)] = v.(GeneratedType)
-	}
-	if got, want := len(types), len(typeMap)/2; got != want {
-		t.Fatalf("bad number of types: got %d, want %d", got, want)
-	}
-}
