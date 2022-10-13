@@ -9,12 +9,12 @@ import (
 func TestResolveAPIKey(t *testing.T) {
 	var value interface{} = new(APIKey)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("APIKey"); err != nil {
+		if _, err := resolveResource("APIKey"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("APIKey")
+	_, err := resolveResource("APIKey")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -26,12 +26,12 @@ func TestResolveAPIKey(t *testing.T) {
 func TestResolveAdhocRequest(t *testing.T) {
 	var value interface{} = new(AdhocRequest)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("AdhocRequest"); err != nil {
+		if _, err := resolveResource("AdhocRequest"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("AdhocRequest")
+	_, err := resolveResource("AdhocRequest")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -43,12 +43,12 @@ func TestResolveAdhocRequest(t *testing.T) {
 func TestResolveAny(t *testing.T) {
 	var value interface{} = new(Any)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Any"); err != nil {
+		if _, err := resolveResource("Any"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Any")
+	_, err := resolveResource("Any")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -60,12 +60,12 @@ func TestResolveAny(t *testing.T) {
 func TestResolveAsset(t *testing.T) {
 	var value interface{} = new(Asset)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Asset"); err != nil {
+		if _, err := resolveResource("Asset"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Asset")
+	_, err := resolveResource("Asset")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -77,12 +77,12 @@ func TestResolveAsset(t *testing.T) {
 func TestResolveAssetBuild(t *testing.T) {
 	var value interface{} = new(AssetBuild)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("AssetBuild"); err != nil {
+		if _, err := resolveResource("AssetBuild"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("AssetBuild")
+	_, err := resolveResource("AssetBuild")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -94,12 +94,12 @@ func TestResolveAssetBuild(t *testing.T) {
 func TestResolveAssetList(t *testing.T) {
 	var value interface{} = new(AssetList)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("AssetList"); err != nil {
+		if _, err := resolveResource("AssetList"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("AssetList")
+	_, err := resolveResource("AssetList")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -111,12 +111,12 @@ func TestResolveAssetList(t *testing.T) {
 func TestResolveAuthProviderClaims(t *testing.T) {
 	var value interface{} = new(AuthProviderClaims)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("AuthProviderClaims"); err != nil {
+		if _, err := resolveResource("AuthProviderClaims"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("AuthProviderClaims")
+	_, err := resolveResource("AuthProviderClaims")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -128,12 +128,12 @@ func TestResolveAuthProviderClaims(t *testing.T) {
 func TestResolveCheck(t *testing.T) {
 	var value interface{} = new(Check)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Check"); err != nil {
+		if _, err := resolveResource("Check"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Check")
+	_, err := resolveResource("Check")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -145,12 +145,12 @@ func TestResolveCheck(t *testing.T) {
 func TestResolveCheckConfig(t *testing.T) {
 	var value interface{} = new(CheckConfig)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("CheckConfig"); err != nil {
+		if _, err := resolveResource("CheckConfig"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("CheckConfig")
+	_, err := resolveResource("CheckConfig")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -162,12 +162,12 @@ func TestResolveCheckConfig(t *testing.T) {
 func TestResolveCheckHistory(t *testing.T) {
 	var value interface{} = new(CheckHistory)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("CheckHistory"); err != nil {
+		if _, err := resolveResource("CheckHistory"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("CheckHistory")
+	_, err := resolveResource("CheckHistory")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -179,12 +179,12 @@ func TestResolveCheckHistory(t *testing.T) {
 func TestResolveCheckRequest(t *testing.T) {
 	var value interface{} = new(CheckRequest)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("CheckRequest"); err != nil {
+		if _, err := resolveResource("CheckRequest"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("CheckRequest")
+	_, err := resolveResource("CheckRequest")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -196,12 +196,12 @@ func TestResolveCheckRequest(t *testing.T) {
 func TestResolveClaims(t *testing.T) {
 	var value interface{} = new(Claims)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Claims"); err != nil {
+		if _, err := resolveResource("Claims"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Claims")
+	_, err := resolveResource("Claims")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -213,12 +213,12 @@ func TestResolveClaims(t *testing.T) {
 func TestResolveClusterHealth(t *testing.T) {
 	var value interface{} = new(ClusterHealth)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("ClusterHealth"); err != nil {
+		if _, err := resolveResource("ClusterHealth"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("ClusterHealth")
+	_, err := resolveResource("ClusterHealth")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -230,12 +230,12 @@ func TestResolveClusterHealth(t *testing.T) {
 func TestResolveClusterRole(t *testing.T) {
 	var value interface{} = new(ClusterRole)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("ClusterRole"); err != nil {
+		if _, err := resolveResource("ClusterRole"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("ClusterRole")
+	_, err := resolveResource("ClusterRole")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -247,12 +247,12 @@ func TestResolveClusterRole(t *testing.T) {
 func TestResolveClusterRoleBinding(t *testing.T) {
 	var value interface{} = new(ClusterRoleBinding)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("ClusterRoleBinding"); err != nil {
+		if _, err := resolveResource("ClusterRoleBinding"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("ClusterRoleBinding")
+	_, err := resolveResource("ClusterRoleBinding")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -264,12 +264,12 @@ func TestResolveClusterRoleBinding(t *testing.T) {
 func TestResolveDeregistration(t *testing.T) {
 	var value interface{} = new(Deregistration)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Deregistration"); err != nil {
+		if _, err := resolveResource("Deregistration"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Deregistration")
+	_, err := resolveResource("Deregistration")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -281,12 +281,12 @@ func TestResolveDeregistration(t *testing.T) {
 func TestResolveEntity(t *testing.T) {
 	var value interface{} = new(Entity)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Entity"); err != nil {
+		if _, err := resolveResource("Entity"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Entity")
+	_, err := resolveResource("Entity")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -298,12 +298,12 @@ func TestResolveEntity(t *testing.T) {
 func TestResolveEvent(t *testing.T) {
 	var value interface{} = new(Event)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Event"); err != nil {
+		if _, err := resolveResource("Event"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Event")
+	_, err := resolveResource("Event")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -315,12 +315,12 @@ func TestResolveEvent(t *testing.T) {
 func TestResolveEventFilter(t *testing.T) {
 	var value interface{} = new(EventFilter)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("EventFilter"); err != nil {
+		if _, err := resolveResource("EventFilter"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("EventFilter")
+	_, err := resolveResource("EventFilter")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -332,12 +332,12 @@ func TestResolveEventFilter(t *testing.T) {
 func TestResolveExtension(t *testing.T) {
 	var value interface{} = new(Extension)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Extension"); err != nil {
+		if _, err := resolveResource("Extension"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Extension")
+	_, err := resolveResource("Extension")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -349,12 +349,12 @@ func TestResolveExtension(t *testing.T) {
 func TestResolveHandler(t *testing.T) {
 	var value interface{} = new(Handler)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Handler"); err != nil {
+		if _, err := resolveResource("Handler"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Handler")
+	_, err := resolveResource("Handler")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -366,12 +366,12 @@ func TestResolveHandler(t *testing.T) {
 func TestResolveHandlerSocket(t *testing.T) {
 	var value interface{} = new(HandlerSocket)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("HandlerSocket"); err != nil {
+		if _, err := resolveResource("HandlerSocket"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("HandlerSocket")
+	_, err := resolveResource("HandlerSocket")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -383,12 +383,12 @@ func TestResolveHandlerSocket(t *testing.T) {
 func TestResolveHealthResponse(t *testing.T) {
 	var value interface{} = new(HealthResponse)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("HealthResponse"); err != nil {
+		if _, err := resolveResource("HealthResponse"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("HealthResponse")
+	_, err := resolveResource("HealthResponse")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -400,12 +400,12 @@ func TestResolveHealthResponse(t *testing.T) {
 func TestResolveHook(t *testing.T) {
 	var value interface{} = new(Hook)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Hook"); err != nil {
+		if _, err := resolveResource("Hook"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Hook")
+	_, err := resolveResource("Hook")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -417,12 +417,12 @@ func TestResolveHook(t *testing.T) {
 func TestResolveHookConfig(t *testing.T) {
 	var value interface{} = new(HookConfig)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("HookConfig"); err != nil {
+		if _, err := resolveResource("HookConfig"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("HookConfig")
+	_, err := resolveResource("HookConfig")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -434,12 +434,12 @@ func TestResolveHookConfig(t *testing.T) {
 func TestResolveHookList(t *testing.T) {
 	var value interface{} = new(HookList)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("HookList"); err != nil {
+		if _, err := resolveResource("HookList"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("HookList")
+	_, err := resolveResource("HookList")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -451,12 +451,12 @@ func TestResolveHookList(t *testing.T) {
 func TestResolveKeepaliveRecord(t *testing.T) {
 	var value interface{} = new(KeepaliveRecord)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("KeepaliveRecord"); err != nil {
+		if _, err := resolveResource("KeepaliveRecord"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("KeepaliveRecord")
+	_, err := resolveResource("KeepaliveRecord")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -468,12 +468,12 @@ func TestResolveKeepaliveRecord(t *testing.T) {
 func TestResolveMetricPoint(t *testing.T) {
 	var value interface{} = new(MetricPoint)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("MetricPoint"); err != nil {
+		if _, err := resolveResource("MetricPoint"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("MetricPoint")
+	_, err := resolveResource("MetricPoint")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -485,12 +485,12 @@ func TestResolveMetricPoint(t *testing.T) {
 func TestResolveMetricTag(t *testing.T) {
 	var value interface{} = new(MetricTag)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("MetricTag"); err != nil {
+		if _, err := resolveResource("MetricTag"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("MetricTag")
+	_, err := resolveResource("MetricTag")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -502,12 +502,12 @@ func TestResolveMetricTag(t *testing.T) {
 func TestResolveMetricThreshold(t *testing.T) {
 	var value interface{} = new(MetricThreshold)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("MetricThreshold"); err != nil {
+		if _, err := resolveResource("MetricThreshold"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("MetricThreshold")
+	_, err := resolveResource("MetricThreshold")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -519,12 +519,12 @@ func TestResolveMetricThreshold(t *testing.T) {
 func TestResolveMetricThresholdRule(t *testing.T) {
 	var value interface{} = new(MetricThresholdRule)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("MetricThresholdRule"); err != nil {
+		if _, err := resolveResource("MetricThresholdRule"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("MetricThresholdRule")
+	_, err := resolveResource("MetricThresholdRule")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -536,12 +536,12 @@ func TestResolveMetricThresholdRule(t *testing.T) {
 func TestResolveMetricThresholdTag(t *testing.T) {
 	var value interface{} = new(MetricThresholdTag)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("MetricThresholdTag"); err != nil {
+		if _, err := resolveResource("MetricThresholdTag"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("MetricThresholdTag")
+	_, err := resolveResource("MetricThresholdTag")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -553,12 +553,12 @@ func TestResolveMetricThresholdTag(t *testing.T) {
 func TestResolveMetrics(t *testing.T) {
 	var value interface{} = new(Metrics)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Metrics"); err != nil {
+		if _, err := resolveResource("Metrics"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Metrics")
+	_, err := resolveResource("Metrics")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -570,12 +570,12 @@ func TestResolveMetrics(t *testing.T) {
 func TestResolveMutator(t *testing.T) {
 	var value interface{} = new(Mutator)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Mutator"); err != nil {
+		if _, err := resolveResource("Mutator"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Mutator")
+	_, err := resolveResource("Mutator")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -587,12 +587,12 @@ func TestResolveMutator(t *testing.T) {
 func TestResolveNamespace(t *testing.T) {
 	var value interface{} = new(Namespace)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Namespace"); err != nil {
+		if _, err := resolveResource("Namespace"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Namespace")
+	_, err := resolveResource("Namespace")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -604,12 +604,12 @@ func TestResolveNamespace(t *testing.T) {
 func TestResolveNetwork(t *testing.T) {
 	var value interface{} = new(Network)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Network"); err != nil {
+		if _, err := resolveResource("Network"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Network")
+	_, err := resolveResource("Network")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -621,12 +621,12 @@ func TestResolveNetwork(t *testing.T) {
 func TestResolveNetworkInterface(t *testing.T) {
 	var value interface{} = new(NetworkInterface)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("NetworkInterface"); err != nil {
+		if _, err := resolveResource("NetworkInterface"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("NetworkInterface")
+	_, err := resolveResource("NetworkInterface")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -638,12 +638,12 @@ func TestResolveNetworkInterface(t *testing.T) {
 func TestResolveObjectMeta(t *testing.T) {
 	var value interface{} = new(ObjectMeta)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("ObjectMeta"); err != nil {
+		if _, err := resolveResource("ObjectMeta"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("ObjectMeta")
+	_, err := resolveResource("ObjectMeta")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -655,12 +655,12 @@ func TestResolveObjectMeta(t *testing.T) {
 func TestResolvePipeline(t *testing.T) {
 	var value interface{} = new(Pipeline)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Pipeline"); err != nil {
+		if _, err := resolveResource("Pipeline"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Pipeline")
+	_, err := resolveResource("Pipeline")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -672,12 +672,12 @@ func TestResolvePipeline(t *testing.T) {
 func TestResolvePipelineWorkflow(t *testing.T) {
 	var value interface{} = new(PipelineWorkflow)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("PipelineWorkflow"); err != nil {
+		if _, err := resolveResource("PipelineWorkflow"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("PipelineWorkflow")
+	_, err := resolveResource("PipelineWorkflow")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -689,12 +689,12 @@ func TestResolvePipelineWorkflow(t *testing.T) {
 func TestResolvePostgresHealth(t *testing.T) {
 	var value interface{} = new(PostgresHealth)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("PostgresHealth"); err != nil {
+		if _, err := resolveResource("PostgresHealth"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("PostgresHealth")
+	_, err := resolveResource("PostgresHealth")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -706,12 +706,12 @@ func TestResolvePostgresHealth(t *testing.T) {
 func TestResolveProcess(t *testing.T) {
 	var value interface{} = new(Process)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Process"); err != nil {
+		if _, err := resolveResource("Process"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Process")
+	_, err := resolveResource("Process")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -723,12 +723,12 @@ func TestResolveProcess(t *testing.T) {
 func TestResolveProxyRequests(t *testing.T) {
 	var value interface{} = new(ProxyRequests)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("ProxyRequests"); err != nil {
+		if _, err := resolveResource("ProxyRequests"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("ProxyRequests")
+	_, err := resolveResource("ProxyRequests")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -740,12 +740,12 @@ func TestResolveProxyRequests(t *testing.T) {
 func TestResolveResourceReference(t *testing.T) {
 	var value interface{} = new(ResourceReference)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("ResourceReference"); err != nil {
+		if _, err := resolveResource("ResourceReference"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("ResourceReference")
+	_, err := resolveResource("ResourceReference")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -757,12 +757,12 @@ func TestResolveResourceReference(t *testing.T) {
 func TestResolveRole(t *testing.T) {
 	var value interface{} = new(Role)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Role"); err != nil {
+		if _, err := resolveResource("Role"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Role")
+	_, err := resolveResource("Role")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -774,12 +774,12 @@ func TestResolveRole(t *testing.T) {
 func TestResolveRoleBinding(t *testing.T) {
 	var value interface{} = new(RoleBinding)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("RoleBinding"); err != nil {
+		if _, err := resolveResource("RoleBinding"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("RoleBinding")
+	_, err := resolveResource("RoleBinding")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -791,12 +791,12 @@ func TestResolveRoleBinding(t *testing.T) {
 func TestResolveRoleRef(t *testing.T) {
 	var value interface{} = new(RoleRef)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("RoleRef"); err != nil {
+		if _, err := resolveResource("RoleRef"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("RoleRef")
+	_, err := resolveResource("RoleRef")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -808,12 +808,12 @@ func TestResolveRoleRef(t *testing.T) {
 func TestResolveRule(t *testing.T) {
 	var value interface{} = new(Rule)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Rule"); err != nil {
+		if _, err := resolveResource("Rule"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Rule")
+	_, err := resolveResource("Rule")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -825,12 +825,12 @@ func TestResolveRule(t *testing.T) {
 func TestResolveSecret(t *testing.T) {
 	var value interface{} = new(Secret)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Secret"); err != nil {
+		if _, err := resolveResource("Secret"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Secret")
+	_, err := resolveResource("Secret")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -842,12 +842,12 @@ func TestResolveSecret(t *testing.T) {
 func TestResolveSilenced(t *testing.T) {
 	var value interface{} = new(Silenced)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Silenced"); err != nil {
+		if _, err := resolveResource("Silenced"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Silenced")
+	_, err := resolveResource("Silenced")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -859,12 +859,12 @@ func TestResolveSilenced(t *testing.T) {
 func TestResolveSubject(t *testing.T) {
 	var value interface{} = new(Subject)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Subject"); err != nil {
+		if _, err := resolveResource("Subject"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Subject")
+	_, err := resolveResource("Subject")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -876,12 +876,12 @@ func TestResolveSubject(t *testing.T) {
 func TestResolveSystem(t *testing.T) {
 	var value interface{} = new(System)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("System"); err != nil {
+		if _, err := resolveResource("System"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("System")
+	_, err := resolveResource("System")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -893,12 +893,12 @@ func TestResolveSystem(t *testing.T) {
 func TestResolveTLSOptions(t *testing.T) {
 	var value interface{} = new(TLSOptions)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("TLSOptions"); err != nil {
+		if _, err := resolveResource("TLSOptions"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("TLSOptions")
+	_, err := resolveResource("TLSOptions")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -910,12 +910,12 @@ func TestResolveTLSOptions(t *testing.T) {
 func TestResolveTessenConfig(t *testing.T) {
 	var value interface{} = new(TessenConfig)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("TessenConfig"); err != nil {
+		if _, err := resolveResource("TessenConfig"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("TessenConfig")
+	_, err := resolveResource("TessenConfig")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -927,12 +927,12 @@ func TestResolveTessenConfig(t *testing.T) {
 func TestResolveTimeWindowDays(t *testing.T) {
 	var value interface{} = new(TimeWindowDays)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("TimeWindowDays"); err != nil {
+		if _, err := resolveResource("TimeWindowDays"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("TimeWindowDays")
+	_, err := resolveResource("TimeWindowDays")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -944,12 +944,12 @@ func TestResolveTimeWindowDays(t *testing.T) {
 func TestResolveTimeWindowRepeated(t *testing.T) {
 	var value interface{} = new(TimeWindowRepeated)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("TimeWindowRepeated"); err != nil {
+		if _, err := resolveResource("TimeWindowRepeated"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("TimeWindowRepeated")
+	_, err := resolveResource("TimeWindowRepeated")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -961,12 +961,12 @@ func TestResolveTimeWindowRepeated(t *testing.T) {
 func TestResolveTimeWindowTimeRange(t *testing.T) {
 	var value interface{} = new(TimeWindowTimeRange)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("TimeWindowTimeRange"); err != nil {
+		if _, err := resolveResource("TimeWindowTimeRange"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("TimeWindowTimeRange")
+	_, err := resolveResource("TimeWindowTimeRange")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -978,12 +978,12 @@ func TestResolveTimeWindowTimeRange(t *testing.T) {
 func TestResolveTimeWindowWhen(t *testing.T) {
 	var value interface{} = new(TimeWindowWhen)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("TimeWindowWhen"); err != nil {
+		if _, err := resolveResource("TimeWindowWhen"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("TimeWindowWhen")
+	_, err := resolveResource("TimeWindowWhen")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -995,12 +995,12 @@ func TestResolveTimeWindowWhen(t *testing.T) {
 func TestResolveTokens(t *testing.T) {
 	var value interface{} = new(Tokens)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Tokens"); err != nil {
+		if _, err := resolveResource("Tokens"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Tokens")
+	_, err := resolveResource("Tokens")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -1012,12 +1012,12 @@ func TestResolveTokens(t *testing.T) {
 func TestResolveTypeMeta(t *testing.T) {
 	var value interface{} = new(TypeMeta)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("TypeMeta"); err != nil {
+		if _, err := resolveResource("TypeMeta"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("TypeMeta")
+	_, err := resolveResource("TypeMeta")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -1029,12 +1029,12 @@ func TestResolveTypeMeta(t *testing.T) {
 func TestResolveUser(t *testing.T) {
 	var value interface{} = new(User)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("User"); err != nil {
+		if _, err := resolveResource("User"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("User")
+	_, err := resolveResource("User")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -1046,12 +1046,12 @@ func TestResolveUser(t *testing.T) {
 func TestResolveVersion(t *testing.T) {
 	var value interface{} = new(Version)
 	if _, ok := value.(Resource); ok {
-		if _, err := ResolveResource("Version"); err != nil {
+		if _, err := resolveResource("Version"); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	_, err := ResolveResource("Version")
+	_, err := resolveResource("Version")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -1061,7 +1061,7 @@ func TestResolveVersion(t *testing.T) {
 }
 
 func TestResolveNotExists(t *testing.T) {
-	_, err := ResolveResource("!#$@$%@#$")
+	_, err := resolveResource("!#$@$%@#$")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}

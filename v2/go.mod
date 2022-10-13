@@ -11,12 +11,14 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/robertkrimen/otto v0.0.0-20221006114523-201ab5b34f52
 	github.com/robfig/cron/v3 v3.0.1
+	github.com/sensu/sensu-api-tools v0.0.0-20221013031257-5242d4a5ba34
 	github.com/sirupsen/logrus v1.9.0
 	github.com/stretchr/testify v1.8.0
 	go.etcd.io/etcd/api/v3 v3.5.5
 )
 
 require (
+	github.com/blang/semver/v4 v4.0.0 // indirect
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect

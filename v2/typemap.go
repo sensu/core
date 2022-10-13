@@ -5,6 +5,8 @@ package v2
 import (
 	"fmt"
 	"reflect"
+
+	"github.com/sensu/sensu-api-tools/apis"
 )
 
 // typeMap is used to dynamically look up data types from strings.
@@ -135,10 +137,10 @@ var typeMap = map[string]interface{}{
 	"version":                &Version{},
 }
 
-// ResolveResource returns a zero-valued resource, given a name.
+// resolveResource returns a zero-valued resource, given a name.
 // If the named type does not exist, or if the type is not a Resource,
 // then an error will be returned.
-func ResolveResource(name string) (Resource, error) {
+func resolveResource(name string) (interface{}, error) {
 	t, ok := typeMap[name]
 	if !ok {
 		return nil, fmt.Errorf("type could not be found: %q", name)
@@ -153,4 +155,8 @@ func ResolveResource(name string) (Resource, error) {
 // don't use this function. no, seriously.
 func newResource(r interface{}) Resource {
 	return reflect.New(reflect.ValueOf(r).Elem().Type()).Interface().(Resource)
+}
+
+func init() {
+	apis.RegisterResolver("core/v2", resolveResource)
 }
