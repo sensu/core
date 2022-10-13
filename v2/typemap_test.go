@@ -4,1065 +4,998 @@ package v2
 
 import (
 	"testing"
+
+	"github.com/sensu/sensu-api-tools/apis"
 )
 
 func TestResolveAPIKey(t *testing.T) {
 	var value interface{} = new(APIKey)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("APIKey"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "APIKey"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*APIKey); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("APIKey")
+	_, err := apis.Resolve("core/v2", "APIKey")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"APIKey" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveAdhocRequest(t *testing.T) {
 	var value interface{} = new(AdhocRequest)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("AdhocRequest"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "AdhocRequest"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*AdhocRequest); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("AdhocRequest")
+	_, err := apis.Resolve("core/v2", "AdhocRequest")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"AdhocRequest" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveAny(t *testing.T) {
 	var value interface{} = new(Any)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Any"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Any"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Any); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Any")
+	_, err := apis.Resolve("core/v2", "Any")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Any" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveAsset(t *testing.T) {
 	var value interface{} = new(Asset)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Asset"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Asset"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Asset); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Asset")
+	_, err := apis.Resolve("core/v2", "Asset")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Asset" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveAssetBuild(t *testing.T) {
 	var value interface{} = new(AssetBuild)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("AssetBuild"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "AssetBuild"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*AssetBuild); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("AssetBuild")
+	_, err := apis.Resolve("core/v2", "AssetBuild")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"AssetBuild" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveAssetList(t *testing.T) {
 	var value interface{} = new(AssetList)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("AssetList"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "AssetList"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*AssetList); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("AssetList")
+	_, err := apis.Resolve("core/v2", "AssetList")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"AssetList" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveAuthProviderClaims(t *testing.T) {
 	var value interface{} = new(AuthProviderClaims)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("AuthProviderClaims"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "AuthProviderClaims"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*AuthProviderClaims); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("AuthProviderClaims")
+	_, err := apis.Resolve("core/v2", "AuthProviderClaims")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"AuthProviderClaims" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveCheck(t *testing.T) {
 	var value interface{} = new(Check)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Check"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Check"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Check); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Check")
+	_, err := apis.Resolve("core/v2", "Check")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Check" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveCheckConfig(t *testing.T) {
 	var value interface{} = new(CheckConfig)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("CheckConfig"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "CheckConfig"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*CheckConfig); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("CheckConfig")
+	_, err := apis.Resolve("core/v2", "CheckConfig")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"CheckConfig" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveCheckHistory(t *testing.T) {
 	var value interface{} = new(CheckHistory)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("CheckHistory"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "CheckHistory"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*CheckHistory); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("CheckHistory")
+	_, err := apis.Resolve("core/v2", "CheckHistory")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"CheckHistory" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveCheckRequest(t *testing.T) {
 	var value interface{} = new(CheckRequest)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("CheckRequest"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "CheckRequest"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*CheckRequest); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("CheckRequest")
+	_, err := apis.Resolve("core/v2", "CheckRequest")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"CheckRequest" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveClaims(t *testing.T) {
 	var value interface{} = new(Claims)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Claims"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Claims"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Claims); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Claims")
+	_, err := apis.Resolve("core/v2", "Claims")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Claims" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveClusterHealth(t *testing.T) {
 	var value interface{} = new(ClusterHealth)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("ClusterHealth"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "ClusterHealth"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*ClusterHealth); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("ClusterHealth")
+	_, err := apis.Resolve("core/v2", "ClusterHealth")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"ClusterHealth" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveClusterRole(t *testing.T) {
 	var value interface{} = new(ClusterRole)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("ClusterRole"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "ClusterRole"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*ClusterRole); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("ClusterRole")
+	_, err := apis.Resolve("core/v2", "ClusterRole")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"ClusterRole" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveClusterRoleBinding(t *testing.T) {
 	var value interface{} = new(ClusterRoleBinding)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("ClusterRoleBinding"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "ClusterRoleBinding"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*ClusterRoleBinding); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("ClusterRoleBinding")
+	_, err := apis.Resolve("core/v2", "ClusterRoleBinding")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"ClusterRoleBinding" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveDeregistration(t *testing.T) {
 	var value interface{} = new(Deregistration)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Deregistration"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Deregistration"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Deregistration); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Deregistration")
+	_, err := apis.Resolve("core/v2", "Deregistration")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Deregistration" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveEntity(t *testing.T) {
 	var value interface{} = new(Entity)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Entity"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Entity"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Entity); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Entity")
+	_, err := apis.Resolve("core/v2", "Entity")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Entity" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveEvent(t *testing.T) {
 	var value interface{} = new(Event)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Event"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Event"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Event); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Event")
+	_, err := apis.Resolve("core/v2", "Event")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Event" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveEventFilter(t *testing.T) {
 	var value interface{} = new(EventFilter)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("EventFilter"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "EventFilter"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*EventFilter); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("EventFilter")
+	_, err := apis.Resolve("core/v2", "EventFilter")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"EventFilter" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveExtension(t *testing.T) {
 	var value interface{} = new(Extension)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Extension"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Extension"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Extension); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Extension")
+	_, err := apis.Resolve("core/v2", "Extension")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Extension" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveHandler(t *testing.T) {
 	var value interface{} = new(Handler)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Handler"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Handler"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Handler); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Handler")
+	_, err := apis.Resolve("core/v2", "Handler")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Handler" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveHandlerSocket(t *testing.T) {
 	var value interface{} = new(HandlerSocket)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("HandlerSocket"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "HandlerSocket"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*HandlerSocket); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("HandlerSocket")
+	_, err := apis.Resolve("core/v2", "HandlerSocket")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"HandlerSocket" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveHealthResponse(t *testing.T) {
 	var value interface{} = new(HealthResponse)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("HealthResponse"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "HealthResponse"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*HealthResponse); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("HealthResponse")
+	_, err := apis.Resolve("core/v2", "HealthResponse")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"HealthResponse" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveHook(t *testing.T) {
 	var value interface{} = new(Hook)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Hook"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Hook"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Hook); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Hook")
+	_, err := apis.Resolve("core/v2", "Hook")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Hook" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveHookConfig(t *testing.T) {
 	var value interface{} = new(HookConfig)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("HookConfig"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "HookConfig"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*HookConfig); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("HookConfig")
+	_, err := apis.Resolve("core/v2", "HookConfig")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"HookConfig" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveHookList(t *testing.T) {
 	var value interface{} = new(HookList)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("HookList"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "HookList"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*HookList); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("HookList")
+	_, err := apis.Resolve("core/v2", "HookList")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"HookList" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveKeepaliveRecord(t *testing.T) {
 	var value interface{} = new(KeepaliveRecord)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("KeepaliveRecord"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "KeepaliveRecord"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*KeepaliveRecord); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("KeepaliveRecord")
+	_, err := apis.Resolve("core/v2", "KeepaliveRecord")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"KeepaliveRecord" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveMetricPoint(t *testing.T) {
 	var value interface{} = new(MetricPoint)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("MetricPoint"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "MetricPoint"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*MetricPoint); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("MetricPoint")
+	_, err := apis.Resolve("core/v2", "MetricPoint")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"MetricPoint" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveMetricTag(t *testing.T) {
 	var value interface{} = new(MetricTag)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("MetricTag"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "MetricTag"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*MetricTag); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("MetricTag")
+	_, err := apis.Resolve("core/v2", "MetricTag")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"MetricTag" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveMetricThreshold(t *testing.T) {
 	var value interface{} = new(MetricThreshold)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("MetricThreshold"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "MetricThreshold"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*MetricThreshold); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("MetricThreshold")
+	_, err := apis.Resolve("core/v2", "MetricThreshold")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"MetricThreshold" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveMetricThresholdRule(t *testing.T) {
 	var value interface{} = new(MetricThresholdRule)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("MetricThresholdRule"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "MetricThresholdRule"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*MetricThresholdRule); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("MetricThresholdRule")
+	_, err := apis.Resolve("core/v2", "MetricThresholdRule")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"MetricThresholdRule" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveMetricThresholdTag(t *testing.T) {
 	var value interface{} = new(MetricThresholdTag)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("MetricThresholdTag"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "MetricThresholdTag"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*MetricThresholdTag); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("MetricThresholdTag")
+	_, err := apis.Resolve("core/v2", "MetricThresholdTag")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"MetricThresholdTag" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveMetrics(t *testing.T) {
 	var value interface{} = new(Metrics)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Metrics"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Metrics"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Metrics); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Metrics")
+	_, err := apis.Resolve("core/v2", "Metrics")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Metrics" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveMutator(t *testing.T) {
 	var value interface{} = new(Mutator)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Mutator"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Mutator"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Mutator); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Mutator")
+	_, err := apis.Resolve("core/v2", "Mutator")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Mutator" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveNamespace(t *testing.T) {
 	var value interface{} = new(Namespace)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Namespace"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Namespace"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Namespace); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Namespace")
+	_, err := apis.Resolve("core/v2", "Namespace")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Namespace" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveNetwork(t *testing.T) {
 	var value interface{} = new(Network)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Network"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Network"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Network); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Network")
+	_, err := apis.Resolve("core/v2", "Network")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Network" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveNetworkInterface(t *testing.T) {
 	var value interface{} = new(NetworkInterface)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("NetworkInterface"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "NetworkInterface"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*NetworkInterface); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("NetworkInterface")
+	_, err := apis.Resolve("core/v2", "NetworkInterface")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"NetworkInterface" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveObjectMeta(t *testing.T) {
 	var value interface{} = new(ObjectMeta)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("ObjectMeta"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "ObjectMeta"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*ObjectMeta); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("ObjectMeta")
+	_, err := apis.Resolve("core/v2", "ObjectMeta")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"ObjectMeta" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolvePipeline(t *testing.T) {
 	var value interface{} = new(Pipeline)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Pipeline"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Pipeline"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Pipeline); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Pipeline")
+	_, err := apis.Resolve("core/v2", "Pipeline")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Pipeline" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolvePipelineWorkflow(t *testing.T) {
 	var value interface{} = new(PipelineWorkflow)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("PipelineWorkflow"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "PipelineWorkflow"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*PipelineWorkflow); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("PipelineWorkflow")
+	_, err := apis.Resolve("core/v2", "PipelineWorkflow")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"PipelineWorkflow" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolvePostgresHealth(t *testing.T) {
 	var value interface{} = new(PostgresHealth)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("PostgresHealth"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "PostgresHealth"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*PostgresHealth); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("PostgresHealth")
+	_, err := apis.Resolve("core/v2", "PostgresHealth")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"PostgresHealth" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveProcess(t *testing.T) {
 	var value interface{} = new(Process)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Process"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Process"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Process); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Process")
+	_, err := apis.Resolve("core/v2", "Process")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Process" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveProxyRequests(t *testing.T) {
 	var value interface{} = new(ProxyRequests)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("ProxyRequests"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "ProxyRequests"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*ProxyRequests); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("ProxyRequests")
+	_, err := apis.Resolve("core/v2", "ProxyRequests")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"ProxyRequests" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveResourceReference(t *testing.T) {
 	var value interface{} = new(ResourceReference)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("ResourceReference"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "ResourceReference"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*ResourceReference); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("ResourceReference")
+	_, err := apis.Resolve("core/v2", "ResourceReference")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"ResourceReference" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveRole(t *testing.T) {
 	var value interface{} = new(Role)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Role"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Role"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Role); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Role")
+	_, err := apis.Resolve("core/v2", "Role")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Role" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveRoleBinding(t *testing.T) {
 	var value interface{} = new(RoleBinding)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("RoleBinding"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "RoleBinding"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*RoleBinding); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("RoleBinding")
+	_, err := apis.Resolve("core/v2", "RoleBinding")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"RoleBinding" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveRoleRef(t *testing.T) {
 	var value interface{} = new(RoleRef)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("RoleRef"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "RoleRef"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*RoleRef); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("RoleRef")
+	_, err := apis.Resolve("core/v2", "RoleRef")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"RoleRef" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveRule(t *testing.T) {
 	var value interface{} = new(Rule)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Rule"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Rule"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Rule); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Rule")
+	_, err := apis.Resolve("core/v2", "Rule")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Rule" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveSecret(t *testing.T) {
 	var value interface{} = new(Secret)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Secret"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Secret"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Secret); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Secret")
+	_, err := apis.Resolve("core/v2", "Secret")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Secret" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveSilenced(t *testing.T) {
 	var value interface{} = new(Silenced)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Silenced"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Silenced"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Silenced); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Silenced")
+	_, err := apis.Resolve("core/v2", "Silenced")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Silenced" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveSubject(t *testing.T) {
 	var value interface{} = new(Subject)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Subject"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Subject"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Subject); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Subject")
+	_, err := apis.Resolve("core/v2", "Subject")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Subject" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveSystem(t *testing.T) {
 	var value interface{} = new(System)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("System"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "System"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*System); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("System")
+	_, err := apis.Resolve("core/v2", "System")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"System" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveTLSOptions(t *testing.T) {
 	var value interface{} = new(TLSOptions)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("TLSOptions"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "TLSOptions"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*TLSOptions); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("TLSOptions")
+	_, err := apis.Resolve("core/v2", "TLSOptions")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"TLSOptions" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveTessenConfig(t *testing.T) {
 	var value interface{} = new(TessenConfig)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("TessenConfig"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "TessenConfig"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*TessenConfig); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("TessenConfig")
+	_, err := apis.Resolve("core/v2", "TessenConfig")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"TessenConfig" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveTimeWindowDays(t *testing.T) {
 	var value interface{} = new(TimeWindowDays)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("TimeWindowDays"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "TimeWindowDays"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*TimeWindowDays); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("TimeWindowDays")
+	_, err := apis.Resolve("core/v2", "TimeWindowDays")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"TimeWindowDays" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveTimeWindowRepeated(t *testing.T) {
 	var value interface{} = new(TimeWindowRepeated)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("TimeWindowRepeated"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "TimeWindowRepeated"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*TimeWindowRepeated); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("TimeWindowRepeated")
+	_, err := apis.Resolve("core/v2", "TimeWindowRepeated")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"TimeWindowRepeated" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveTimeWindowTimeRange(t *testing.T) {
 	var value interface{} = new(TimeWindowTimeRange)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("TimeWindowTimeRange"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "TimeWindowTimeRange"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*TimeWindowTimeRange); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("TimeWindowTimeRange")
+	_, err := apis.Resolve("core/v2", "TimeWindowTimeRange")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"TimeWindowTimeRange" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveTimeWindowWhen(t *testing.T) {
 	var value interface{} = new(TimeWindowWhen)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("TimeWindowWhen"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "TimeWindowWhen"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*TimeWindowWhen); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("TimeWindowWhen")
+	_, err := apis.Resolve("core/v2", "TimeWindowWhen")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"TimeWindowWhen" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveTokens(t *testing.T) {
 	var value interface{} = new(Tokens)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Tokens"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Tokens"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Tokens); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Tokens")
+	_, err := apis.Resolve("core/v2", "Tokens")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Tokens" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveTypeMeta(t *testing.T) {
 	var value interface{} = new(TypeMeta)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("TypeMeta"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "TypeMeta"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*TypeMeta); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("TypeMeta")
+	_, err := apis.Resolve("core/v2", "TypeMeta")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"TypeMeta" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveUser(t *testing.T) {
 	var value interface{} = new(User)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("User"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "User"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*User); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("User")
+	_, err := apis.Resolve("core/v2", "User")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"User" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
+		t.Fatalf("expected non-nil error")
 	}
 }
 
 func TestResolveVersion(t *testing.T) {
 	var value interface{} = new(Version)
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("Version"); err != nil {
+		if actual, err := apis.Resolve("core/v2", "Version"); err != nil {
 			t.Fatal(err)
+		} else if _, ok := actual.(*Version); !ok {
+			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := resolveResource("Version")
+	_, err := apis.Resolve("core/v2", "Version")
 	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"Version" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
-	}
-}
-
-func TestResolveNotExists(t *testing.T) {
-	_, err := resolveResource("!#$@$%@#$")
-	if err == nil {
-		t.Fatal("expected non-nil error")
+		t.Fatalf("expected non-nil error")
 	}
 }

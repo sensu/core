@@ -4,30 +4,24 @@ package v2
 
 import (
 	"testing"
+
+	"github.com/sensu/sensu-api-tools/apis"
 )
 
 {{ range $index, $typename := .TypeNames }}
 func TestResolve{{ $typename }}(t *testing.T) {
 	var value interface{} = new({{ $typename }})
 	if _, ok := value.(Resource); ok {
-		if _, err := resolveResource("{{ $typename }}"); err != nil {
+        if actual, err := apis.Resolve("core/v2", "{{ $typename }}"); err != nil {
 			t.Fatal(err)
-		}
+        } else if _, ok := actual.(*{{ $typename }}); !ok {
+            t.Fatal("expected to resolve to type ")
+        }
 		return
 	}
-	_, err := resolveResource("{{ $typename }}")
-	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"{{ $typename }}" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
-	}
+    _, err := apis.Resolve("core/v2", "{{ $typename }}")
+    if err == nil {
+        t.Fatalf("expected non-nil error")
+    }
 }
 {{ end }}
-
-func TestResolveNotExists(t *testing.T) {
-	_, err := resolveResource("!#$@$%@#$")
-	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-}
