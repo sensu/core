@@ -30,7 +30,7 @@ var typeMap = map[string]interface{}{
 	"symmetric_key":     &SymmetricKey{},
 }
 
-func resolveResource(v any) {
+func resolveResource(v interface{}) {
 	resource, ok := v.(Resource)
 	if !ok {
 		return

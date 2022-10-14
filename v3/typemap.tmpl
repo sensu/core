@@ -25,7 +25,7 @@ var typeMap = map[string]interface{}{ {{ range $index, $typename := .TypeNames }
 	"{{ snakeCase $typename }}": &{{ $typename }}{}, {{ end }}
 }
 
-func resolveResource(v any) {
+func resolveResource(v interface{}) {
     resource, ok := v.(Resource)
     if !ok {
         return
