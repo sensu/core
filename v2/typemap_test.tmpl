@@ -5,21 +5,21 @@ package v2
 import (
 	"testing"
 
-	"github.com/sensu/sensu-api-tools/apis"
+	"github.com/sensu/sensu-api-tools"
 )
 
 {{ range $index, $typename := .TypeNames }}
 func TestResolve{{ $typename }}(t *testing.T) {
 	var value interface{} = new({{ $typename }})
 	if _, ok := value.(Resource); ok {
-        if actual, err := apis.Resolve("core/v2", "{{ $typename }}"); err != nil {
+        if actual, err := apitools.Resolve("core/v2", "{{ $typename }}"); err != nil {
 			t.Fatal(err)
         } else if _, ok := actual.(*{{ $typename }}); !ok {
             t.Fatal("expected to resolve to type ")
         }
 		return
 	}
-    _, err := apis.Resolve("core/v2", "{{ $typename }}")
+    _, err := apitools.Resolve("core/v2", "{{ $typename }}")
     if err == nil {
         t.Fatalf("expected non-nil error")
     }

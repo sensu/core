@@ -70,12 +70,8 @@ github.com/robertkrimen/otto v0.0.0-20221006114523-201ab5b34f52/go.mod h1:/mK7FZ
 github.com/robfig/cron/v3 v3.0.1 h1:WdRxkvbJztn8LMz/QEvLN5sBU+xKpSqwwUO1Pjr4qDs=
 github.com/robfig/cron/v3 v3.0.1/go.mod h1:eQICP3HwyT7UooqI/z+Ov+PtYAWygg1TEWWzGIFLtro=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
-github.com/sensu/sensu-api-tools v0.0.0-20221013031257-5242d4a5ba34 h1:RbpQQaJy5ypwdnemnuXdKl3+dxOvCIl8hR1y3atLjQw=
-github.com/sensu/sensu-api-tools v0.0.0-20221013031257-5242d4a5ba34/go.mod h1:SNISS4OhwNSZI9/YKTQr1bghOEwed9ZT4v+ztKk1Mq0=
-github.com/sensu/sensu-api-tools v0.0.0-20221013204550-a02be4f24d24 h1:angdqB1UyyEA+WTDv6aT2UGgveKhUKBQ49sUhiEyAdE=
-github.com/sensu/sensu-api-tools v0.0.0-20221013204550-a02be4f24d24/go.mod h1:SNISS4OhwNSZI9/YKTQr1bghOEwed9ZT4v+ztKk1Mq0=
-github.com/sensu/sensu-api-tools v0.0.0-20221013224313-f376d04d61de h1:FTX+xHaQjod9I9+BuARJoECXGsNHrMzHe+xzJuHLbos=
-github.com/sensu/sensu-api-tools v0.0.0-20221013224313-f376d04d61de/go.mod h1:SNISS4OhwNSZI9/YKTQr1bghOEwed9ZT4v+ztKk1Mq0=
+github.com/sensu/sensu-api-tools v0.0.0-20221025205055-db03ae2f8099 h1:FJUWcuFiTdEn2N0bGnxOaEUDCxIQqRhwERadacNCnXA=
+github.com/sensu/sensu-api-tools v0.0.0-20221025205055-db03ae2f8099/go.mod h1:SNISS4OhwNSZI9/YKTQr1bghOEwed9ZT4v+ztKk1Mq0=
 github.com/sirupsen/logrus v1.9.0 h1:trlNQbNUG3OdDrDil03MCb1H2o9nJ1x4/5LYw7byDE0=
 github.com/sirupsen/logrus v1.9.0/go.mod h1:naHLuLoDiP4jHNo9R0sCBMtWGeIprob74mVsIT4qYEQ=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=

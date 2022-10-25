@@ -11,7 +11,7 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/robertkrimen/otto v0.0.0-20221006114523-201ab5b34f52
 	github.com/robfig/cron/v3 v3.0.1
-	github.com/sensu/sensu-api-tools v0.0.0-20221013224313-f376d04d61de
+	github.com/sensu/sensu-api-tools v0.0.0-20221025205055-db03ae2f8099
 	github.com/sirupsen/logrus v1.9.0
 	github.com/stretchr/testify v1.8.0
 	go.etcd.io/etcd/api/v3 v3.5.5

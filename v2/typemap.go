@@ -3,7 +3,7 @@ package v2
 // automatically generated file, do not edit!
 
 import (
-	"github.com/sensu/sensu-api-tools/apis"
+	"github.com/sensu/sensu-api-tools"
 )
 
 const apiGroup = "core/v2"
@@ -76,7 +76,7 @@ var typeMap = map[string]interface{}{
 func init() {
 	for typeAlias, typ := range typeMap {
 		if _, ok := typ.(Resource); ok {
-			apis.RegisterType(apiGroup, typ, apis.WithAlias(typeAlias))
+			apitools.RegisterType(apiGroup, typ, apitools.WithAlias(typeAlias))
 		}
 	}
 }
