@@ -5,13 +5,13 @@ package v3
 import (
 	"testing"
 
-	"github.com/sensu/sensu-api-tools/apis"
+	"github.com/sensu/sensu-api-tools"
 )
 
 func TestResolveClusterConfig(t *testing.T) {
 	var value interface{} = new(ClusterConfig)
 	if _, ok := value.(Resource); ok {
-		raw, err := apis.Resolve("core/v3", "ClusterConfig")
+		raw, err := apitools.Resolve("core/v3", "ClusterConfig")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -31,7 +31,7 @@ func TestResolveClusterConfig(t *testing.T) {
 		}
 		return
 	}
-	_, err := apis.Resolve("core/v3", "ClusterConfig")
+	_, err := apitools.Resolve("core/v3", "ClusterConfig")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -43,7 +43,7 @@ func TestResolveClusterConfig(t *testing.T) {
 func TestResolveEntityConfig(t *testing.T) {
 	var value interface{} = new(EntityConfig)
 	if _, ok := value.(Resource); ok {
-		raw, err := apis.Resolve("core/v3", "EntityConfig")
+		raw, err := apitools.Resolve("core/v3", "EntityConfig")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -63,7 +63,7 @@ func TestResolveEntityConfig(t *testing.T) {
 		}
 		return
 	}
-	_, err := apis.Resolve("core/v3", "EntityConfig")
+	_, err := apitools.Resolve("core/v3", "EntityConfig")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -75,7 +75,7 @@ func TestResolveEntityConfig(t *testing.T) {
 func TestResolveEntityState(t *testing.T) {
 	var value interface{} = new(EntityState)
 	if _, ok := value.(Resource); ok {
-		raw, err := apis.Resolve("core/v3", "EntityState")
+		raw, err := apitools.Resolve("core/v3", "EntityState")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -95,7 +95,7 @@ func TestResolveEntityState(t *testing.T) {
 		}
 		return
 	}
-	_, err := apis.Resolve("core/v3", "EntityState")
+	_, err := apitools.Resolve("core/v3", "EntityState")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -107,7 +107,7 @@ func TestResolveEntityState(t *testing.T) {
 func TestResolveNamespace(t *testing.T) {
 	var value interface{} = new(Namespace)
 	if _, ok := value.(Resource); ok {
-		raw, err := apis.Resolve("core/v3", "Namespace")
+		raw, err := apitools.Resolve("core/v3", "Namespace")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -127,7 +127,7 @@ func TestResolveNamespace(t *testing.T) {
 		}
 		return
 	}
-	_, err := apis.Resolve("core/v3", "Namespace")
+	_, err := apitools.Resolve("core/v3", "Namespace")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -139,7 +139,7 @@ func TestResolveNamespace(t *testing.T) {
 func TestResolveResourceTemplate(t *testing.T) {
 	var value interface{} = new(ResourceTemplate)
 	if _, ok := value.(Resource); ok {
-		raw, err := apis.Resolve("core/v3", "ResourceTemplate")
+		raw, err := apitools.Resolve("core/v3", "ResourceTemplate")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -159,7 +159,7 @@ func TestResolveResourceTemplate(t *testing.T) {
 		}
 		return
 	}
-	_, err := apis.Resolve("core/v3", "ResourceTemplate")
+	_, err := apitools.Resolve("core/v3", "ResourceTemplate")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
@@ -171,7 +171,7 @@ func TestResolveResourceTemplate(t *testing.T) {
 func TestResolveSymmetricKey(t *testing.T) {
 	var value interface{} = new(SymmetricKey)
 	if _, ok := value.(Resource); ok {
-		raw, err := apis.Resolve("core/v3", "SymmetricKey")
+		raw, err := apitools.Resolve("core/v3", "SymmetricKey")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -191,7 +191,7 @@ func TestResolveSymmetricKey(t *testing.T) {
 		}
 		return
 	}
-	_, err := apis.Resolve("core/v3", "SymmetricKey")
+	_, err := apitools.Resolve("core/v3", "SymmetricKey")
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}

@@ -4,17 +4,17 @@ package v3
 
 import (
 	corev2 "github.com/sensu/core/v2"
-	"github.com/sensu/sensu-api-tools/apis"
+	"github.com/sensu/sensu-api-tools"
 )
 
 func init() {
 	for alias, v := range typeMap {
 		if _, ok := v.(Resource); ok {
-	        apis.RegisterType(
+	        apitools.RegisterType(
                 "core/v3",
                 v,
-                apis.WithAlias(alias),
-                apis.WithResolveHook(resolveResource),
+                apitools.WithAlias(alias),
+                apitools.WithResolveHook(resolveResource),
             )
 		}
 	}

@@ -7,7 +7,7 @@ import (
 	"html/template"
 
 	corev2 "github.com/sensu/core/v2"
-	"github.com/sensu/sensu-api-tools/apis"
+	apitools "github.com/sensu/sensu-api-tools"
 )
 
 // ResourceTemplate is a template for core/v3 resources.
@@ -35,7 +35,7 @@ func (r *ResourceTemplate) Execute(meta *corev2.ObjectMeta) (Resource, error) {
 	if err := tmpl.Execute(&buf, meta); err != nil {
 		return nil, fmt.Errorf("error executing resource template: %s", err)
 	}
-	t, err := apis.Resolve(r.APIVersion, r.Type)
+	t, err := apitools.Resolve(r.APIVersion, r.Type)
 	if err != nil {
 		// do not wrap this error
 		return nil, err
@@ -57,7 +57,7 @@ func (r *ResourceTemplate) validate() error {
 	if _, err := template.New("validate").Parse(r.Template); err != nil {
 		return err
 	}
-	if _, err := apis.Resolve(r.APIVersion, r.Type); err != nil {
+	if _, err := apitools.Resolve(r.APIVersion, r.Type); err != nil {
 		return err
 	}
 	return nil
