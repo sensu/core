@@ -188,3 +188,11 @@ func UserFields(r Resource) map[string]string {
 		"user.groups":   strings.Join(resource.Groups, ","),
 	}
 }
+
+// NamespaceFields returns a set of fields that represent that resource
+func NamespaceFields(r Resource) map[string]string {
+	resource := r.(*Namespace)
+	return map[string]string{
+		"namespace.name": resource.Metadata.Name,
+	}
+}
