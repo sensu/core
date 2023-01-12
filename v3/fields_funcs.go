@@ -114,3 +114,77 @@ func EventFilterFields(r Resource) map[string]string {
 	stringutil.MergeMapWithPrefix(fields, resource.ObjectMeta.Labels, "filter.labels.")
 	return fields
 }
+
+// HandlerFields returns a set of fields that represent that resource
+func HandlerFields(r Resource) map[string]string {
+	resource := r.(*corev2.Handler)
+	fields := map[string]string{
+		"handler.name":      resource.ObjectMeta.Name,
+		"handler.namespace": resource.ObjectMeta.Namespace,
+		"handler.filters":   strings.Join(resource.Filters, ","),
+		"handler.handlers":  strings.Join(resource.Handlers, ","),
+		"handler.mutator":   resource.Mutator,
+		"handler.type":      resource.Type,
+	}
+	stringutil.MergeMapWithPrefix(fields, resource.ObjectMeta.Labels, "handler.labels.")
+	return fields
+}
+
+// MutatorFields returns a set of fields that represent that resource
+func MutatorFields(r Resource) map[string]string {
+	resource := r.(*corev2.Mutator)
+	fields := map[string]string{
+		"mutator.name":           resource.ObjectMeta.Name,
+		"mutator.namespace":      resource.ObjectMeta.Namespace,
+		"mutator.runtime_assets": strings.Join(resource.RuntimeAssets, ","),
+	}
+	stringutil.MergeMapWithPrefix(fields, resource.ObjectMeta.Labels, "mutator.labels.")
+	return fields
+}
+
+// SilencedFields returns a set of fields that represent that resource
+func SilencedFields(r Resource) map[string]string {
+	resource := r.(*corev2.Silenced)
+	fields := map[string]string{
+		"silenced.name":              resource.ObjectMeta.Name,
+		"silenced.namespace":         resource.ObjectMeta.Namespace,
+		"silenced.check":             resource.Check,
+		"silenced.creator":           resource.Creator,
+		"silenced.expire_on_resolve": strconv.FormatBool(resource.ExpireOnResolve),
+		"silenced.subscription":      resource.Subscription,
+	}
+	stringutil.MergeMapWithPrefix(fields, resource.ObjectMeta.Labels, "silenced.labels.")
+	return fields
+}
+
+// HookConfigFields returns a set of fields that represent that resource
+func HookConfigFields(r Resource) map[string]string {
+	resource := r.(*corev2.HookConfig)
+	fields := map[string]string{
+		"hook.name":      resource.ObjectMeta.Name,
+		"hook.namespace": resource.ObjectMeta.Namespace,
+	}
+	stringutil.MergeMapWithPrefix(fields, resource.ObjectMeta.Labels, "hook.labels.")
+	return fields
+}
+
+// PipelineFields returns a set of fields that represent that resource.
+func PipelineFields(r Resource) map[string]string {
+	resource := r.(*corev2.Pipeline)
+	fields := map[string]string{
+		"pipeline.name":      resource.ObjectMeta.Name,
+		"pipeline.namespace": resource.ObjectMeta.Namespace,
+	}
+	stringutil.MergeMapWithPrefix(fields, resource.ObjectMeta.Labels, "pipeline.labels.")
+	return fields
+}
+
+// UserFields returns a set of fields that represent that resource
+func UserFields(r Resource) map[string]string {
+	resource := r.(*corev2.User)
+	return map[string]string{
+		"user.username": resource.Username,
+		"user.disabled": strconv.FormatBool(resource.Disabled),
+		"user.groups":   strings.Join(resource.Groups, ","),
+	}
+}
