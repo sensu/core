@@ -101,3 +101,16 @@ func EventFields(r Resource) map[string]string {
 	stringutil.MergeMapWithPrefix(fields, resource.Check.ObjectMeta.Labels, "event.labels.")
 	return fields
 }
+
+// EventFilterFields returns a set of fields that represent that resource
+func EventFilterFields(r Resource) map[string]string {
+	resource := r.(*corev2.EventFilter)
+	fields := map[string]string{
+		"filter.name":           resource.ObjectMeta.Name,
+		"filter.namespace":      resource.ObjectMeta.Namespace,
+		"filter.action":         resource.Action,
+		"filter.runtime_assets": strings.Join(resource.RuntimeAssets, ","),
+	}
+	stringutil.MergeMapWithPrefix(fields, resource.ObjectMeta.Labels, "filter.labels.")
+	return fields
+}
