@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"math"
 	"net/url"
 	"path"
 	"sort"
@@ -164,6 +165,29 @@ func SortSilencedByName(es []*Silenced) sort.Interface {
 // timestamp.
 func SortSilencedByBegin(es []*Silenced) sort.Interface {
 	return SortSilencedByPredicate(es, func(a, b *Silenced) bool { return a.Begin < b.Begin })
+}
+
+// SortSilencedByExpireAt sorts silences by expiration timestamp where
+// silences with expiration of 0 could never expire and are weighed
+// heaviest, slightly less so if set to expire on resolve
+func SortSilencedByExpireAt(es []*Silenced) sort.Interface {
+	return SortSilencedByPredicate(es, func(silenceA, silenceB *Silenced) bool {
+		a := silenceA.ExpireAt
+		b := silenceB.ExpireAt
+		if a == 0 {
+			a = math.MaxInt64
+			if silenceA.ExpireOnResolve {
+				a--
+			}
+		}
+		if b == 0 {
+			b = math.MaxInt64
+			if silenceB.ExpireOnResolve {
+				b--
+			}
+		}
+		return a < b
+	})
 }
 
 type silenceSorter struct {
