@@ -82,6 +82,47 @@ func TestSortSilencedByBegin(t *testing.T) {
 	assert.EqualValues(t, []*Silenced{a, b, c}, in)
 }
 
+func TestSortSilencedByExpireAt(t *testing.T) {
+	a := FixtureSilenced("Abernathy:*")
+	a.ExpireAt = 5
+	b := FixtureSilenced("Bernard:*")
+	b.ExpireAt = 50
+	c := FixtureSilenced("Clementine:*")
+	c.ExpireAt = 0
+	c.ExpireOnResolve = true
+	d := FixtureSilenced("Dolores:*")
+	d.Expire = 0
+
+	testCases := []struct {
+		name      string
+		inRecords []*Silenced
+		expected  []*Silenced
+	}{
+		{
+			name:      "0, 0-ExpireOnResolve, 50, 5",
+			inRecords: []*Silenced{d, c, b, a},
+			expected:  []*Silenced{a, b, c, d},
+		},
+		{
+			name:      "50, 0-ExpireOnResolve, 5",
+			inRecords: []*Silenced{b, c, a},
+			expected:  []*Silenced{a, b, c},
+		},
+		{
+			name:      "0, 0-ExpireOnResolve",
+			inRecords: []*Silenced{d, c},
+			expected:  []*Silenced{c, d},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			sort.Sort(SortSilencedByName(tc.inRecords))
+			assert.EqualValues(t, tc.expected, tc.inRecords)
+		})
+	}
+}
+
 func TestSilencedMatches(t *testing.T) {
 	testCases := []struct {
 		name         string
