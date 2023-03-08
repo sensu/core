@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/gogo/protobuf v1.3.2
 	github.com/golang/protobuf v1.5.2
-	github.com/sensu/core/v2 v2.16.0-alpha1
+	github.com/sensu/core/v2 v2.17.0
 	github.com/sensu/sensu-api-tools v0.0.0-20221025205055-db03ae2f8099
 	github.com/stretchr/testify v1.8.0
 )
