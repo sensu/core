@@ -27,4 +27,7 @@ message APIKey {
 
   // CreatedAt is a timestamp which the API key was created.
   int64 created_at = 3;
+
+  // Hash is the hashed value of the API key.
+  bytes hash = 4;
 }
