@@ -5,7 +5,6 @@ import (
 	"net/url"
 	"path"
 
-	"github.com/google/uuid"
 	stringsutil "github.com/sensu/core/v2/internal/stringutil"
 )
 
@@ -16,7 +15,8 @@ const (
 
 // APIKeyResponse is returned by the Sensu 7.x apikeys API
 type APIKeyResponse struct {
-	Key string `json:"key"`
+	Name string `json:"name"`
+	Key  string `json:"key"`
 }
 
 // StorePrefix returns the path prefix to this resource in the store.
@@ -38,10 +38,6 @@ func (a *APIKey) Validate() error {
 
 	if a.Username == "" {
 		return fmt.Errorf("api key must have a username")
-	}
-
-	if _, err := uuid.Parse(a.Name); err != nil {
-		return fmt.Errorf("api key name: %s", err)
 	}
 
 	return nil
