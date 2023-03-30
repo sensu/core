@@ -15,7 +15,8 @@ const (
 
 // APIKeyResponse is returned by the Sensu 7.x apikeys API
 type APIKeyResponse struct {
-	Key string `json:"key"`
+	Name string `json:"name"`
+	Key  string `json:"key"`
 }
 
 // StorePrefix returns the path prefix to this resource in the store.
