@@ -5,7 +5,6 @@ import (
 	"net/url"
 	"path"
 
-	"github.com/google/uuid"
 	stringsutil "github.com/sensu/core/v2/internal/stringutil"
 )
 
@@ -38,10 +37,6 @@ func (a *APIKey) Validate() error {
 
 	if a.Username == "" {
 		return fmt.Errorf("api key must have a username")
-	}
-
-	if _, err := uuid.Parse(a.Name); err != nil {
-		return fmt.Errorf("api key name: %s", err)
 	}
 
 	return nil
