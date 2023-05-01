@@ -37,7 +37,6 @@ buildv3: Dockerfile
 
 .PHONY: v2
 v2: buildv2
-	docker run sensu/core:v2 uname -a
 	docker run \
 		-v $(CURDIR):/go/src/github.com/sensu/core \
 		-w /go/src/github.com/sensu/core/v2 \
@@ -46,7 +45,6 @@ v2: buildv2
 
 .PHONY: v3
 v3: buildv3
-	docker run sensu/core:v3 uname -a
 	docker run \
 		-v $(CURDIR):/go/src/github.com/sensu/core \
 		-w /go/src/github.com/sensu/core/v3 \
