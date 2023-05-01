@@ -10,6 +10,7 @@ const apiGroup = "core/v2"
 
 var typeMap = map[string]interface{}{
 	"api_key":                &APIKey{},
+	"api_key_response":       &APIKeyResponse{},
 	"adhoc_request":          &AdhocRequest{},
 	"any":                    &Any{},
 	"asset":                  &Asset{},

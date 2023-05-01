@@ -24,6 +24,22 @@ func TestResolveAPIKey(t *testing.T) {
 	}
 }
 
+func TestResolveAPIKeyResponse(t *testing.T) {
+	var value interface{} = new(APIKeyResponse)
+	if _, ok := value.(Resource); ok {
+		if actual, err := apitools.Resolve("core/v2", "APIKeyResponse"); err != nil {
+			t.Fatal(err)
+		} else if _, ok := actual.(*APIKeyResponse); !ok {
+			t.Fatal("expected to resolve to type ")
+		}
+		return
+	}
+	_, err := apitools.Resolve("core/v2", "APIKeyResponse")
+	if err == nil {
+		t.Fatalf("expected non-nil error")
+	}
+}
+
 func TestResolveAdhocRequest(t *testing.T) {
 	var value interface{} = new(AdhocRequest)
 	if _, ok := value.(Resource); ok {
