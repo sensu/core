@@ -1,6 +1,4 @@
 
-PROTOC_VERSION := 3.9.1
-
 ARCH := $(shell uname -m)
 ifeq ($(ARCH),arm64)
 	PROTOC_ARCH := aarch_64
@@ -12,8 +10,6 @@ endif
 ifndef PROTOC_ARCH
 $(error Unsupported arch: $(ARCH))
 endif
-
-PROTOC_ZIP := protoc-$(PROTOC_VERSION)-linux-x86_64.zip
 
 BUILDX_INSTALLED := $(shell docker buildx version 2> /dev/null)
 ifeq ($(BUILDX_INSTALLED),)
