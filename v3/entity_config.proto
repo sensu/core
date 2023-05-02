@@ -3,6 +3,7 @@ syntax = "proto3";
 import "github.com/gogo/protobuf@v1.3.2/gogoproto/gogo.proto";
 import "github.com/sensu/core/v2/meta.proto";
 import "github.com/sensu/core/v2/entity.proto";
+import "github.com/sensu/core/v2/resource_reference.proto";
 
 package sensu.core.v3;
 
@@ -43,7 +44,15 @@ message EntityConfig {
   // keepalive events.
   repeated string keepalive_handlers = 7;
 
-  // Redact contains the fields to redact on the entity, if the entity is an]
+  // Redact contains the fields to redact on the entity, if the entity is an
   // agent entity.
   repeated string redact = 8;
+
+  // Keepalive contains configuration for Sensu entity keepalives.
+  EntityKeepalive keepalive = 9 [ (gogoproto.nullable) = false ];
+}
+
+// EntityKeepalive contains configuration for Sensu entity keepalives.
+message EntityKeepalive {
+  repeated sensu.core.v2.ResourceReference pipelines = 1 [ (gogoproto.jsontag) = "pipelines" ];
 }

@@ -36,9 +36,17 @@ const (
 	// a keepalive timeout occurs.
 	KeepaliveHandlerName = "keepalive"
 
+	// KeepalivePipelineName is the name of the pipeline that is executed when
+	// a keepalive timeout occurs.
+	KeepalivePipelineName = "keepalive"
+
 	// RegistrationHandlerName is the name of the handler that is executed when
 	// a registration event is passed to pipelined.
 	RegistrationHandlerName = "registration"
+
+	// RegistrationPipelineName is the name of the pipeline that is executed when
+	// a registration event is passed to pipelined.
+	RegistrationPipelineName = "registration"
 )
 
 // StorePrefix returns the path prefix to this resource in the store

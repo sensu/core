@@ -2,6 +2,7 @@ syntax = "proto3";
 
 import "github.com/gogo/protobuf@v1.3.2/gogoproto/gogo.proto";
 import "github.com/sensu/core/v2/meta.proto";
+import "github.com/sensu/core/v2/resource_reference.proto";
 
 package sensu.core.v2;
 
@@ -32,12 +33,18 @@ message Entity {
   repeated string redact = 13;
   // Metadata contains the name, namespace, labels and annotations of the
   // entity
-  ObjectMeta metadata = 14 [ (gogoproto.jsontag) = "metadata,omitempty", (gogoproto.embed) = true, (gogoproto.nullable) = false ];
+  ObjectMeta metadata = 14 [
+    (gogoproto.jsontag) = "metadata,omitempty",
+    (gogoproto.embed) = true,
+    (gogoproto.nullable) = false
+  ];
   // SensuAgentVersion is the sensu-agent version.
-  string sensu_agent_version = 15 [ (gogoproto.jsontag) = "sensu_agent_version" ];
+  string sensu_agent_version = 15
+      [ (gogoproto.jsontag) = "sensu_agent_version" ];
   // KeepaliveHandlers contains a list of handlers to use for the entity's
   // keepalive events
   repeated string keepalive_handlers = 16;
+  repeated ResourceReference keepalive_pipelines = 17;
 }
 
 // System contains information about the system that the Agent process
@@ -77,7 +84,10 @@ message Process { string name = 1 [ (gogoproto.jsontag) = "name" ]; }
 // Network contains information about the system network interfaces
 // that the Agent process is running on, used for additional Entity
 // context.
-message Network { repeated NetworkInterface interfaces = 1 [ (gogoproto.jsontag) = "interfaces", (gogoproto.nullable) = false ]; }
+message Network {
+  repeated NetworkInterface interfaces = 1
+      [ (gogoproto.jsontag) = "interfaces", (gogoproto.nullable) = false ];
+}
 
 // NetworkInterface contains information about a system network
 // interface.
@@ -88,4 +98,7 @@ message NetworkInterface {
 }
 
 // Deregistration contains configuration for Sensu entity de-registration.
-message Deregistration { string handler = 1; }
+message Deregistration {
+  string handler = 1;
+  repeated ResourceReference pipelines = 2 [ (gogoproto.jsontag) = "pipelines" ];
+}

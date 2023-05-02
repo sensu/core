@@ -24,6 +24,7 @@ func init() {
 var typeMap = map[string]interface{}{
 	"cluster_config":    &ClusterConfig{},
 	"entity_config":     &EntityConfig{},
+	"entity_keepalive":  &EntityKeepalive{},
 	"entity_state":      &EntityState{},
 	"namespace":         &Namespace{},
 	"resource_template": &ResourceTemplate{},
