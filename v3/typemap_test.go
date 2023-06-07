@@ -72,38 +72,6 @@ func TestResolveEntityConfig(t *testing.T) {
 	}
 }
 
-func TestResolveEntityKeepalive(t *testing.T) {
-	var value interface{} = new(EntityKeepalive)
-	if _, ok := value.(Resource); ok {
-		raw, err := apitools.Resolve("core/v3", "EntityKeepalive")
-		if err != nil {
-			t.Fatal(err)
-		}
-		resource, ok := raw.(Resource)
-		if !ok {
-			t.Fatal("expected Resource")
-		}
-		meta := resource.GetMetadata()
-		if meta == nil {
-			t.Fatal("nil metadata")
-		}
-		if meta.Labels == nil {
-			t.Error("nil metadata")
-		}
-		if meta.Annotations == nil {
-			t.Error("nil annotations")
-		}
-		return
-	}
-	_, err := apitools.Resolve("core/v3", "EntityKeepalive")
-	if err == nil {
-		t.Fatal("expected non-nil error")
-	}
-	if got, want := err.Error(), `"EntityKeepalive" is not a Resource`; got != want {
-		t.Fatalf("unexpected error: %s", err)
-	}
-}
-
 func TestResolveEntityState(t *testing.T) {
 	var value interface{} = new(EntityState)
 	if _, ok := value.(Resource); ok {

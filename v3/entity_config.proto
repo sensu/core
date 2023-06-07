@@ -53,6 +53,7 @@ message EntityConfig {
 }
 
 // EntityKeepalive contains configuration for Sensu entity keepalives.
+//sensu:nogen
 message EntityKeepalive {
   repeated sensu.core.v2.ResourceReference pipelines = 1 [ (gogoproto.jsontag) = "pipelines" ];
 }

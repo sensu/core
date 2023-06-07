@@ -154,6 +154,7 @@ func (m *EntityConfig) GetKeepalive() EntityKeepalive {
 }
 
 // EntityKeepalive contains configuration for Sensu entity keepalives.
+//sensu:nogen
 type EntityKeepalive struct {
 	Pipelines            []*v2.ResourceReference `protobuf:"bytes,1,rep,name=pipelines,proto3" json:"pipelines"`
 	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
