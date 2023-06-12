@@ -48,16 +48,13 @@ func setObjectMeta(value interface{}, meta *corev2.ObjectMeta) {
 type Wrapper struct {
 	corev2.TypeMeta
 
-	ObjectMeta corev2.ObjectMeta `json:"metadata,omitempty" yaml:"metadata,omitempty"`
-
 	// Value is a valid Resource of concrete type Type.
 	Value interface{} `json:"spec" yaml:"spec"`
 }
 
 type rawWrapper struct {
 	corev2.TypeMeta
-	ObjectMeta corev2.ObjectMeta `json:"metadata" yaml:"metadata"`
-	Value      *json.RawMessage  `json:"spec" yaml:"spec"`
+	Value *json.RawMessage `json:"spec" yaml:"spec"`
 }
 
 // toMap produces a map from a struct by serializing it to JSON and then
@@ -73,58 +70,6 @@ func toMap(v interface{}) (map[string]interface{}, error) {
 	dec.UseNumber()
 	err = dec.Decode(&result)
 	return result, err
-}
-
-// MarshalJSON implements json.Marshaler
-func (w Wrapper) MarshalJSON() ([]byte, error) {
-	wrapper := struct {
-		corev2.TypeMeta
-		ObjectMeta corev2.ObjectMeta      `json:"metadata"`
-		Value      map[string]interface{} `json:"spec"`
-	}{
-		TypeMeta:   w.TypeMeta,
-		ObjectMeta: w.ObjectMeta,
-	}
-
-	// Remove the innerMeta
-	value, err := toMap(w.Value)
-	if err != nil {
-		return nil, err
-	}
-	delete(value, "metadata")
-
-	wrapper.Value = value
-
-	return json.Marshal(wrapper)
-}
-
-// MarshalYAML implements yaml.Marshaler
-func (w Wrapper) MarshalYAML() (interface{}, error) {
-	wrapper := struct {
-		Type       string                 `yaml:"type"`
-		APIVersion string                 `yaml:"api_version"`
-		ObjectMeta map[string]interface{} `yaml:"metadata"`
-		Value      map[string]interface{} `yaml:"spec"`
-	}{
-		Type:       w.Type,
-		APIVersion: w.APIVersion,
-	}
-
-	meta, err := toMap(w.ObjectMeta)
-	if err != nil {
-		return nil, err
-	}
-	wrapper.ObjectMeta = meta
-
-	// Remove the innerMeta
-	value, err := toMap(w.Value)
-	if err != nil {
-		return nil, err
-	}
-	delete(value, "metadata")
-	wrapper.Value = value
-
-	return wrapper, nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler
@@ -162,54 +107,19 @@ func (w *Wrapper) UnmarshalJSON(b []byte) error {
 		return nil
 	}
 
-	// Use the outer ObjectMeta to fill the inner ObjectMeta that's part of the
-	// resource if it's empty
-	outerMeta := wrapper.ObjectMeta
-	innerMeta := getObjectMeta(resource)
-	if innerMeta == nil {
-		innerMeta = &outerMeta
-		setObjectMeta(resource, innerMeta)
-		goto V3RESOURCE
-	}
-
-	// Start hacks to equalize ObjectMetas
-	if outerMeta.Namespace != "" {
-		innerMeta.Namespace = outerMeta.Namespace
-	}
-	if outerMeta.Name != "" {
-		innerMeta.Name = outerMeta.Name
-	}
-	if outerMeta.CreatedBy != "" {
-		innerMeta.CreatedBy = outerMeta.CreatedBy
-	}
-	for k, v := range outerMeta.Labels {
-		if innerMeta.Labels == nil {
-			innerMeta.Labels = make(map[string]string)
-		}
-		innerMeta.Labels[k] = v
-	}
-	for k, v := range outerMeta.Annotations {
-		if innerMeta.Annotations == nil {
-			innerMeta.Annotations = make(map[string]string)
-		}
-		innerMeta.Annotations[k] = v
-	}
-	// End hacks to equalize ObjectMetas
-
-V3RESOURCE:
-
-	// Set the outer ObjectMeta of the wrapper
-	w.ObjectMeta = *innerMeta
-
 	// Set the inner ObjectMeta
 	if r, ok := resource.(corev3.Resource); ok {
-		if innerMeta.Labels == nil {
-			innerMeta.Labels = make(map[string]string)
+		meta := r.GetMetadata()
+		if meta == nil {
+			meta = new(corev2.ObjectMeta)
 		}
-		if innerMeta.Annotations == nil {
-			innerMeta.Annotations = make(map[string]string)
+		if meta.Labels == nil {
+			meta.Labels = make(map[string]string)
 		}
-		r.SetMetadata(innerMeta)
+		if meta.Annotations == nil {
+			meta.Annotations = make(map[string]string)
+		}
+		r.SetMetadata(meta)
 	} else {
 		val := reflect.Indirect(reflect.ValueOf(resource))
 		objectMeta := val.FieldByName("ObjectMeta")
@@ -220,7 +130,6 @@ V3RESOURCE:
 			w.Value = resource
 			return nil
 		}
-		val.FieldByName("ObjectMeta").Set(reflect.Indirect(reflect.ValueOf(innerMeta)))
 	}
 
 	// Set the resource as the wrapper's value
@@ -248,9 +157,8 @@ func WrapResource(r interface{}) Wrapper {
 		}
 	}
 	return Wrapper{
-		TypeMeta:   tm,
-		ObjectMeta: *getObjectMeta(r),
-		Value:      r,
+		TypeMeta: tm,
+		Value:    r,
 	}
 }
 

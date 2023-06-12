@@ -46,15 +46,9 @@ func TestWrapper_UnmarshalJSON(t *testing.T) {
 		},
 		{
 			name:  "inner and outer ObjectMeta are filled",
-			bytes: []byte(`{"type": "CheckConfig", "metadata": {"name": "foo", "namespace": "dev", "labels": {"region": "us-west-2"}, "annotations": {"managed-by": "ops"}}, "spec": {"command": "echo"}}`),
+			bytes: []byte(`{"type": "CheckConfig", "spec": {"metadata": {"name": "foo", "namespace": "dev", "labels": {"region": "us-west-2"}, "annotations": {"managed-by": "ops"}}, "command": "echo"}}`),
 			want: types.Wrapper{
 				TypeMeta: corev2.TypeMeta{Type: "CheckConfig", APIVersion: "core/v2"},
-				ObjectMeta: corev2.ObjectMeta{
-					Name:        "foo",
-					Namespace:   "dev",
-					Labels:      map[string]string{"region": "us-west-2"},
-					Annotations: map[string]string{"managed-by": "ops"},
-				},
 				Value: &corev2.CheckConfig{
 					ObjectMeta: corev2.ObjectMeta{
 						Name:        "foo",
@@ -68,13 +62,9 @@ func TestWrapper_UnmarshalJSON(t *testing.T) {
 		},
 		{
 			name:  "inner & outer ObjectMeta are filled for core/v3 resource",
-			bytes: []byte(`{"type": "EntityConfig", "api_version": "core/v3", "metadata": {"name": "foo", "namespace": "dev"}, "spec": {"entity_class": "agent", "subscriptions": ["testsub"]}}`),
+			bytes: []byte(`{"type": "EntityConfig", "api_version": "core/v3", "spec": {"metadata": {"namespace": "dev", "name": "foo"}, "entity_class": "agent", "subscriptions": ["testsub"]}}`),
 			want: types.Wrapper{
 				TypeMeta: corev2.TypeMeta{Type: "EntityConfig", APIVersion: "core/v3"},
-				ObjectMeta: corev2.ObjectMeta{
-					Name:      "foo",
-					Namespace: "dev",
-				},
 				Value: &corev3.EntityConfig{
 					Metadata: &corev2.ObjectMeta{
 						Name:        "foo",
@@ -102,15 +92,5 @@ func TestWrapper_UnmarshalJSON(t *testing.T) {
 				t.Errorf("Wrapper.UnmarshalJSON() = %#v, \nwant %#v", *w, tt.want)
 			}
 		})
-	}
-}
-
-func TestWrapResourceObjectMeta(t *testing.T) {
-	check := corev2.FixtureCheck("foo")
-	check.Labels["asdf"] = "asdf"
-
-	wrapped := types.WrapResource(check)
-	if !reflect.DeepEqual(wrapped.ObjectMeta, check.ObjectMeta) {
-		t.Fatal("objectmeta not equal")
 	}
 }
