@@ -14,6 +14,16 @@ func FixtureAdhocRequest(name string, subscriptions []string) *AdhocRequest {
 	}
 }
 
+// GetObjectMeta returns the object metadata for the resource.
+func (p *AdhocRequest) GetObjectMeta() ObjectMeta {
+	return p.ObjectMeta
+}
+
+// SetObjectMeta sets the object metadata for the resource.
+func (p *AdhocRequest) SetObjectMeta(meta ObjectMeta) {
+	p.ObjectMeta = meta
+}
+
 // SetNamespace sets the namespace of the resource.
 func (a *AdhocRequest) SetNamespace(namespace string) {
 }
