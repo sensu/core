@@ -172,3 +172,23 @@ func ApiVersion(version string) string {
 	}
 	return path.Join(parts[len(parts)-2], parts[len(parts)-1])
 }
+
+// MarshalYAML implements yaml.Marshaler
+func (w Wrapper) MarshalYAML() (interface{}, error) {
+	wrapper := struct {
+		Type       string                 `yaml:"type"`
+		APIVersion string                 `yaml:"api_version"`
+		Value      map[string]interface{} `yaml:"spec"`
+	}{
+		Type:       w.Type,
+		APIVersion: w.APIVersion,
+	}
+
+	value, err := toMap(w.Value)
+	if err != nil {
+		return nil, err
+	}
+	wrapper.Value = value
+
+	return wrapper, nil
+}
