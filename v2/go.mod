@@ -6,13 +6,13 @@ require (
 	github.com/echlebek/crock v1.0.1
 	github.com/echlebek/timeproxy v1.0.0
 	github.com/gogo/protobuf v1.3.2
-	github.com/golang-jwt/jwt/v4 v4.4.2
+	github.com/golang-jwt/jwt/v4 v4.4.3
 	github.com/golang/protobuf v1.5.2
 	github.com/google/uuid v1.3.0
 	github.com/robertkrimen/otto v0.0.0-20221006114523-201ab5b34f52
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/sensu/sensu-api-tools v0.0.0-20221025205055-db03ae2f8099
-	github.com/sirupsen/logrus v1.9.0
+	github.com/sirupsen/logrus v1.9.3
 	github.com/stretchr/testify v1.8.0
 	go.etcd.io/etcd/api/v3 v3.5.5
 )
