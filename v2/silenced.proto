@@ -46,4 +46,10 @@ message Silenced {
 
   // ExpireAt is a timestamp at which the silenced entry will expire.
   int64 expire_at = 11 [ (gogoproto.jsontag) = "expire_at" ];
+
+  // Default Expiry time is the number of seconds the entry will live if expire_at is not set
+  int64 default_silenced_expiry = 12 [ (gogoproto.nullable) = true, (gogoproto.jsontag) = "default_silenced_expiry" ];
+
+  // Maximum Expiry allowed is the number of seconds expiry is allowed
+  int64 max_silenced_expiry_allowed = 13 [ (gogoproto.nullable) = true, (gogoproto.jsontag) = "max_silenced_expiry_allowed" ];
 }
