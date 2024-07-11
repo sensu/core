@@ -344,6 +344,23 @@ func TestResolveExtension(t *testing.T) {
 	}
 }
 
+// MANISHA ADDED AUTOMATICALLY
+func TestResolveFallbackPipeline(t *testing.T) {
+	var value interface{} = new(FallbackPipeline)
+	if _, ok := value.(Resource); ok {
+		if actual, err := apitools.Resolve("core/v2", "FallbackPipeline"); err != nil {
+			t.Fatal(err)
+		} else if _, ok := actual.(*FallbackPipeline); !ok {
+			t.Fatal("expected to resolve to type ")
+		}
+		return
+	}
+	_, err := apitools.Resolve("core/v2", "FallbackPipeline")
+	if err == nil {
+		t.Fatalf("expected non-nil error")
+	}
+}
+
 func TestResolveHandler(t *testing.T) {
 	var value interface{} = new(Handler)
 	if _, ok := value.(Resource); ok {
