@@ -50,4 +50,6 @@ message Event {
   // APIVersion should default to "core/v2" and Type should default to
   // "Pipeline".
   repeated ResourceReference pipelines = 8 [ (gogoproto.jsontag) = "pipelines" ];
+  //Manisha added
+  repeated ResourceReference fallback_pipeline = 9 [ (gogoproto.jsontag) = "fallback_pipeline" ];
 }
