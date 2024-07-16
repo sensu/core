@@ -131,6 +131,7 @@ func NewCheck(c *CheckConfig) *Check {
 		MaxOutputSize:          c.MaxOutputSize,
 		Scheduler:              c.Scheduler,
 		Pipelines:              c.Pipelines,
+		FallbackPipeline:       c.FallbackPipeline,
 	}
 	if check.Labels == nil {
 		check.Labels = make(map[string]string)
@@ -267,6 +268,10 @@ func (c *Check) MarshalJSON() ([]byte, error) {
 	}
 	if c.Pipelines == nil {
 		c.Pipelines = []*ResourceReference{}
+	}
+	//Manisha
+	if c.FallbackPipeline == nil {
+		c.FallbackPipeline = []*ResourceReference{}
 	}
 
 	type Clone Check

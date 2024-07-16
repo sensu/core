@@ -168,9 +168,13 @@ message CheckConfig {
   // Pipelines are the pipelines this check will use to process its events.
   repeated ResourceReference pipelines = 32 [ (gogoproto.jsontag) = "pipelines" ];
 
-  repeated MetricThreshold output_metric_thresholds = 33 [ (gogoproto.jsontag) = "output_metric_thresholds,omitempty", (gogoproto.moretags) = "yaml: \"output_metric_thresholds,omitempty\"" ];
+  //Manisha added fallback pieplines detials in order of execution
+  repeated ResourceReference fallback_pipeline = 33 [ (gogoproto.jsontag) = "fallback_pipeline" ,(gogoproto.moretags) = "yaml: \"fallback_pipeline,omitempty\"" ];
 
-  repeated TimeWindowRepeated subdues = 34  [ (gogoproto.jsontag) = "subdues,omitempty" ];
+
+  repeated MetricThreshold output_metric_thresholds = 34 [ (gogoproto.jsontag) = "output_metric_thresholds,omitempty", (gogoproto.moretags) = "yaml: \"output_metric_thresholds,omitempty\"" ];
+
+  repeated TimeWindowRepeated subdues = 35  [ (gogoproto.jsontag) = "subdues,omitempty" ];
 }
 
 // A Check is a check specification and optionally the results of the check's
@@ -328,11 +332,14 @@ message Check {
   // Pipelines are the pipelines this check will use to process its events.
   repeated ResourceReference pipelines = 46 [ (gogoproto.jsontag) = "pipelines" ];
 
+  //Manisha added fallback pieplines detials in order of execution
+  repeated ResourceReference fallback_pipeline = 47 [ (gogoproto.jsontag) = "fallback_pipeline" ,(gogoproto.moretags) = "yaml: \"fallback_pipeline,omitempty\"" ];
+
   // MetricThresholds are a list of thresholds to apply to metrics in order to determine
   // the check status.
-  repeated MetricThreshold output_metric_thresholds = 47 [ (gogoproto.jsontag) = "output_metric_thresholds,omitempty", (gogoproto.moretags) = "yaml: \"output_metric_thresholds,omitempty\"" ];
+  repeated MetricThreshold output_metric_thresholds = 48 [ (gogoproto.jsontag) = "output_metric_thresholds,omitempty", (gogoproto.moretags) = "yaml: \"output_metric_thresholds,omitempty\"" ];
 
-  repeated TimeWindowRepeated subdues = 48  [ (gogoproto.jsontag) = "subdues,omitempty" ];
+  repeated TimeWindowRepeated subdues = 49  [ (gogoproto.jsontag) = "subdues,omitempty" ];
 
   // ExtendedAttributes store serialized arbitrary JSON-encoded data
   bytes ExtendedAttributes = 99 [ (gogoproto.jsontag) = "-" ];
