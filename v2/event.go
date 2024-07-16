@@ -218,7 +218,7 @@ func (e *Event) validateFallbackPipelineReference(ref *ResourceReference) error 
 	switch ref.APIVersion {
 	case "core/v2":
 		switch ref.Type {
-		case "FallbackPipeline":
+		case "LegacyPipeline":
 			return nil
 		}
 	}
