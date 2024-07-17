@@ -81,20 +81,20 @@ func (f *FallbackPipeline) Fields() map[string]string {
 	return FallbackPipelineFields(f)
 }
 
-//// FixturePipeline returns a testing fixture for a Pipeline object.
-//func FixtureFallbackPipeline(name, namespace string) *Pipeline {
-//	return &Pipeline{
-//		ObjectMeta: NewObjectMeta(name, namespace),
-//		Workflows:  []*PipelineWorkflow{},
-//	}
-//}
-//
-//// FixturePipelineReference returns a testing fixture for a ResourceReference
-//// object referencing a corev2.Pipeline.
-//func FixtureFallbackPipelineReference(name string) *ResourceReference {
-//	return &ResourceReference{
-//		APIVersion: "core/v2",
-//		Type:       "Pipeline",
-//		Name:       name,
-//	}
-//}
+// // FixturePipeline returns a testing fixture for a Pipeline object.
+func FixtureFallbackPipeline(name, namespace string) *FallbackPipeline {
+	return &FallbackPipeline{
+		ObjectMeta: NewObjectMeta(name, namespace),
+		Pipelist:   []*ResourceReference{},
+	}
+}
+
+// // FixturePipelineReference returns a testing fixture for a ResourceReference
+// // object referencing a corev2.Pipeline.
+func FixtureFallbackPipelineReference(name string) *ResourceReference {
+	return &ResourceReference{
+		APIVersion: "core/v2",
+		Type:       "FallbackPipeline",
+		Name:       name,
+	}
+}
