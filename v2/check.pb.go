@@ -314,7 +314,7 @@ type CheckConfig struct {
 	Scheduler string `protobuf:"bytes,31,opt,name=scheduler,proto3" json:"-" yaml: "-"`
 	// Pipelines are the pipelines this check will use to process its events.
 	Pipelines []*ResourceReference `protobuf:"bytes,32,rep,name=pipelines,proto3" json:"pipelines"`
-	//Manisha added fallback pieplines detials in order of execution
+	//added fallback pieplines detials in order of execution
 	FallbackPipeline       []*ResourceReference  `protobuf:"bytes,33,rep,name=fallback_pipeline,json=fallbackPipeline,proto3" json:"fallback_pipeline" yaml: "fallback_pipeline,omitempty"`
 	OutputMetricThresholds []*MetricThreshold    `protobuf:"bytes,34,rep,name=output_metric_thresholds,json=outputMetricThresholds,proto3" json:"output_metric_thresholds,omitempty" yaml: "output_metric_thresholds,omitempty"`
 	Subdues                []*TimeWindowRepeated `protobuf:"bytes,35,rep,name=subdues,proto3" json:"subdues,omitempty"`
@@ -466,7 +466,7 @@ type Check struct {
 	ProcessedBy string `protobuf:"bytes,45,opt,name=ProcessedBy,proto3" json:"processed_by,omitempty" yaml: "processed_by"`
 	// Pipelines are the pipelines this check will use to process its events.
 	Pipelines []*ResourceReference `protobuf:"bytes,46,rep,name=pipelines,proto3" json:"pipelines"`
-	//Manisha added fallback pieplines detials in order of execution
+	//fallback pieplines detials in order of execution
 	FallbackPipeline []*ResourceReference `protobuf:"bytes,47,rep,name=fallback_pipeline,json=fallbackPipeline,proto3" json:"fallback_pipeline" yaml: "fallback_pipeline,omitempty"`
 	// MetricThresholds are a list of thresholds to apply to metrics in order to determine
 	// the check status.

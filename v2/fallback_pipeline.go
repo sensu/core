@@ -55,13 +55,6 @@ func (f *FallbackPipeline) Validate() error {
 	if f.ObjectMeta.Namespace == "" {
 		return errors.New("namespace must be set")
 	}
-	//Manisha
-	//for _, workflow := range f.Fallbackflows {
-	//	if err := workflow.Validate(); err != nil {
-	//		return fmt.Errorf("workflow %w", err)
-	//	}
-	//}
-
 	return nil
 }
 

@@ -344,7 +344,6 @@ func TestResolveExtension(t *testing.T) {
 	}
 }
 
-// MANISHA ADDED AUTOMATICALLY
 func TestResolveFallbackPipeline(t *testing.T) {
 	var value interface{} = new(FallbackPipeline)
 	if _, ok := value.(Resource); ok {

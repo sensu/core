@@ -48,7 +48,7 @@ type Event struct {
 	// APIVersion should default to "core/v2" and Type should default to
 	// "Pipeline".
 	Pipelines []*ResourceReference `protobuf:"bytes,8,rep,name=pipelines,proto3" json:"pipelines"`
-	//Manisha added
+	//fallback pipeline
 	FallbackPipeline     []*ResourceReference `protobuf:"bytes,9,rep,name=fallback_pipeline,json=fallbackPipeline,proto3" json:"fallback_pipeline"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`

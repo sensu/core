@@ -168,7 +168,7 @@ message CheckConfig {
   // Pipelines are the pipelines this check will use to process its events.
   repeated ResourceReference pipelines = 32 [ (gogoproto.jsontag) = "pipelines" ];
 
-  //Manisha added fallback pieplines detials in order of execution
+  //added fallback pieplines detials in order of execution
   repeated ResourceReference fallback_pipeline = 33 [ (gogoproto.jsontag) = "fallback_pipeline" ,(gogoproto.moretags) = "yaml: \"fallback_pipeline,omitempty\"" ];
 
 
@@ -332,7 +332,7 @@ message Check {
   // Pipelines are the pipelines this check will use to process its events.
   repeated ResourceReference pipelines = 46 [ (gogoproto.jsontag) = "pipelines" ];
 
-  //Manisha added fallback pieplines detials in order of execution
+  //fallback pieplines detials in order of execution
   repeated ResourceReference fallback_pipeline = 47 [ (gogoproto.jsontag) = "fallback_pipeline" ,(gogoproto.moretags) = "yaml: \"fallback_pipeline,omitempty\"" ];
 
   // MetricThresholds are a list of thresholds to apply to metrics in order to determine

@@ -130,49 +130,6 @@ func (w *PipelineWorkflow) Validate() error {
 	return nil
 }
 
-//Manisha fallback validate to be written
-//FallbackPipelineListflow
-//
-//func (w *FallbackPipelineListflow) Validate() error {
-//	if err := ValidateName(w.Name); err != nil {
-//		return errors.New("name " + err.Error())
-//	}
-//
-//	if w.Filters != nil {
-//		for _, filter := range w.Filters {
-//			if err := filter.Validate(); err != nil {
-//				return fmt.Errorf("filter %w", err)
-//			}
-//			if err := w.validateEventFilterReference(filter); err != nil {
-//				return fmt.Errorf("filter %w", err)
-//			}
-//		}
-//	}
-//
-//	if w.Mutator != nil {
-//		if err := w.Mutator.Validate(); err != nil {
-//			return fmt.Errorf("mutator %w", err)
-//		}
-//		if err := w.validateMutatorReference(w.Mutator); err != nil {
-//			return fmt.Errorf("mutator %w", err)
-//		}
-//	}
-//
-//	if w.Handler == nil {
-//		return errors.New("handler must be set")
-//	}
-//
-//	if err := w.Handler.Validate(); err != nil {
-//		return fmt.Errorf("handler %w", err)
-//	}
-//
-//	if err := w.validateHandlerReference(w.Handler); err != nil {
-//		return fmt.Errorf("handler %w", err)
-//	}
-//
-//	return nil
-//}
-
 func (w *PipelineWorkflow) validateEventFilterReference(ref *ResourceReference) error {
 	for _, allowed := range validPipelineWorkflowFilterReferences.references {
 		if allowed.APIVersion == ref.APIVersion && allowed.Type == ref.Type {

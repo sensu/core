@@ -269,7 +269,6 @@ func (c *Check) MarshalJSON() ([]byte, error) {
 	if c.Pipelines == nil {
 		c.Pipelines = []*ResourceReference{}
 	}
-	//Manisha
 	if c.FallbackPipeline == nil {
 		c.FallbackPipeline = []*ResourceReference{}
 	}

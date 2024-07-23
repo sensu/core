@@ -76,7 +76,6 @@ func (e *Event) Validate() error {
 		}
 	}
 
-	//Manisha added
 	for _, fallpipeline := range e.FallbackPipeline {
 		if err := e.validateFallbackPipelineReference(fallpipeline); err != nil {
 			return errors.New("Fallback-pipeline reference is invalid: " + err.Error())
