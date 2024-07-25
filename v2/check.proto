@@ -172,7 +172,7 @@ message CheckConfig {
 
   repeated TimeWindowRepeated subdues = 34  [ (gogoproto.jsontag) = "subdues,omitempty" ];
 
-  //added fallback pieplines detials in order of execution
+  //added fallback pieplines details in order of execution
   repeated ResourceReference fallback_pipelines = 35 [ (gogoproto.jsontag) = "fallback_pipelines" ,(gogoproto.moretags) = "yaml: \"fallback_pipelines,omitempty\"" ];
 
 }

@@ -76,7 +76,7 @@ func (m *Pipeline) GetWorkflows() []*PipelineWorkflow {
 	return nil
 }
 
-// FallbackPipeline represents a named collection of fallbackpipeline spec details.
+// FallbackPipeline represents a named collection of fallback pipeline spec details.
 type FallbackPipeline struct {
 	// Metadata contains the name, namespace, labels and annotations of the
 	ObjectMeta `protobuf:"bytes,1,opt,name=Metadata,proto3,embedded=Metadata" json:"metadata,omitempty"`

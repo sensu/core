@@ -76,8 +76,8 @@ func (e *Event) Validate() error {
 		}
 	}
 
-	for _, fallpipeline := range e.FallbackPipeline {
-		if err := e.validateFallbackPipelineReference(fallpipeline); err != nil {
+	for _, fallpipelines := range e.FallbackPipelines {
+		if err := e.validateFallbackPipelineReference(fallpipelines); err != nil {
 			return errors.New("Fallback-pipeline reference is invalid: " + err.Error())
 		}
 	}

@@ -316,7 +316,7 @@ type CheckConfig struct {
 	Pipelines              []*ResourceReference  `protobuf:"bytes,32,rep,name=pipelines,proto3" json:"pipelines"`
 	OutputMetricThresholds []*MetricThreshold    `protobuf:"bytes,33,rep,name=output_metric_thresholds,json=outputMetricThresholds,proto3" json:"output_metric_thresholds,omitempty" yaml: "output_metric_thresholds,omitempty"`
 	Subdues                []*TimeWindowRepeated `protobuf:"bytes,34,rep,name=subdues,proto3" json:"subdues,omitempty"`
-	//added fallback pieplines detials in order of execution
+	//added fallback pieplines details in order of execution
 	FallbackPipelines    []*ResourceReference `protobuf:"bytes,35,rep,name=fallback_pipelines,json=fallbackPipelines,proto3" json:"fallback_pipelines" yaml: "fallback_pipelines,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`

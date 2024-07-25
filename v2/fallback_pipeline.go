@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	// PipelinesResource is the name of this resource type
+	// FallbackPipelinesResource is the name of this resource type
 	FallbackPipelineResource = "fallbackPipeline"
 )
 
