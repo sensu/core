@@ -30,4 +30,3 @@ message PipelineWorkflow {
   // Handler contains a reference to a resource to use as an event handler.
   ResourceReference Handler = 4 [ (gogoproto.jsontag) = "handler", (gogoproto.moretags) = "yaml: \"handler]\"" ];
 }
-
