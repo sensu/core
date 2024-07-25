@@ -32,6 +32,3 @@ message FallbackPipeline {
   // FallbackpipelineList contains one or more pipeline list.
   repeated ResourceReference pipelineList =2 [ (gogoproto.jsontag) = "pipelinelist", (gogoproto.moretags) = "yaml: \"pipelinelist\"" ];
 }
-
-
-
