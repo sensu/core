@@ -77,8 +77,8 @@ func (f *FallbackPipeline) Fields() map[string]string {
 // // FixturePipeline returns a testing fixture for a Pipeline object.
 func FixtureFallbackPipeline(name, namespace string) *FallbackPipeline {
 	return &FallbackPipeline{
-		ObjectMeta: NewObjectMeta(name, namespace),
-		Pipelist:   []*ResourceReference{},
+		ObjectMeta:   NewObjectMeta(name, namespace),
+		PipelineList: []*ResourceReference{},
 	}
 }
 
