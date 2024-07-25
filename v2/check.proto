@@ -174,7 +174,6 @@ message CheckConfig {
 
   //added fallback pieplines details in order of execution
   repeated ResourceReference fallback_pipelines = 35 [ (gogoproto.jsontag) = "fallback_pipelines" ,(gogoproto.moretags) = "yaml: \"fallback_pipelines,omitempty\"" ];
-
 }
 
 // A Check is a check specification and optionally the results of the check's
@@ -343,8 +342,6 @@ message Check {
 
   // ExtendedAttributes store serialized arbitrary JSON-encoded data
   bytes ExtendedAttributes = 99 [ (gogoproto.jsontag) = "-" ];
-
-
 }
 
 // CheckHistory is a record of a check execution and its status

@@ -30,7 +30,7 @@ var typeMap = map[string]interface{}{
 	"event":                  &Event{},
 	"event_filter":           &EventFilter{},
 	"extension":              &Extension{},
-	"fallback_pipeline":      &FallbackPipeline{},
+	"fallback_pipelines":     &FallbackPipeline{},
 	"handler":                &Handler{},
 	"handler_socket":         &HandlerSocket{},
 	"health_response":        &HealthResponse{},
