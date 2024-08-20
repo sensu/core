@@ -1,6 +1,6 @@
 module github.com/sensu/core/v2
 
-go 1.19
+go 1.22
 
 require (
 	github.com/echlebek/crock v1.0.1
