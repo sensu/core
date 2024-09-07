@@ -1,4 +1,4 @@
-FROM golang:1.18-bullseye
+FROM golang:1.23.0-bullseye
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y unzip
 
