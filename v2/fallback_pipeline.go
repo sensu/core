@@ -2,8 +2,11 @@ package v2
 
 import (
 	"errors"
+	"fmt"
 	"net/url"
 	"path"
+	"sync"
+	"time"
 
 	stringsutil "github.com/sensu/core/v2/internal/stringutil"
 )
@@ -12,6 +15,46 @@ const (
 	// FallbackPipelinesResource is the name of this resource type
 	FallbackPipelineResource = "fallbackPipeline"
 )
+
+//// FallbackPipeline defines a list of pipelines with independent execution.
+//type FallbackPipeline struct {
+//	// Metadata contains the name, namespace, labels, and annotations.
+//	ObjectMeta `protobuf:"bytes,1,opt,name=Metadata,proto3,embedded=Metadata" json:"metadata,omitempty"`
+//	// FallbackpipelineList contains one or more pipeline list.
+//	PipelineList         []*ResourceReference `protobuf:"bytes,2,rep,name=pipelineList,proto3" json:"pipelinelist" yaml:"pipelinelist"`
+//	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+//	XXX_unrecognized     []byte               `json:"-"`
+//	XXX_sizecache        int32                `json:"-"`
+//}
+
+// ExecuteFallbackPipeline executes each pipeline independently, logging errors if any fail.
+func (f *FallbackPipeline) ExecuteFallbackPipeline() {
+	var wg sync.WaitGroup
+
+	for _, pipelineRef := range f.PipelineList {
+		wg.Add(1)
+		go func(pipeline *ResourceReference) {
+			defer wg.Done()
+			if err := executePipeline(pipeline); err != nil {
+				fmt.Printf("Pipeline %s failed: %v\n", pipeline.Name, err)
+			} else {
+				fmt.Printf("Pipeline %s succeeded.\n", pipeline.Name)
+			}
+		}(pipelineRef)
+	}
+
+	wg.Wait() // Wait for all pipelines to finish
+}
+
+// Simulates the execution of a single pipeline
+func executePipeline(pipeline *ResourceReference) error {
+	fmt.Printf("Executing pipeline: %s\n", pipeline.Name)
+	time.Sleep(1 * time.Second)
+	if pipeline.Name == "fail" {
+		return errors.New("simulated pipeline failure")
+	}
+	return nil
+}
 
 // GetObjectMeta returns the object metadata for the resource.
 func (f *FallbackPipeline) GetObjectMeta() ObjectMeta {
@@ -46,12 +89,11 @@ func (f *FallbackPipeline) URIPath() string {
 	return path.Join(URLPrefix, "namespaces", url.PathEscape(f.Namespace), FallbackPipelineResource, url.PathEscape(f.Name))
 }
 
-// // Validate checks if a pipeline resource passes validation rules.
+// Validate checks if a pipeline resource passes validation rules.
 func (f *FallbackPipeline) Validate() error {
 	if err := ValidateName(f.ObjectMeta.Name); err != nil {
 		return errors.New("name " + err.Error())
 	}
-
 	if f.ObjectMeta.Namespace == "" {
 		return errors.New("namespace must be set")
 	}
@@ -74,7 +116,7 @@ func (f *FallbackPipeline) Fields() map[string]string {
 	return FallbackPipelineFields(f)
 }
 
-// // FixturePipeline returns a testing fixture for a Pipeline object.
+// FixtureFallbackPipeline returns a testing fixture for a FallbackPipeline object.
 func FixtureFallbackPipeline(name, namespace string) *FallbackPipeline {
 	return &FallbackPipeline{
 		ObjectMeta:   NewObjectMeta(name, namespace),
@@ -82,8 +124,7 @@ func FixtureFallbackPipeline(name, namespace string) *FallbackPipeline {
 	}
 }
 
-// // FixturePipelineReference returns a testing fixture for a ResourceReference
-// // object referencing a corev2.Pipeline.
+// FixtureFallbackPipelineReference returns a testing fixture for a ResourceReference.
 func FixtureFallbackPipelineReference(name string) *ResourceReference {
 	return &ResourceReference{
 		APIVersion: "core/v2",
