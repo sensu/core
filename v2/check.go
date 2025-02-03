@@ -131,6 +131,8 @@ func NewCheck(c *CheckConfig) *Check {
 		MaxOutputSize:          c.MaxOutputSize,
 		Scheduler:              c.Scheduler,
 		Pipelines:              c.Pipelines,
+		FallbackPipelines:      c.FallbackPipelines,
+		MaxPipelineExecution:   c.MaxPipelineExecution,
 	}
 	if check.Labels == nil {
 		check.Labels = make(map[string]string)

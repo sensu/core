@@ -171,6 +171,10 @@ message CheckConfig {
   repeated MetricThreshold output_metric_thresholds = 33 [ (gogoproto.jsontag) = "output_metric_thresholds,omitempty", (gogoproto.moretags) = "yaml: \"output_metric_thresholds,omitempty\"" ];
 
   repeated TimeWindowRepeated subdues = 34  [ (gogoproto.jsontag) = "subdues,omitempty" ];
+
+  bool fallbackPipelines =35  [ (gogoproto.jsontag) = "fallback-pipelines,omitempty" ];
+
+  int64 maxPipelineExecution = 36 [ (gogoproto.jsontag) = "max-pipeline-execution,omitempty" ];
 }
 
 // A Check is a check specification and optionally the results of the check's
@@ -336,7 +340,12 @@ message Check {
 
   // ExtendedAttributes store serialized arbitrary JSON-encoded data
   bytes ExtendedAttributes = 99 [ (gogoproto.jsontag) = "-" ];
+
+  bool fallbackPipelines = 100  [ (gogoproto.jsontag) = "fallback-pipelines,omitempty" ];
+
+  int64 max_pipeline_execution = 101 [ (gogoproto.jsontag) = "max-pipeline-execution,omitempty" ];
 }
+
 
 // CheckHistory is a record of a check execution and its status
 message CheckHistory {
