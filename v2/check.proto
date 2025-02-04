@@ -172,9 +172,9 @@ message CheckConfig {
 
   repeated TimeWindowRepeated subdues = 34  [ (gogoproto.jsontag) = "subdues,omitempty" ];
 
-  bool fallbackPipelines =35  [ (gogoproto.jsontag) = "fallback-pipelines,omitempty" ];
+  bool fallbackPipelines_inclusion =35  [ (gogoproto.jsontag) = "fallback-pipelines-inclusion" ];
 
-  int64 maxPipelineExecution = 36 [ (gogoproto.jsontag) = "max-pipeline-execution,omitempty" ];
+  int64 maxPipelineExecution = 36 [ (gogoproto.jsontag) = "max-pipeline-execution" ];
 }
 
 // A Check is a check specification and optionally the results of the check's
@@ -341,9 +341,9 @@ message Check {
   // ExtendedAttributes store serialized arbitrary JSON-encoded data
   bytes ExtendedAttributes = 99 [ (gogoproto.jsontag) = "-" ];
 
-  bool fallbackPipelines = 100  [ (gogoproto.jsontag) = "fallback-pipelines,omitempty" ];
+  bool fallbackPipelines_inclusion = 100  [ (gogoproto.jsontag) = "fallback-pipelines-inclusion" ];
 
-  int64 max_pipeline_execution = 101 [ (gogoproto.jsontag) = "max-pipeline-execution,omitempty" ];
+  int64 max_pipeline_execution = 101 [ (gogoproto.jsontag) = "max-pipeline-execution" ];
 }
 
 
