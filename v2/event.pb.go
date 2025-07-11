@@ -130,139 +130,6 @@ var fileDescriptor_f911c654eafd4c9b = []byte{
 	0x77, 0xd2, 0xe2, 0x7a, 0x03, 0x00, 0x00,
 }
 
-func (this *Event) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Event)
-	if !ok {
-		that2, ok := that.(Event)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Timestamp != that1.Timestamp {
-		return false
-	}
-	if !this.Entity.Equal(that1.Entity) {
-		return false
-	}
-	if !this.Check.Equal(that1.Check) {
-		return false
-	}
-	if !this.Metrics.Equal(that1.Metrics) {
-		return false
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if !bytes.Equal(this.ID, that1.ID) {
-		return false
-	}
-	if this.Sequence != that1.Sequence {
-		return false
-	}
-	if len(this.Pipelines) != len(that1.Pipelines) {
-		return false
-	}
-	for i := range this.Pipelines {
-		if !this.Pipelines[i].Equal(that1.Pipelines[i]) {
-			return false
-		}
-	}
-	if len(this.FallbackPipelines) != len(that1.FallbackPipelines) {
-		return false
-	}
-	for i := range this.FallbackPipelines {
-		if !this.FallbackPipelines[i].Equal(that1.FallbackPipelines[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type EventFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetTimestamp() int64
-	GetEntity() *Entity
-	GetCheck() *Check
-	GetMetrics() *Metrics
-	GetObjectMeta() ObjectMeta
-	GetID() []byte
-	GetSequence() int64
-	GetPipelines() []*ResourceReference
-	GetFallbackPipelines() []*ResourceReference
-}
-
-func (this *Event) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *Event) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewEventFromFace(this)
-}
-
-func (this *Event) GetTimestamp() int64 {
-	return this.Timestamp
-}
-
-func (this *Event) GetEntity() *Entity {
-	return this.Entity
-}
-
-func (this *Event) GetCheck() *Check {
-	return this.Check
-}
-
-func (this *Event) GetMetrics() *Metrics {
-	return this.Metrics
-}
-
-func (this *Event) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *Event) GetID() []byte {
-	return this.ID
-}
-
-func (this *Event) GetSequence() int64 {
-	return this.Sequence
-}
-
-func (this *Event) GetPipelines() []*ResourceReference {
-	return this.Pipelines
-}
-
-func (this *Event) GetFallbackPipelines() []*ResourceReference {
-	return this.FallbackPipelines
-}
-
-func NewEventFromFace(that EventFace) *Event {
-	this := &Event{}
-	this.Timestamp = that.GetTimestamp()
-	this.Entity = that.GetEntity()
-	this.Check = that.GetCheck()
-	this.Metrics = that.GetMetrics()
-	this.ObjectMeta = that.GetObjectMeta()
-	this.ID = that.GetID()
-	this.Sequence = that.GetSequence()
-	this.Pipelines = that.GetPipelines()
-	this.FallbackPipelines = that.GetFallbackPipelines()
-	return this
-}
-
 func (m *Event) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -510,6 +377,139 @@ func encodeVarintPopulateEvent(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *Event) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Event)
+	if !ok {
+		that2, ok := that.(Event)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Timestamp != that1.Timestamp {
+		return false
+	}
+	if !this.Entity.Equal(that1.Entity) {
+		return false
+	}
+	if !this.Check.Equal(that1.Check) {
+		return false
+	}
+	if !this.Metrics.Equal(that1.Metrics) {
+		return false
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if !bytes.Equal(this.ID, that1.ID) {
+		return false
+	}
+	if this.Sequence != that1.Sequence {
+		return false
+	}
+	if len(this.Pipelines) != len(that1.Pipelines) {
+		return false
+	}
+	for i := range this.Pipelines {
+		if !this.Pipelines[i].Equal(that1.Pipelines[i]) {
+			return false
+		}
+	}
+	if len(this.FallbackPipelines) != len(that1.FallbackPipelines) {
+		return false
+	}
+	for i := range this.FallbackPipelines {
+		if !this.FallbackPipelines[i].Equal(that1.FallbackPipelines[i]) {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type EventFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetTimestamp() int64
+	GetEntity() *Entity
+	GetCheck() *Check
+	GetMetrics() *Metrics
+	GetObjectMeta() ObjectMeta
+	GetID() []byte
+	GetSequence() int64
+	GetPipelines() []*ResourceReference
+	GetFallbackPipelines() []*ResourceReference
+}
+
+func (this *Event) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *Event) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewEventFromFace(this)
+}
+
+func (this *Event) GetTimestamp() int64 {
+	return this.Timestamp
+}
+
+func (this *Event) GetEntity() *Entity {
+	return this.Entity
+}
+
+func (this *Event) GetCheck() *Check {
+	return this.Check
+}
+
+func (this *Event) GetMetrics() *Metrics {
+	return this.Metrics
+}
+
+func (this *Event) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *Event) GetID() []byte {
+	return this.ID
+}
+
+func (this *Event) GetSequence() int64 {
+	return this.Sequence
+}
+
+func (this *Event) GetPipelines() []*ResourceReference {
+	return this.Pipelines
+}
+
+func (this *Event) GetFallbackPipelines() []*ResourceReference {
+	return this.FallbackPipelines
+}
+
+func NewEventFromFace(that EventFace) *Event {
+	this := &Event{}
+	this.Timestamp = that.GetTimestamp()
+	this.Entity = that.GetEntity()
+	this.Check = that.GetCheck()
+	this.Metrics = that.GetMetrics()
+	this.ObjectMeta = that.GetObjectMeta()
+	this.ID = that.GetID()
+	this.Sequence = that.GetSequence()
+	this.Pipelines = that.GetPipelines()
+	this.FallbackPipelines = that.GetFallbackPipelines()
+	return this
+}
+
 func (m *Event) Size() (n int) {
 	if m == nil {
 		return 0

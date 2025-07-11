@@ -139,42 +139,6 @@ var fileDescriptor_c2089eb3aed8cca2 = []byte{
 	0x0e, 0x00, 0x00, 0xff, 0xff, 0x83, 0xeb, 0xeb, 0xda, 0xeb, 0x01, 0x00, 0x00,
 }
 
-func (this *EntityState) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*EntityState)
-	if !ok {
-		that2, ok := that.(EntityState)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.Metadata.Equal(that1.Metadata) {
-		return false
-	}
-	if !this.System.Equal(&that1.System) {
-		return false
-	}
-	if this.LastSeen != that1.LastSeen {
-		return false
-	}
-	if this.SensuAgentVersion != that1.SensuAgentVersion {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
 func (m *EntityState) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -336,6 +300,42 @@ func encodeVarintPopulateEntityState(dAtA []byte, v uint64) []byte {
 	}
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
+}
+func (this *EntityState) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*EntityState)
+	if !ok {
+		that2, ok := that.(EntityState)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.Metadata.Equal(that1.Metadata) {
+		return false
+	}
+	if !this.System.Equal(&that1.System) {
+		return false
+	}
+	if this.LastSeen != that1.LastSeen {
+		return false
+	}
+	if this.SensuAgentVersion != that1.SensuAgentVersion {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
 }
 func (m *EntityState) Size() (n int) {
 	if m == nil {

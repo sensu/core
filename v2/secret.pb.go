@@ -93,66 +93,6 @@ var fileDescriptor_d2ceacd7de622ffa = []byte{
 	0x00, 0x00, 0xff, 0xff, 0x1c, 0xd1, 0x8b, 0x81, 0xd6, 0x00, 0x00, 0x00,
 }
 
-func (this *Secret) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Secret)
-	if !ok {
-		that2, ok := that.(Secret)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Name != that1.Name {
-		return false
-	}
-	if this.Secret != that1.Secret {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type SecretFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetName() string
-	GetSecret() string
-}
-
-func (this *Secret) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *Secret) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewSecretFromFace(this)
-}
-
-func (this *Secret) GetName() string {
-	return this.Name
-}
-
-func (this *Secret) GetSecret() string {
-	return this.Secret
-}
-
-func NewSecretFromFace(that SecretFace) *Secret {
-	this := &Secret{}
-	this.Name = that.GetName()
-	this.Secret = that.GetSecret()
-	return this
-}
-
 func (m *Secret) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -287,6 +227,66 @@ func encodeVarintPopulateSecret(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *Secret) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Secret)
+	if !ok {
+		that2, ok := that.(Secret)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Name != that1.Name {
+		return false
+	}
+	if this.Secret != that1.Secret {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type SecretFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetName() string
+	GetSecret() string
+}
+
+func (this *Secret) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *Secret) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewSecretFromFace(this)
+}
+
+func (this *Secret) GetName() string {
+	return this.Name
+}
+
+func (this *Secret) GetSecret() string {
+	return this.Secret
+}
+
+func NewSecretFromFace(that SecretFace) *Secret {
+	this := &Secret{}
+	this.Name = that.GetName()
+	this.Secret = that.GetSecret()
+	return this
+}
+
 func (m *Secret) Size() (n int) {
 	if m == nil {
 		return 0

@@ -26,6 +26,7 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // PipelineWorkflow represents a workflow of filters, mutator, & handler to use
 // in a pipeline.
+//
 //sensu:nogen
 type PipelineWorkflow struct {
 	// Name is a descriptive name of the pipeline workflow.
@@ -138,47 +139,6 @@ var fileDescriptor_10fe3e5d2693196a = []byte{
 	0x53, 0x02, 0x00, 0x00,
 }
 
-func (this *PipelineWorkflow) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*PipelineWorkflow)
-	if !ok {
-		that2, ok := that.(PipelineWorkflow)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Name != that1.Name {
-		return false
-	}
-	if len(this.Filters) != len(that1.Filters) {
-		return false
-	}
-	for i := range this.Filters {
-		if !this.Filters[i].Equal(that1.Filters[i]) {
-			return false
-		}
-	}
-	if !this.Mutator.Equal(that1.Mutator) {
-		return false
-	}
-	if !this.Handler.Equal(that1.Handler) {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
 func (m *PipelineWorkflow) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -355,6 +315,47 @@ func encodeVarintPopulatePipelineWorkflow(dAtA []byte, v uint64) []byte {
 	}
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
+}
+func (this *PipelineWorkflow) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*PipelineWorkflow)
+	if !ok {
+		that2, ok := that.(PipelineWorkflow)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Name != that1.Name {
+		return false
+	}
+	if len(this.Filters) != len(that1.Filters) {
+		return false
+	}
+	for i := range this.Filters {
+		if !this.Filters[i].Equal(that1.Filters[i]) {
+			return false
+		}
+	}
+	if !this.Mutator.Equal(that1.Mutator) {
+		return false
+	}
+	if !this.Handler.Equal(that1.Handler) {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
 }
 func (m *PipelineWorkflow) Size() (n int) {
 	if m == nil {

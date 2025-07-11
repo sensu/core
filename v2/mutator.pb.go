@@ -127,135 +127,6 @@ var fileDescriptor_ebd942ac0628c16b = []byte{
 	0x00, 0x00, 0xff, 0xff, 0xe7, 0x04, 0x96, 0x2f, 0x83, 0x02, 0x00, 0x00,
 }
 
-func (this *Mutator) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Mutator)
-	if !ok {
-		that2, ok := that.(Mutator)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if this.Command != that1.Command {
-		return false
-	}
-	if this.Timeout != that1.Timeout {
-		return false
-	}
-	if len(this.EnvVars) != len(that1.EnvVars) {
-		return false
-	}
-	for i := range this.EnvVars {
-		if this.EnvVars[i] != that1.EnvVars[i] {
-			return false
-		}
-	}
-	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
-		return false
-	}
-	for i := range this.RuntimeAssets {
-		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
-			return false
-		}
-	}
-	if len(this.Secrets) != len(that1.Secrets) {
-		return false
-	}
-	for i := range this.Secrets {
-		if !this.Secrets[i].Equal(that1.Secrets[i]) {
-			return false
-		}
-	}
-	if this.Type != that1.Type {
-		return false
-	}
-	if this.Eval != that1.Eval {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type MutatorFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetObjectMeta() ObjectMeta
-	GetCommand() string
-	GetTimeout() uint32
-	GetEnvVars() []string
-	GetRuntimeAssets() []string
-	GetSecrets() []*Secret
-	GetType() string
-	GetEval() string
-}
-
-func (this *Mutator) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *Mutator) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewMutatorFromFace(this)
-}
-
-func (this *Mutator) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *Mutator) GetCommand() string {
-	return this.Command
-}
-
-func (this *Mutator) GetTimeout() uint32 {
-	return this.Timeout
-}
-
-func (this *Mutator) GetEnvVars() []string {
-	return this.EnvVars
-}
-
-func (this *Mutator) GetRuntimeAssets() []string {
-	return this.RuntimeAssets
-}
-
-func (this *Mutator) GetSecrets() []*Secret {
-	return this.Secrets
-}
-
-func (this *Mutator) GetType() string {
-	return this.Type
-}
-
-func (this *Mutator) GetEval() string {
-	return this.Eval
-}
-
-func NewMutatorFromFace(that MutatorFace) *Mutator {
-	this := &Mutator{}
-	this.ObjectMeta = that.GetObjectMeta()
-	this.Command = that.GetCommand()
-	this.Timeout = that.GetTimeout()
-	this.EnvVars = that.GetEnvVars()
-	this.RuntimeAssets = that.GetRuntimeAssets()
-	this.Secrets = that.GetSecrets()
-	this.Type = that.GetType()
-	this.Eval = that.GetEval()
-	return this
-}
-
 func (m *Mutator) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -465,6 +336,135 @@ func encodeVarintPopulateMutator(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *Mutator) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Mutator)
+	if !ok {
+		that2, ok := that.(Mutator)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if this.Command != that1.Command {
+		return false
+	}
+	if this.Timeout != that1.Timeout {
+		return false
+	}
+	if len(this.EnvVars) != len(that1.EnvVars) {
+		return false
+	}
+	for i := range this.EnvVars {
+		if this.EnvVars[i] != that1.EnvVars[i] {
+			return false
+		}
+	}
+	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
+		return false
+	}
+	for i := range this.RuntimeAssets {
+		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
+			return false
+		}
+	}
+	if len(this.Secrets) != len(that1.Secrets) {
+		return false
+	}
+	for i := range this.Secrets {
+		if !this.Secrets[i].Equal(that1.Secrets[i]) {
+			return false
+		}
+	}
+	if this.Type != that1.Type {
+		return false
+	}
+	if this.Eval != that1.Eval {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type MutatorFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetObjectMeta() ObjectMeta
+	GetCommand() string
+	GetTimeout() uint32
+	GetEnvVars() []string
+	GetRuntimeAssets() []string
+	GetSecrets() []*Secret
+	GetType() string
+	GetEval() string
+}
+
+func (this *Mutator) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *Mutator) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewMutatorFromFace(this)
+}
+
+func (this *Mutator) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *Mutator) GetCommand() string {
+	return this.Command
+}
+
+func (this *Mutator) GetTimeout() uint32 {
+	return this.Timeout
+}
+
+func (this *Mutator) GetEnvVars() []string {
+	return this.EnvVars
+}
+
+func (this *Mutator) GetRuntimeAssets() []string {
+	return this.RuntimeAssets
+}
+
+func (this *Mutator) GetSecrets() []*Secret {
+	return this.Secrets
+}
+
+func (this *Mutator) GetType() string {
+	return this.Type
+}
+
+func (this *Mutator) GetEval() string {
+	return this.Eval
+}
+
+func NewMutatorFromFace(that MutatorFace) *Mutator {
+	this := &Mutator{}
+	this.ObjectMeta = that.GetObjectMeta()
+	this.Command = that.GetCommand()
+	this.Timeout = that.GetTimeout()
+	this.EnvVars = that.GetEnvVars()
+	this.RuntimeAssets = that.GetRuntimeAssets()
+	this.Secrets = that.GetSecrets()
+	this.Type = that.GetType()
+	this.Eval = that.GetEval()
+	return this
+}
+
 func (m *Mutator) Size() (n int) {
 	if m == nil {
 		return 0

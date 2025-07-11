@@ -716,1082 +716,6 @@ var fileDescriptor_d70eac2f90fbef24 = []byte{
 	0x00, 0x00,
 }
 
-func (this *CheckRequest) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*CheckRequest)
-	if !ok {
-		that2, ok := that.(CheckRequest)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.Config.Equal(that1.Config) {
-		return false
-	}
-	if len(this.Assets) != len(that1.Assets) {
-		return false
-	}
-	for i := range this.Assets {
-		if !this.Assets[i].Equal(&that1.Assets[i]) {
-			return false
-		}
-	}
-	if len(this.Hooks) != len(that1.Hooks) {
-		return false
-	}
-	for i := range this.Hooks {
-		if !this.Hooks[i].Equal(&that1.Hooks[i]) {
-			return false
-		}
-	}
-	if this.Issued != that1.Issued {
-		return false
-	}
-	if len(this.HookAssets) != len(that1.HookAssets) {
-		return false
-	}
-	for i := range this.HookAssets {
-		if !this.HookAssets[i].Equal(that1.HookAssets[i]) {
-			return false
-		}
-	}
-	if len(this.Secrets) != len(that1.Secrets) {
-		return false
-	}
-	for i := range this.Secrets {
-		if this.Secrets[i] != that1.Secrets[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *AssetList) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*AssetList)
-	if !ok {
-		that2, ok := that.(AssetList)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.Assets) != len(that1.Assets) {
-		return false
-	}
-	for i := range this.Assets {
-		if !this.Assets[i].Equal(&that1.Assets[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *ProxyRequests) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*ProxyRequests)
-	if !ok {
-		that2, ok := that.(ProxyRequests)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.EntityAttributes) != len(that1.EntityAttributes) {
-		return false
-	}
-	for i := range this.EntityAttributes {
-		if this.EntityAttributes[i] != that1.EntityAttributes[i] {
-			return false
-		}
-	}
-	if this.Splay != that1.Splay {
-		return false
-	}
-	if this.SplayCoverage != that1.SplayCoverage {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *CheckConfig) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*CheckConfig)
-	if !ok {
-		that2, ok := that.(CheckConfig)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Command != that1.Command {
-		return false
-	}
-	if len(this.Handlers) != len(that1.Handlers) {
-		return false
-	}
-	for i := range this.Handlers {
-		if this.Handlers[i] != that1.Handlers[i] {
-			return false
-		}
-	}
-	if this.HighFlapThreshold != that1.HighFlapThreshold {
-		return false
-	}
-	if this.Interval != that1.Interval {
-		return false
-	}
-	if this.LowFlapThreshold != that1.LowFlapThreshold {
-		return false
-	}
-	if this.Publish != that1.Publish {
-		return false
-	}
-	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
-		return false
-	}
-	for i := range this.RuntimeAssets {
-		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
-			return false
-		}
-	}
-	if len(this.Subscriptions) != len(that1.Subscriptions) {
-		return false
-	}
-	for i := range this.Subscriptions {
-		if this.Subscriptions[i] != that1.Subscriptions[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.ExtendedAttributes, that1.ExtendedAttributes) {
-		return false
-	}
-	if this.ProxyEntityName != that1.ProxyEntityName {
-		return false
-	}
-	if len(this.CheckHooks) != len(that1.CheckHooks) {
-		return false
-	}
-	for i := range this.CheckHooks {
-		if !this.CheckHooks[i].Equal(&that1.CheckHooks[i]) {
-			return false
-		}
-	}
-	if this.Stdin != that1.Stdin {
-		return false
-	}
-	if !this.Subdue.Equal(that1.Subdue) {
-		return false
-	}
-	if this.Cron != that1.Cron {
-		return false
-	}
-	if this.Ttl != that1.Ttl {
-		return false
-	}
-	if this.Timeout != that1.Timeout {
-		return false
-	}
-	if !this.ProxyRequests.Equal(that1.ProxyRequests) {
-		return false
-	}
-	if this.RoundRobin != that1.RoundRobin {
-		return false
-	}
-	if this.OutputMetricFormat != that1.OutputMetricFormat {
-		return false
-	}
-	if len(this.OutputMetricHandlers) != len(that1.OutputMetricHandlers) {
-		return false
-	}
-	for i := range this.OutputMetricHandlers {
-		if this.OutputMetricHandlers[i] != that1.OutputMetricHandlers[i] {
-			return false
-		}
-	}
-	if len(this.EnvVars) != len(that1.EnvVars) {
-		return false
-	}
-	for i := range this.EnvVars {
-		if this.EnvVars[i] != that1.EnvVars[i] {
-			return false
-		}
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if this.MaxOutputSize != that1.MaxOutputSize {
-		return false
-	}
-	if this.DiscardOutput != that1.DiscardOutput {
-		return false
-	}
-	if len(this.Secrets) != len(that1.Secrets) {
-		return false
-	}
-	for i := range this.Secrets {
-		if !this.Secrets[i].Equal(that1.Secrets[i]) {
-			return false
-		}
-	}
-	if len(this.OutputMetricTags) != len(that1.OutputMetricTags) {
-		return false
-	}
-	for i := range this.OutputMetricTags {
-		if !this.OutputMetricTags[i].Equal(that1.OutputMetricTags[i]) {
-			return false
-		}
-	}
-	if this.Scheduler != that1.Scheduler {
-		return false
-	}
-	if len(this.Pipelines) != len(that1.Pipelines) {
-		return false
-	}
-	for i := range this.Pipelines {
-		if !this.Pipelines[i].Equal(that1.Pipelines[i]) {
-			return false
-		}
-	}
-	if len(this.OutputMetricThresholds) != len(that1.OutputMetricThresholds) {
-		return false
-	}
-	for i := range this.OutputMetricThresholds {
-		if !this.OutputMetricThresholds[i].Equal(that1.OutputMetricThresholds[i]) {
-			return false
-		}
-	}
-	if len(this.Subdues) != len(that1.Subdues) {
-		return false
-	}
-	for i := range this.Subdues {
-		if !this.Subdues[i].Equal(that1.Subdues[i]) {
-			return false
-		}
-	}
-	if len(this.FallbackPipelines) != len(that1.FallbackPipelines) {
-		return false
-	}
-	for i := range this.FallbackPipelines {
-		if !this.FallbackPipelines[i].Equal(that1.FallbackPipelines[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *Check) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Check)
-	if !ok {
-		that2, ok := that.(Check)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Command != that1.Command {
-		return false
-	}
-	if len(this.Handlers) != len(that1.Handlers) {
-		return false
-	}
-	for i := range this.Handlers {
-		if this.Handlers[i] != that1.Handlers[i] {
-			return false
-		}
-	}
-	if this.HighFlapThreshold != that1.HighFlapThreshold {
-		return false
-	}
-	if this.Interval != that1.Interval {
-		return false
-	}
-	if this.LowFlapThreshold != that1.LowFlapThreshold {
-		return false
-	}
-	if this.Publish != that1.Publish {
-		return false
-	}
-	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
-		return false
-	}
-	for i := range this.RuntimeAssets {
-		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
-			return false
-		}
-	}
-	if len(this.Subscriptions) != len(that1.Subscriptions) {
-		return false
-	}
-	for i := range this.Subscriptions {
-		if this.Subscriptions[i] != that1.Subscriptions[i] {
-			return false
-		}
-	}
-	if this.ProxyEntityName != that1.ProxyEntityName {
-		return false
-	}
-	if len(this.CheckHooks) != len(that1.CheckHooks) {
-		return false
-	}
-	for i := range this.CheckHooks {
-		if !this.CheckHooks[i].Equal(&that1.CheckHooks[i]) {
-			return false
-		}
-	}
-	if this.Stdin != that1.Stdin {
-		return false
-	}
-	if !this.Subdue.Equal(that1.Subdue) {
-		return false
-	}
-	if this.Cron != that1.Cron {
-		return false
-	}
-	if this.Ttl != that1.Ttl {
-		return false
-	}
-	if this.Timeout != that1.Timeout {
-		return false
-	}
-	if !this.ProxyRequests.Equal(that1.ProxyRequests) {
-		return false
-	}
-	if this.RoundRobin != that1.RoundRobin {
-		return false
-	}
-	if this.Duration != that1.Duration {
-		return false
-	}
-	if this.Executed != that1.Executed {
-		return false
-	}
-	if len(this.History) != len(that1.History) {
-		return false
-	}
-	for i := range this.History {
-		if !this.History[i].Equal(&that1.History[i]) {
-			return false
-		}
-	}
-	if this.Issued != that1.Issued {
-		return false
-	}
-	if this.Output != that1.Output {
-		return false
-	}
-	if this.State != that1.State {
-		return false
-	}
-	if this.Status != that1.Status {
-		return false
-	}
-	if this.TotalStateChange != that1.TotalStateChange {
-		return false
-	}
-	if this.LastOK != that1.LastOK {
-		return false
-	}
-	if this.Occurrences != that1.Occurrences {
-		return false
-	}
-	if this.OccurrencesWatermark != that1.OccurrencesWatermark {
-		return false
-	}
-	if len(this.Silenced) != len(that1.Silenced) {
-		return false
-	}
-	for i := range this.Silenced {
-		if this.Silenced[i] != that1.Silenced[i] {
-			return false
-		}
-	}
-	if len(this.Hooks) != len(that1.Hooks) {
-		return false
-	}
-	for i := range this.Hooks {
-		if !this.Hooks[i].Equal(that1.Hooks[i]) {
-			return false
-		}
-	}
-	if this.OutputMetricFormat != that1.OutputMetricFormat {
-		return false
-	}
-	if len(this.OutputMetricHandlers) != len(that1.OutputMetricHandlers) {
-		return false
-	}
-	for i := range this.OutputMetricHandlers {
-		if this.OutputMetricHandlers[i] != that1.OutputMetricHandlers[i] {
-			return false
-		}
-	}
-	if len(this.EnvVars) != len(that1.EnvVars) {
-		return false
-	}
-	for i := range this.EnvVars {
-		if this.EnvVars[i] != that1.EnvVars[i] {
-			return false
-		}
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if this.MaxOutputSize != that1.MaxOutputSize {
-		return false
-	}
-	if this.DiscardOutput != that1.DiscardOutput {
-		return false
-	}
-	if len(this.Secrets) != len(that1.Secrets) {
-		return false
-	}
-	for i := range this.Secrets {
-		if !this.Secrets[i].Equal(that1.Secrets[i]) {
-			return false
-		}
-	}
-	if this.IsSilenced != that1.IsSilenced {
-		return false
-	}
-	if len(this.OutputMetricTags) != len(that1.OutputMetricTags) {
-		return false
-	}
-	for i := range this.OutputMetricTags {
-		if !this.OutputMetricTags[i].Equal(that1.OutputMetricTags[i]) {
-			return false
-		}
-	}
-	if this.Scheduler != that1.Scheduler {
-		return false
-	}
-	if this.ProcessedBy != that1.ProcessedBy {
-		return false
-	}
-	if len(this.Pipelines) != len(that1.Pipelines) {
-		return false
-	}
-	for i := range this.Pipelines {
-		if !this.Pipelines[i].Equal(that1.Pipelines[i]) {
-			return false
-		}
-	}
-	if len(this.OutputMetricThresholds) != len(that1.OutputMetricThresholds) {
-		return false
-	}
-	for i := range this.OutputMetricThresholds {
-		if !this.OutputMetricThresholds[i].Equal(that1.OutputMetricThresholds[i]) {
-			return false
-		}
-	}
-	if len(this.Subdues) != len(that1.Subdues) {
-		return false
-	}
-	for i := range this.Subdues {
-		if !this.Subdues[i].Equal(that1.Subdues[i]) {
-			return false
-		}
-	}
-	if len(this.FallbackPipelines) != len(that1.FallbackPipelines) {
-		return false
-	}
-	for i := range this.FallbackPipelines {
-		if !this.FallbackPipelines[i].Equal(that1.FallbackPipelines[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.ExtendedAttributes, that1.ExtendedAttributes) {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *CheckHistory) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*CheckHistory)
-	if !ok {
-		that2, ok := that.(CheckHistory)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Status != that1.Status {
-		return false
-	}
-	if this.Executed != that1.Executed {
-		return false
-	}
-	if this.Flapping != that1.Flapping {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type CheckConfigFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetCommand() string
-	GetHandlers() []string
-	GetHighFlapThreshold() uint32
-	GetInterval() uint32
-	GetLowFlapThreshold() uint32
-	GetPublish() bool
-	GetRuntimeAssets() []string
-	GetSubscriptions() []string
-	GetExtendedAttributes() []byte
-	GetProxyEntityName() string
-	GetCheckHooks() []HookList
-	GetStdin() bool
-	GetSubdue() *TimeWindowWhen
-	GetCron() string
-	GetTtl() int64
-	GetTimeout() uint32
-	GetProxyRequests() *ProxyRequests
-	GetRoundRobin() bool
-	GetOutputMetricFormat() string
-	GetOutputMetricHandlers() []string
-	GetEnvVars() []string
-	GetObjectMeta() ObjectMeta
-	GetMaxOutputSize() int64
-	GetDiscardOutput() bool
-	GetSecrets() []*Secret
-	GetOutputMetricTags() []*MetricTag
-	GetScheduler() string
-	GetPipelines() []*ResourceReference
-	GetOutputMetricThresholds() []*MetricThreshold
-	GetSubdues() []*TimeWindowRepeated
-	GetFallbackPipelines() []*ResourceReference
-}
-
-func (this *CheckConfig) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *CheckConfig) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewCheckConfigFromFace(this)
-}
-
-func (this *CheckConfig) GetCommand() string {
-	return this.Command
-}
-
-func (this *CheckConfig) GetHandlers() []string {
-	return this.Handlers
-}
-
-func (this *CheckConfig) GetHighFlapThreshold() uint32 {
-	return this.HighFlapThreshold
-}
-
-func (this *CheckConfig) GetInterval() uint32 {
-	return this.Interval
-}
-
-func (this *CheckConfig) GetLowFlapThreshold() uint32 {
-	return this.LowFlapThreshold
-}
-
-func (this *CheckConfig) GetPublish() bool {
-	return this.Publish
-}
-
-func (this *CheckConfig) GetRuntimeAssets() []string {
-	return this.RuntimeAssets
-}
-
-func (this *CheckConfig) GetSubscriptions() []string {
-	return this.Subscriptions
-}
-
-func (this *CheckConfig) GetExtendedAttributes() []byte {
-	return this.ExtendedAttributes
-}
-
-func (this *CheckConfig) GetProxyEntityName() string {
-	return this.ProxyEntityName
-}
-
-func (this *CheckConfig) GetCheckHooks() []HookList {
-	return this.CheckHooks
-}
-
-func (this *CheckConfig) GetStdin() bool {
-	return this.Stdin
-}
-
-func (this *CheckConfig) GetSubdue() *TimeWindowWhen {
-	return this.Subdue
-}
-
-func (this *CheckConfig) GetCron() string {
-	return this.Cron
-}
-
-func (this *CheckConfig) GetTtl() int64 {
-	return this.Ttl
-}
-
-func (this *CheckConfig) GetTimeout() uint32 {
-	return this.Timeout
-}
-
-func (this *CheckConfig) GetProxyRequests() *ProxyRequests {
-	return this.ProxyRequests
-}
-
-func (this *CheckConfig) GetRoundRobin() bool {
-	return this.RoundRobin
-}
-
-func (this *CheckConfig) GetOutputMetricFormat() string {
-	return this.OutputMetricFormat
-}
-
-func (this *CheckConfig) GetOutputMetricHandlers() []string {
-	return this.OutputMetricHandlers
-}
-
-func (this *CheckConfig) GetEnvVars() []string {
-	return this.EnvVars
-}
-
-func (this *CheckConfig) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *CheckConfig) GetMaxOutputSize() int64 {
-	return this.MaxOutputSize
-}
-
-func (this *CheckConfig) GetDiscardOutput() bool {
-	return this.DiscardOutput
-}
-
-func (this *CheckConfig) GetSecrets() []*Secret {
-	return this.Secrets
-}
-
-func (this *CheckConfig) GetOutputMetricTags() []*MetricTag {
-	return this.OutputMetricTags
-}
-
-func (this *CheckConfig) GetScheduler() string {
-	return this.Scheduler
-}
-
-func (this *CheckConfig) GetPipelines() []*ResourceReference {
-	return this.Pipelines
-}
-
-func (this *CheckConfig) GetOutputMetricThresholds() []*MetricThreshold {
-	return this.OutputMetricThresholds
-}
-
-func (this *CheckConfig) GetSubdues() []*TimeWindowRepeated {
-	return this.Subdues
-}
-
-func (this *CheckConfig) GetFallbackPipelines() []*ResourceReference {
-	return this.FallbackPipelines
-}
-
-func NewCheckConfigFromFace(that CheckConfigFace) *CheckConfig {
-	this := &CheckConfig{}
-	this.Command = that.GetCommand()
-	this.Handlers = that.GetHandlers()
-	this.HighFlapThreshold = that.GetHighFlapThreshold()
-	this.Interval = that.GetInterval()
-	this.LowFlapThreshold = that.GetLowFlapThreshold()
-	this.Publish = that.GetPublish()
-	this.RuntimeAssets = that.GetRuntimeAssets()
-	this.Subscriptions = that.GetSubscriptions()
-	this.ExtendedAttributes = that.GetExtendedAttributes()
-	this.ProxyEntityName = that.GetProxyEntityName()
-	this.CheckHooks = that.GetCheckHooks()
-	this.Stdin = that.GetStdin()
-	this.Subdue = that.GetSubdue()
-	this.Cron = that.GetCron()
-	this.Ttl = that.GetTtl()
-	this.Timeout = that.GetTimeout()
-	this.ProxyRequests = that.GetProxyRequests()
-	this.RoundRobin = that.GetRoundRobin()
-	this.OutputMetricFormat = that.GetOutputMetricFormat()
-	this.OutputMetricHandlers = that.GetOutputMetricHandlers()
-	this.EnvVars = that.GetEnvVars()
-	this.ObjectMeta = that.GetObjectMeta()
-	this.MaxOutputSize = that.GetMaxOutputSize()
-	this.DiscardOutput = that.GetDiscardOutput()
-	this.Secrets = that.GetSecrets()
-	this.OutputMetricTags = that.GetOutputMetricTags()
-	this.Scheduler = that.GetScheduler()
-	this.Pipelines = that.GetPipelines()
-	this.OutputMetricThresholds = that.GetOutputMetricThresholds()
-	this.Subdues = that.GetSubdues()
-	this.FallbackPipelines = that.GetFallbackPipelines()
-	return this
-}
-
-type CheckFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetCommand() string
-	GetHandlers() []string
-	GetHighFlapThreshold() uint32
-	GetInterval() uint32
-	GetLowFlapThreshold() uint32
-	GetPublish() bool
-	GetRuntimeAssets() []string
-	GetSubscriptions() []string
-	GetProxyEntityName() string
-	GetCheckHooks() []HookList
-	GetStdin() bool
-	GetSubdue() *TimeWindowWhen
-	GetCron() string
-	GetTtl() int64
-	GetTimeout() uint32
-	GetProxyRequests() *ProxyRequests
-	GetRoundRobin() bool
-	GetDuration() float64
-	GetExecuted() int64
-	GetHistory() []CheckHistory
-	GetIssued() int64
-	GetOutput() string
-	GetState() string
-	GetStatus() uint32
-	GetTotalStateChange() uint32
-	GetLastOK() int64
-	GetOccurrences() int64
-	GetOccurrencesWatermark() int64
-	GetSilenced() []string
-	GetHooks() []*Hook
-	GetOutputMetricFormat() string
-	GetOutputMetricHandlers() []string
-	GetEnvVars() []string
-	GetObjectMeta() ObjectMeta
-	GetMaxOutputSize() int64
-	GetDiscardOutput() bool
-	GetSecrets() []*Secret
-	GetIsSilenced() bool
-	GetOutputMetricTags() []*MetricTag
-	GetScheduler() string
-	GetProcessedBy() string
-	GetPipelines() []*ResourceReference
-	GetOutputMetricThresholds() []*MetricThreshold
-	GetSubdues() []*TimeWindowRepeated
-	GetFallbackPipelines() []*ResourceReference
-	GetExtendedAttributes() []byte
-}
-
-func (this *Check) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *Check) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewCheckFromFace(this)
-}
-
-func (this *Check) GetCommand() string {
-	return this.Command
-}
-
-func (this *Check) GetHandlers() []string {
-	return this.Handlers
-}
-
-func (this *Check) GetHighFlapThreshold() uint32 {
-	return this.HighFlapThreshold
-}
-
-func (this *Check) GetInterval() uint32 {
-	return this.Interval
-}
-
-func (this *Check) GetLowFlapThreshold() uint32 {
-	return this.LowFlapThreshold
-}
-
-func (this *Check) GetPublish() bool {
-	return this.Publish
-}
-
-func (this *Check) GetRuntimeAssets() []string {
-	return this.RuntimeAssets
-}
-
-func (this *Check) GetSubscriptions() []string {
-	return this.Subscriptions
-}
-
-func (this *Check) GetProxyEntityName() string {
-	return this.ProxyEntityName
-}
-
-func (this *Check) GetCheckHooks() []HookList {
-	return this.CheckHooks
-}
-
-func (this *Check) GetStdin() bool {
-	return this.Stdin
-}
-
-func (this *Check) GetSubdue() *TimeWindowWhen {
-	return this.Subdue
-}
-
-func (this *Check) GetCron() string {
-	return this.Cron
-}
-
-func (this *Check) GetTtl() int64 {
-	return this.Ttl
-}
-
-func (this *Check) GetTimeout() uint32 {
-	return this.Timeout
-}
-
-func (this *Check) GetProxyRequests() *ProxyRequests {
-	return this.ProxyRequests
-}
-
-func (this *Check) GetRoundRobin() bool {
-	return this.RoundRobin
-}
-
-func (this *Check) GetDuration() float64 {
-	return this.Duration
-}
-
-func (this *Check) GetExecuted() int64 {
-	return this.Executed
-}
-
-func (this *Check) GetHistory() []CheckHistory {
-	return this.History
-}
-
-func (this *Check) GetIssued() int64 {
-	return this.Issued
-}
-
-func (this *Check) GetOutput() string {
-	return this.Output
-}
-
-func (this *Check) GetState() string {
-	return this.State
-}
-
-func (this *Check) GetStatus() uint32 {
-	return this.Status
-}
-
-func (this *Check) GetTotalStateChange() uint32 {
-	return this.TotalStateChange
-}
-
-func (this *Check) GetLastOK() int64 {
-	return this.LastOK
-}
-
-func (this *Check) GetOccurrences() int64 {
-	return this.Occurrences
-}
-
-func (this *Check) GetOccurrencesWatermark() int64 {
-	return this.OccurrencesWatermark
-}
-
-func (this *Check) GetSilenced() []string {
-	return this.Silenced
-}
-
-func (this *Check) GetHooks() []*Hook {
-	return this.Hooks
-}
-
-func (this *Check) GetOutputMetricFormat() string {
-	return this.OutputMetricFormat
-}
-
-func (this *Check) GetOutputMetricHandlers() []string {
-	return this.OutputMetricHandlers
-}
-
-func (this *Check) GetEnvVars() []string {
-	return this.EnvVars
-}
-
-func (this *Check) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *Check) GetMaxOutputSize() int64 {
-	return this.MaxOutputSize
-}
-
-func (this *Check) GetDiscardOutput() bool {
-	return this.DiscardOutput
-}
-
-func (this *Check) GetSecrets() []*Secret {
-	return this.Secrets
-}
-
-func (this *Check) GetIsSilenced() bool {
-	return this.IsSilenced
-}
-
-func (this *Check) GetOutputMetricTags() []*MetricTag {
-	return this.OutputMetricTags
-}
-
-func (this *Check) GetScheduler() string {
-	return this.Scheduler
-}
-
-func (this *Check) GetProcessedBy() string {
-	return this.ProcessedBy
-}
-
-func (this *Check) GetPipelines() []*ResourceReference {
-	return this.Pipelines
-}
-
-func (this *Check) GetOutputMetricThresholds() []*MetricThreshold {
-	return this.OutputMetricThresholds
-}
-
-func (this *Check) GetSubdues() []*TimeWindowRepeated {
-	return this.Subdues
-}
-
-func (this *Check) GetFallbackPipelines() []*ResourceReference {
-	return this.FallbackPipelines
-}
-
-func (this *Check) GetExtendedAttributes() []byte {
-	return this.ExtendedAttributes
-}
-
-func NewCheckFromFace(that CheckFace) *Check {
-	this := &Check{}
-	this.Command = that.GetCommand()
-	this.Handlers = that.GetHandlers()
-	this.HighFlapThreshold = that.GetHighFlapThreshold()
-	this.Interval = that.GetInterval()
-	this.LowFlapThreshold = that.GetLowFlapThreshold()
-	this.Publish = that.GetPublish()
-	this.RuntimeAssets = that.GetRuntimeAssets()
-	this.Subscriptions = that.GetSubscriptions()
-	this.ProxyEntityName = that.GetProxyEntityName()
-	this.CheckHooks = that.GetCheckHooks()
-	this.Stdin = that.GetStdin()
-	this.Subdue = that.GetSubdue()
-	this.Cron = that.GetCron()
-	this.Ttl = that.GetTtl()
-	this.Timeout = that.GetTimeout()
-	this.ProxyRequests = that.GetProxyRequests()
-	this.RoundRobin = that.GetRoundRobin()
-	this.Duration = that.GetDuration()
-	this.Executed = that.GetExecuted()
-	this.History = that.GetHistory()
-	this.Issued = that.GetIssued()
-	this.Output = that.GetOutput()
-	this.State = that.GetState()
-	this.Status = that.GetStatus()
-	this.TotalStateChange = that.GetTotalStateChange()
-	this.LastOK = that.GetLastOK()
-	this.Occurrences = that.GetOccurrences()
-	this.OccurrencesWatermark = that.GetOccurrencesWatermark()
-	this.Silenced = that.GetSilenced()
-	this.Hooks = that.GetHooks()
-	this.OutputMetricFormat = that.GetOutputMetricFormat()
-	this.OutputMetricHandlers = that.GetOutputMetricHandlers()
-	this.EnvVars = that.GetEnvVars()
-	this.ObjectMeta = that.GetObjectMeta()
-	this.MaxOutputSize = that.GetMaxOutputSize()
-	this.DiscardOutput = that.GetDiscardOutput()
-	this.Secrets = that.GetSecrets()
-	this.IsSilenced = that.GetIsSilenced()
-	this.OutputMetricTags = that.GetOutputMetricTags()
-	this.Scheduler = that.GetScheduler()
-	this.ProcessedBy = that.GetProcessedBy()
-	this.Pipelines = that.GetPipelines()
-	this.OutputMetricThresholds = that.GetOutputMetricThresholds()
-	this.Subdues = that.GetSubdues()
-	this.FallbackPipelines = that.GetFallbackPipelines()
-	this.ExtendedAttributes = that.GetExtendedAttributes()
-	return this
-}
-
 func (m *CheckRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -3342,6 +2266,1082 @@ func encodeVarintPopulateCheck(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *CheckRequest) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CheckRequest)
+	if !ok {
+		that2, ok := that.(CheckRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.Config.Equal(that1.Config) {
+		return false
+	}
+	if len(this.Assets) != len(that1.Assets) {
+		return false
+	}
+	for i := range this.Assets {
+		if !this.Assets[i].Equal(&that1.Assets[i]) {
+			return false
+		}
+	}
+	if len(this.Hooks) != len(that1.Hooks) {
+		return false
+	}
+	for i := range this.Hooks {
+		if !this.Hooks[i].Equal(&that1.Hooks[i]) {
+			return false
+		}
+	}
+	if this.Issued != that1.Issued {
+		return false
+	}
+	if len(this.HookAssets) != len(that1.HookAssets) {
+		return false
+	}
+	for i := range this.HookAssets {
+		if !this.HookAssets[i].Equal(that1.HookAssets[i]) {
+			return false
+		}
+	}
+	if len(this.Secrets) != len(that1.Secrets) {
+		return false
+	}
+	for i := range this.Secrets {
+		if this.Secrets[i] != that1.Secrets[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *AssetList) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*AssetList)
+	if !ok {
+		that2, ok := that.(AssetList)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Assets) != len(that1.Assets) {
+		return false
+	}
+	for i := range this.Assets {
+		if !this.Assets[i].Equal(&that1.Assets[i]) {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *ProxyRequests) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*ProxyRequests)
+	if !ok {
+		that2, ok := that.(ProxyRequests)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.EntityAttributes) != len(that1.EntityAttributes) {
+		return false
+	}
+	for i := range this.EntityAttributes {
+		if this.EntityAttributes[i] != that1.EntityAttributes[i] {
+			return false
+		}
+	}
+	if this.Splay != that1.Splay {
+		return false
+	}
+	if this.SplayCoverage != that1.SplayCoverage {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *CheckConfig) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CheckConfig)
+	if !ok {
+		that2, ok := that.(CheckConfig)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Command != that1.Command {
+		return false
+	}
+	if len(this.Handlers) != len(that1.Handlers) {
+		return false
+	}
+	for i := range this.Handlers {
+		if this.Handlers[i] != that1.Handlers[i] {
+			return false
+		}
+	}
+	if this.HighFlapThreshold != that1.HighFlapThreshold {
+		return false
+	}
+	if this.Interval != that1.Interval {
+		return false
+	}
+	if this.LowFlapThreshold != that1.LowFlapThreshold {
+		return false
+	}
+	if this.Publish != that1.Publish {
+		return false
+	}
+	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
+		return false
+	}
+	for i := range this.RuntimeAssets {
+		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
+			return false
+		}
+	}
+	if len(this.Subscriptions) != len(that1.Subscriptions) {
+		return false
+	}
+	for i := range this.Subscriptions {
+		if this.Subscriptions[i] != that1.Subscriptions[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.ExtendedAttributes, that1.ExtendedAttributes) {
+		return false
+	}
+	if this.ProxyEntityName != that1.ProxyEntityName {
+		return false
+	}
+	if len(this.CheckHooks) != len(that1.CheckHooks) {
+		return false
+	}
+	for i := range this.CheckHooks {
+		if !this.CheckHooks[i].Equal(&that1.CheckHooks[i]) {
+			return false
+		}
+	}
+	if this.Stdin != that1.Stdin {
+		return false
+	}
+	if !this.Subdue.Equal(that1.Subdue) {
+		return false
+	}
+	if this.Cron != that1.Cron {
+		return false
+	}
+	if this.Ttl != that1.Ttl {
+		return false
+	}
+	if this.Timeout != that1.Timeout {
+		return false
+	}
+	if !this.ProxyRequests.Equal(that1.ProxyRequests) {
+		return false
+	}
+	if this.RoundRobin != that1.RoundRobin {
+		return false
+	}
+	if this.OutputMetricFormat != that1.OutputMetricFormat {
+		return false
+	}
+	if len(this.OutputMetricHandlers) != len(that1.OutputMetricHandlers) {
+		return false
+	}
+	for i := range this.OutputMetricHandlers {
+		if this.OutputMetricHandlers[i] != that1.OutputMetricHandlers[i] {
+			return false
+		}
+	}
+	if len(this.EnvVars) != len(that1.EnvVars) {
+		return false
+	}
+	for i := range this.EnvVars {
+		if this.EnvVars[i] != that1.EnvVars[i] {
+			return false
+		}
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if this.MaxOutputSize != that1.MaxOutputSize {
+		return false
+	}
+	if this.DiscardOutput != that1.DiscardOutput {
+		return false
+	}
+	if len(this.Secrets) != len(that1.Secrets) {
+		return false
+	}
+	for i := range this.Secrets {
+		if !this.Secrets[i].Equal(that1.Secrets[i]) {
+			return false
+		}
+	}
+	if len(this.OutputMetricTags) != len(that1.OutputMetricTags) {
+		return false
+	}
+	for i := range this.OutputMetricTags {
+		if !this.OutputMetricTags[i].Equal(that1.OutputMetricTags[i]) {
+			return false
+		}
+	}
+	if this.Scheduler != that1.Scheduler {
+		return false
+	}
+	if len(this.Pipelines) != len(that1.Pipelines) {
+		return false
+	}
+	for i := range this.Pipelines {
+		if !this.Pipelines[i].Equal(that1.Pipelines[i]) {
+			return false
+		}
+	}
+	if len(this.OutputMetricThresholds) != len(that1.OutputMetricThresholds) {
+		return false
+	}
+	for i := range this.OutputMetricThresholds {
+		if !this.OutputMetricThresholds[i].Equal(that1.OutputMetricThresholds[i]) {
+			return false
+		}
+	}
+	if len(this.Subdues) != len(that1.Subdues) {
+		return false
+	}
+	for i := range this.Subdues {
+		if !this.Subdues[i].Equal(that1.Subdues[i]) {
+			return false
+		}
+	}
+	if len(this.FallbackPipelines) != len(that1.FallbackPipelines) {
+		return false
+	}
+	for i := range this.FallbackPipelines {
+		if !this.FallbackPipelines[i].Equal(that1.FallbackPipelines[i]) {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *Check) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Check)
+	if !ok {
+		that2, ok := that.(Check)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Command != that1.Command {
+		return false
+	}
+	if len(this.Handlers) != len(that1.Handlers) {
+		return false
+	}
+	for i := range this.Handlers {
+		if this.Handlers[i] != that1.Handlers[i] {
+			return false
+		}
+	}
+	if this.HighFlapThreshold != that1.HighFlapThreshold {
+		return false
+	}
+	if this.Interval != that1.Interval {
+		return false
+	}
+	if this.LowFlapThreshold != that1.LowFlapThreshold {
+		return false
+	}
+	if this.Publish != that1.Publish {
+		return false
+	}
+	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
+		return false
+	}
+	for i := range this.RuntimeAssets {
+		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
+			return false
+		}
+	}
+	if len(this.Subscriptions) != len(that1.Subscriptions) {
+		return false
+	}
+	for i := range this.Subscriptions {
+		if this.Subscriptions[i] != that1.Subscriptions[i] {
+			return false
+		}
+	}
+	if this.ProxyEntityName != that1.ProxyEntityName {
+		return false
+	}
+	if len(this.CheckHooks) != len(that1.CheckHooks) {
+		return false
+	}
+	for i := range this.CheckHooks {
+		if !this.CheckHooks[i].Equal(&that1.CheckHooks[i]) {
+			return false
+		}
+	}
+	if this.Stdin != that1.Stdin {
+		return false
+	}
+	if !this.Subdue.Equal(that1.Subdue) {
+		return false
+	}
+	if this.Cron != that1.Cron {
+		return false
+	}
+	if this.Ttl != that1.Ttl {
+		return false
+	}
+	if this.Timeout != that1.Timeout {
+		return false
+	}
+	if !this.ProxyRequests.Equal(that1.ProxyRequests) {
+		return false
+	}
+	if this.RoundRobin != that1.RoundRobin {
+		return false
+	}
+	if this.Duration != that1.Duration {
+		return false
+	}
+	if this.Executed != that1.Executed {
+		return false
+	}
+	if len(this.History) != len(that1.History) {
+		return false
+	}
+	for i := range this.History {
+		if !this.History[i].Equal(&that1.History[i]) {
+			return false
+		}
+	}
+	if this.Issued != that1.Issued {
+		return false
+	}
+	if this.Output != that1.Output {
+		return false
+	}
+	if this.State != that1.State {
+		return false
+	}
+	if this.Status != that1.Status {
+		return false
+	}
+	if this.TotalStateChange != that1.TotalStateChange {
+		return false
+	}
+	if this.LastOK != that1.LastOK {
+		return false
+	}
+	if this.Occurrences != that1.Occurrences {
+		return false
+	}
+	if this.OccurrencesWatermark != that1.OccurrencesWatermark {
+		return false
+	}
+	if len(this.Silenced) != len(that1.Silenced) {
+		return false
+	}
+	for i := range this.Silenced {
+		if this.Silenced[i] != that1.Silenced[i] {
+			return false
+		}
+	}
+	if len(this.Hooks) != len(that1.Hooks) {
+		return false
+	}
+	for i := range this.Hooks {
+		if !this.Hooks[i].Equal(that1.Hooks[i]) {
+			return false
+		}
+	}
+	if this.OutputMetricFormat != that1.OutputMetricFormat {
+		return false
+	}
+	if len(this.OutputMetricHandlers) != len(that1.OutputMetricHandlers) {
+		return false
+	}
+	for i := range this.OutputMetricHandlers {
+		if this.OutputMetricHandlers[i] != that1.OutputMetricHandlers[i] {
+			return false
+		}
+	}
+	if len(this.EnvVars) != len(that1.EnvVars) {
+		return false
+	}
+	for i := range this.EnvVars {
+		if this.EnvVars[i] != that1.EnvVars[i] {
+			return false
+		}
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if this.MaxOutputSize != that1.MaxOutputSize {
+		return false
+	}
+	if this.DiscardOutput != that1.DiscardOutput {
+		return false
+	}
+	if len(this.Secrets) != len(that1.Secrets) {
+		return false
+	}
+	for i := range this.Secrets {
+		if !this.Secrets[i].Equal(that1.Secrets[i]) {
+			return false
+		}
+	}
+	if this.IsSilenced != that1.IsSilenced {
+		return false
+	}
+	if len(this.OutputMetricTags) != len(that1.OutputMetricTags) {
+		return false
+	}
+	for i := range this.OutputMetricTags {
+		if !this.OutputMetricTags[i].Equal(that1.OutputMetricTags[i]) {
+			return false
+		}
+	}
+	if this.Scheduler != that1.Scheduler {
+		return false
+	}
+	if this.ProcessedBy != that1.ProcessedBy {
+		return false
+	}
+	if len(this.Pipelines) != len(that1.Pipelines) {
+		return false
+	}
+	for i := range this.Pipelines {
+		if !this.Pipelines[i].Equal(that1.Pipelines[i]) {
+			return false
+		}
+	}
+	if len(this.OutputMetricThresholds) != len(that1.OutputMetricThresholds) {
+		return false
+	}
+	for i := range this.OutputMetricThresholds {
+		if !this.OutputMetricThresholds[i].Equal(that1.OutputMetricThresholds[i]) {
+			return false
+		}
+	}
+	if len(this.Subdues) != len(that1.Subdues) {
+		return false
+	}
+	for i := range this.Subdues {
+		if !this.Subdues[i].Equal(that1.Subdues[i]) {
+			return false
+		}
+	}
+	if len(this.FallbackPipelines) != len(that1.FallbackPipelines) {
+		return false
+	}
+	for i := range this.FallbackPipelines {
+		if !this.FallbackPipelines[i].Equal(that1.FallbackPipelines[i]) {
+			return false
+		}
+	}
+	if !bytes.Equal(this.ExtendedAttributes, that1.ExtendedAttributes) {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *CheckHistory) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CheckHistory)
+	if !ok {
+		that2, ok := that.(CheckHistory)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Status != that1.Status {
+		return false
+	}
+	if this.Executed != that1.Executed {
+		return false
+	}
+	if this.Flapping != that1.Flapping {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type CheckConfigFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetCommand() string
+	GetHandlers() []string
+	GetHighFlapThreshold() uint32
+	GetInterval() uint32
+	GetLowFlapThreshold() uint32
+	GetPublish() bool
+	GetRuntimeAssets() []string
+	GetSubscriptions() []string
+	GetExtendedAttributes() []byte
+	GetProxyEntityName() string
+	GetCheckHooks() []HookList
+	GetStdin() bool
+	GetSubdue() *TimeWindowWhen
+	GetCron() string
+	GetTtl() int64
+	GetTimeout() uint32
+	GetProxyRequests() *ProxyRequests
+	GetRoundRobin() bool
+	GetOutputMetricFormat() string
+	GetOutputMetricHandlers() []string
+	GetEnvVars() []string
+	GetObjectMeta() ObjectMeta
+	GetMaxOutputSize() int64
+	GetDiscardOutput() bool
+	GetSecrets() []*Secret
+	GetOutputMetricTags() []*MetricTag
+	GetScheduler() string
+	GetPipelines() []*ResourceReference
+	GetOutputMetricThresholds() []*MetricThreshold
+	GetSubdues() []*TimeWindowRepeated
+	GetFallbackPipelines() []*ResourceReference
+}
+
+func (this *CheckConfig) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *CheckConfig) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewCheckConfigFromFace(this)
+}
+
+func (this *CheckConfig) GetCommand() string {
+	return this.Command
+}
+
+func (this *CheckConfig) GetHandlers() []string {
+	return this.Handlers
+}
+
+func (this *CheckConfig) GetHighFlapThreshold() uint32 {
+	return this.HighFlapThreshold
+}
+
+func (this *CheckConfig) GetInterval() uint32 {
+	return this.Interval
+}
+
+func (this *CheckConfig) GetLowFlapThreshold() uint32 {
+	return this.LowFlapThreshold
+}
+
+func (this *CheckConfig) GetPublish() bool {
+	return this.Publish
+}
+
+func (this *CheckConfig) GetRuntimeAssets() []string {
+	return this.RuntimeAssets
+}
+
+func (this *CheckConfig) GetSubscriptions() []string {
+	return this.Subscriptions
+}
+
+func (this *CheckConfig) GetExtendedAttributes() []byte {
+	return this.ExtendedAttributes
+}
+
+func (this *CheckConfig) GetProxyEntityName() string {
+	return this.ProxyEntityName
+}
+
+func (this *CheckConfig) GetCheckHooks() []HookList {
+	return this.CheckHooks
+}
+
+func (this *CheckConfig) GetStdin() bool {
+	return this.Stdin
+}
+
+func (this *CheckConfig) GetSubdue() *TimeWindowWhen {
+	return this.Subdue
+}
+
+func (this *CheckConfig) GetCron() string {
+	return this.Cron
+}
+
+func (this *CheckConfig) GetTtl() int64 {
+	return this.Ttl
+}
+
+func (this *CheckConfig) GetTimeout() uint32 {
+	return this.Timeout
+}
+
+func (this *CheckConfig) GetProxyRequests() *ProxyRequests {
+	return this.ProxyRequests
+}
+
+func (this *CheckConfig) GetRoundRobin() bool {
+	return this.RoundRobin
+}
+
+func (this *CheckConfig) GetOutputMetricFormat() string {
+	return this.OutputMetricFormat
+}
+
+func (this *CheckConfig) GetOutputMetricHandlers() []string {
+	return this.OutputMetricHandlers
+}
+
+func (this *CheckConfig) GetEnvVars() []string {
+	return this.EnvVars
+}
+
+func (this *CheckConfig) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *CheckConfig) GetMaxOutputSize() int64 {
+	return this.MaxOutputSize
+}
+
+func (this *CheckConfig) GetDiscardOutput() bool {
+	return this.DiscardOutput
+}
+
+func (this *CheckConfig) GetSecrets() []*Secret {
+	return this.Secrets
+}
+
+func (this *CheckConfig) GetOutputMetricTags() []*MetricTag {
+	return this.OutputMetricTags
+}
+
+func (this *CheckConfig) GetScheduler() string {
+	return this.Scheduler
+}
+
+func (this *CheckConfig) GetPipelines() []*ResourceReference {
+	return this.Pipelines
+}
+
+func (this *CheckConfig) GetOutputMetricThresholds() []*MetricThreshold {
+	return this.OutputMetricThresholds
+}
+
+func (this *CheckConfig) GetSubdues() []*TimeWindowRepeated {
+	return this.Subdues
+}
+
+func (this *CheckConfig) GetFallbackPipelines() []*ResourceReference {
+	return this.FallbackPipelines
+}
+
+func NewCheckConfigFromFace(that CheckConfigFace) *CheckConfig {
+	this := &CheckConfig{}
+	this.Command = that.GetCommand()
+	this.Handlers = that.GetHandlers()
+	this.HighFlapThreshold = that.GetHighFlapThreshold()
+	this.Interval = that.GetInterval()
+	this.LowFlapThreshold = that.GetLowFlapThreshold()
+	this.Publish = that.GetPublish()
+	this.RuntimeAssets = that.GetRuntimeAssets()
+	this.Subscriptions = that.GetSubscriptions()
+	this.ExtendedAttributes = that.GetExtendedAttributes()
+	this.ProxyEntityName = that.GetProxyEntityName()
+	this.CheckHooks = that.GetCheckHooks()
+	this.Stdin = that.GetStdin()
+	this.Subdue = that.GetSubdue()
+	this.Cron = that.GetCron()
+	this.Ttl = that.GetTtl()
+	this.Timeout = that.GetTimeout()
+	this.ProxyRequests = that.GetProxyRequests()
+	this.RoundRobin = that.GetRoundRobin()
+	this.OutputMetricFormat = that.GetOutputMetricFormat()
+	this.OutputMetricHandlers = that.GetOutputMetricHandlers()
+	this.EnvVars = that.GetEnvVars()
+	this.ObjectMeta = that.GetObjectMeta()
+	this.MaxOutputSize = that.GetMaxOutputSize()
+	this.DiscardOutput = that.GetDiscardOutput()
+	this.Secrets = that.GetSecrets()
+	this.OutputMetricTags = that.GetOutputMetricTags()
+	this.Scheduler = that.GetScheduler()
+	this.Pipelines = that.GetPipelines()
+	this.OutputMetricThresholds = that.GetOutputMetricThresholds()
+	this.Subdues = that.GetSubdues()
+	this.FallbackPipelines = that.GetFallbackPipelines()
+	return this
+}
+
+type CheckFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetCommand() string
+	GetHandlers() []string
+	GetHighFlapThreshold() uint32
+	GetInterval() uint32
+	GetLowFlapThreshold() uint32
+	GetPublish() bool
+	GetRuntimeAssets() []string
+	GetSubscriptions() []string
+	GetProxyEntityName() string
+	GetCheckHooks() []HookList
+	GetStdin() bool
+	GetSubdue() *TimeWindowWhen
+	GetCron() string
+	GetTtl() int64
+	GetTimeout() uint32
+	GetProxyRequests() *ProxyRequests
+	GetRoundRobin() bool
+	GetDuration() float64
+	GetExecuted() int64
+	GetHistory() []CheckHistory
+	GetIssued() int64
+	GetOutput() string
+	GetState() string
+	GetStatus() uint32
+	GetTotalStateChange() uint32
+	GetLastOK() int64
+	GetOccurrences() int64
+	GetOccurrencesWatermark() int64
+	GetSilenced() []string
+	GetHooks() []*Hook
+	GetOutputMetricFormat() string
+	GetOutputMetricHandlers() []string
+	GetEnvVars() []string
+	GetObjectMeta() ObjectMeta
+	GetMaxOutputSize() int64
+	GetDiscardOutput() bool
+	GetSecrets() []*Secret
+	GetIsSilenced() bool
+	GetOutputMetricTags() []*MetricTag
+	GetScheduler() string
+	GetProcessedBy() string
+	GetPipelines() []*ResourceReference
+	GetOutputMetricThresholds() []*MetricThreshold
+	GetSubdues() []*TimeWindowRepeated
+	GetFallbackPipelines() []*ResourceReference
+	GetExtendedAttributes() []byte
+}
+
+func (this *Check) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *Check) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewCheckFromFace(this)
+}
+
+func (this *Check) GetCommand() string {
+	return this.Command
+}
+
+func (this *Check) GetHandlers() []string {
+	return this.Handlers
+}
+
+func (this *Check) GetHighFlapThreshold() uint32 {
+	return this.HighFlapThreshold
+}
+
+func (this *Check) GetInterval() uint32 {
+	return this.Interval
+}
+
+func (this *Check) GetLowFlapThreshold() uint32 {
+	return this.LowFlapThreshold
+}
+
+func (this *Check) GetPublish() bool {
+	return this.Publish
+}
+
+func (this *Check) GetRuntimeAssets() []string {
+	return this.RuntimeAssets
+}
+
+func (this *Check) GetSubscriptions() []string {
+	return this.Subscriptions
+}
+
+func (this *Check) GetProxyEntityName() string {
+	return this.ProxyEntityName
+}
+
+func (this *Check) GetCheckHooks() []HookList {
+	return this.CheckHooks
+}
+
+func (this *Check) GetStdin() bool {
+	return this.Stdin
+}
+
+func (this *Check) GetSubdue() *TimeWindowWhen {
+	return this.Subdue
+}
+
+func (this *Check) GetCron() string {
+	return this.Cron
+}
+
+func (this *Check) GetTtl() int64 {
+	return this.Ttl
+}
+
+func (this *Check) GetTimeout() uint32 {
+	return this.Timeout
+}
+
+func (this *Check) GetProxyRequests() *ProxyRequests {
+	return this.ProxyRequests
+}
+
+func (this *Check) GetRoundRobin() bool {
+	return this.RoundRobin
+}
+
+func (this *Check) GetDuration() float64 {
+	return this.Duration
+}
+
+func (this *Check) GetExecuted() int64 {
+	return this.Executed
+}
+
+func (this *Check) GetHistory() []CheckHistory {
+	return this.History
+}
+
+func (this *Check) GetIssued() int64 {
+	return this.Issued
+}
+
+func (this *Check) GetOutput() string {
+	return this.Output
+}
+
+func (this *Check) GetState() string {
+	return this.State
+}
+
+func (this *Check) GetStatus() uint32 {
+	return this.Status
+}
+
+func (this *Check) GetTotalStateChange() uint32 {
+	return this.TotalStateChange
+}
+
+func (this *Check) GetLastOK() int64 {
+	return this.LastOK
+}
+
+func (this *Check) GetOccurrences() int64 {
+	return this.Occurrences
+}
+
+func (this *Check) GetOccurrencesWatermark() int64 {
+	return this.OccurrencesWatermark
+}
+
+func (this *Check) GetSilenced() []string {
+	return this.Silenced
+}
+
+func (this *Check) GetHooks() []*Hook {
+	return this.Hooks
+}
+
+func (this *Check) GetOutputMetricFormat() string {
+	return this.OutputMetricFormat
+}
+
+func (this *Check) GetOutputMetricHandlers() []string {
+	return this.OutputMetricHandlers
+}
+
+func (this *Check) GetEnvVars() []string {
+	return this.EnvVars
+}
+
+func (this *Check) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *Check) GetMaxOutputSize() int64 {
+	return this.MaxOutputSize
+}
+
+func (this *Check) GetDiscardOutput() bool {
+	return this.DiscardOutput
+}
+
+func (this *Check) GetSecrets() []*Secret {
+	return this.Secrets
+}
+
+func (this *Check) GetIsSilenced() bool {
+	return this.IsSilenced
+}
+
+func (this *Check) GetOutputMetricTags() []*MetricTag {
+	return this.OutputMetricTags
+}
+
+func (this *Check) GetScheduler() string {
+	return this.Scheduler
+}
+
+func (this *Check) GetProcessedBy() string {
+	return this.ProcessedBy
+}
+
+func (this *Check) GetPipelines() []*ResourceReference {
+	return this.Pipelines
+}
+
+func (this *Check) GetOutputMetricThresholds() []*MetricThreshold {
+	return this.OutputMetricThresholds
+}
+
+func (this *Check) GetSubdues() []*TimeWindowRepeated {
+	return this.Subdues
+}
+
+func (this *Check) GetFallbackPipelines() []*ResourceReference {
+	return this.FallbackPipelines
+}
+
+func (this *Check) GetExtendedAttributes() []byte {
+	return this.ExtendedAttributes
+}
+
+func NewCheckFromFace(that CheckFace) *Check {
+	this := &Check{}
+	this.Command = that.GetCommand()
+	this.Handlers = that.GetHandlers()
+	this.HighFlapThreshold = that.GetHighFlapThreshold()
+	this.Interval = that.GetInterval()
+	this.LowFlapThreshold = that.GetLowFlapThreshold()
+	this.Publish = that.GetPublish()
+	this.RuntimeAssets = that.GetRuntimeAssets()
+	this.Subscriptions = that.GetSubscriptions()
+	this.ProxyEntityName = that.GetProxyEntityName()
+	this.CheckHooks = that.GetCheckHooks()
+	this.Stdin = that.GetStdin()
+	this.Subdue = that.GetSubdue()
+	this.Cron = that.GetCron()
+	this.Ttl = that.GetTtl()
+	this.Timeout = that.GetTimeout()
+	this.ProxyRequests = that.GetProxyRequests()
+	this.RoundRobin = that.GetRoundRobin()
+	this.Duration = that.GetDuration()
+	this.Executed = that.GetExecuted()
+	this.History = that.GetHistory()
+	this.Issued = that.GetIssued()
+	this.Output = that.GetOutput()
+	this.State = that.GetState()
+	this.Status = that.GetStatus()
+	this.TotalStateChange = that.GetTotalStateChange()
+	this.LastOK = that.GetLastOK()
+	this.Occurrences = that.GetOccurrences()
+	this.OccurrencesWatermark = that.GetOccurrencesWatermark()
+	this.Silenced = that.GetSilenced()
+	this.Hooks = that.GetHooks()
+	this.OutputMetricFormat = that.GetOutputMetricFormat()
+	this.OutputMetricHandlers = that.GetOutputMetricHandlers()
+	this.EnvVars = that.GetEnvVars()
+	this.ObjectMeta = that.GetObjectMeta()
+	this.MaxOutputSize = that.GetMaxOutputSize()
+	this.DiscardOutput = that.GetDiscardOutput()
+	this.Secrets = that.GetSecrets()
+	this.IsSilenced = that.GetIsSilenced()
+	this.OutputMetricTags = that.GetOutputMetricTags()
+	this.Scheduler = that.GetScheduler()
+	this.ProcessedBy = that.GetProcessedBy()
+	this.Pipelines = that.GetPipelines()
+	this.OutputMetricThresholds = that.GetOutputMetricThresholds()
+	this.Subdues = that.GetSubdues()
+	this.FallbackPipelines = that.GetFallbackPipelines()
+	this.ExtendedAttributes = that.GetExtendedAttributes()
+	return this
+}
+
 func (m *CheckRequest) Size() (n int) {
 	if m == nil {
 		return 0

@@ -266,175 +266,6 @@ var fileDescriptor_5c051bb6de918e5d = []byte{
 	0xf7, 0x02, 0x00, 0x00,
 }
 
-func (this *HookConfig) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*HookConfig)
-	if !ok {
-		that2, ok := that.(HookConfig)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if this.Command != that1.Command {
-		return false
-	}
-	if this.Timeout != that1.Timeout {
-		return false
-	}
-	if this.Stdin != that1.Stdin {
-		return false
-	}
-	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
-		return false
-	}
-	for i := range this.RuntimeAssets {
-		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *Hook) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Hook)
-	if !ok {
-		that2, ok := that.(Hook)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.HookConfig.Equal(&that1.HookConfig) {
-		return false
-	}
-	if this.Duration != that1.Duration {
-		return false
-	}
-	if this.Executed != that1.Executed {
-		return false
-	}
-	if this.Issued != that1.Issued {
-		return false
-	}
-	if this.Output != that1.Output {
-		return false
-	}
-	if this.Status != that1.Status {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *HookList) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*HookList)
-	if !ok {
-		that2, ok := that.(HookList)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.Hooks) != len(that1.Hooks) {
-		return false
-	}
-	for i := range this.Hooks {
-		if this.Hooks[i] != that1.Hooks[i] {
-			return false
-		}
-	}
-	if this.Type != that1.Type {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type HookConfigFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetObjectMeta() ObjectMeta
-	GetCommand() string
-	GetTimeout() uint32
-	GetStdin() bool
-	GetRuntimeAssets() []string
-}
-
-func (this *HookConfig) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *HookConfig) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewHookConfigFromFace(this)
-}
-
-func (this *HookConfig) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *HookConfig) GetCommand() string {
-	return this.Command
-}
-
-func (this *HookConfig) GetTimeout() uint32 {
-	return this.Timeout
-}
-
-func (this *HookConfig) GetStdin() bool {
-	return this.Stdin
-}
-
-func (this *HookConfig) GetRuntimeAssets() []string {
-	return this.RuntimeAssets
-}
-
-func NewHookConfigFromFace(that HookConfigFace) *HookConfig {
-	this := &HookConfig{}
-	this.ObjectMeta = that.GetObjectMeta()
-	this.Command = that.GetCommand()
-	this.Timeout = that.GetTimeout()
-	this.Stdin = that.GetStdin()
-	this.RuntimeAssets = that.GetRuntimeAssets()
-	return this
-}
-
 func (m *HookConfig) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -753,6 +584,175 @@ func encodeVarintPopulateHook(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *HookConfig) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*HookConfig)
+	if !ok {
+		that2, ok := that.(HookConfig)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if this.Command != that1.Command {
+		return false
+	}
+	if this.Timeout != that1.Timeout {
+		return false
+	}
+	if this.Stdin != that1.Stdin {
+		return false
+	}
+	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
+		return false
+	}
+	for i := range this.RuntimeAssets {
+		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *Hook) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Hook)
+	if !ok {
+		that2, ok := that.(Hook)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.HookConfig.Equal(&that1.HookConfig) {
+		return false
+	}
+	if this.Duration != that1.Duration {
+		return false
+	}
+	if this.Executed != that1.Executed {
+		return false
+	}
+	if this.Issued != that1.Issued {
+		return false
+	}
+	if this.Output != that1.Output {
+		return false
+	}
+	if this.Status != that1.Status {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *HookList) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*HookList)
+	if !ok {
+		that2, ok := that.(HookList)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Hooks) != len(that1.Hooks) {
+		return false
+	}
+	for i := range this.Hooks {
+		if this.Hooks[i] != that1.Hooks[i] {
+			return false
+		}
+	}
+	if this.Type != that1.Type {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type HookConfigFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetObjectMeta() ObjectMeta
+	GetCommand() string
+	GetTimeout() uint32
+	GetStdin() bool
+	GetRuntimeAssets() []string
+}
+
+func (this *HookConfig) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *HookConfig) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewHookConfigFromFace(this)
+}
+
+func (this *HookConfig) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *HookConfig) GetCommand() string {
+	return this.Command
+}
+
+func (this *HookConfig) GetTimeout() uint32 {
+	return this.Timeout
+}
+
+func (this *HookConfig) GetStdin() bool {
+	return this.Stdin
+}
+
+func (this *HookConfig) GetRuntimeAssets() []string {
+	return this.RuntimeAssets
+}
+
+func NewHookConfigFromFace(that HookConfigFace) *HookConfig {
+	this := &HookConfig{}
+	this.ObjectMeta = that.GetObjectMeta()
+	this.Command = that.GetCommand()
+	this.Timeout = that.GetTimeout()
+	this.Stdin = that.GetStdin()
+	this.RuntimeAssets = that.GetRuntimeAssets()
+	return this
+}
+
 func (m *HookConfig) Size() (n int) {
 	if m == nil {
 		return 0

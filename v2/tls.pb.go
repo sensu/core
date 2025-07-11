@@ -137,45 +137,6 @@ var fileDescriptor_9e2792dbd3e1e1ba = []byte{
 	0x03, 0x00, 0x00, 0xff, 0xff, 0xdd, 0x10, 0xd7, 0xc4, 0x8b, 0x01, 0x00, 0x00,
 }
 
-func (this *TLSOptions) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*TLSOptions)
-	if !ok {
-		that2, ok := that.(TLSOptions)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.CertFile != that1.CertFile {
-		return false
-	}
-	if this.KeyFile != that1.KeyFile {
-		return false
-	}
-	if this.TrustedCAFile != that1.TrustedCAFile {
-		return false
-	}
-	if this.InsecureSkipVerify != that1.InsecureSkipVerify {
-		return false
-	}
-	if this.ClientAuthType != that1.ClientAuthType {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
 func (m *TLSOptions) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -339,6 +300,45 @@ func encodeVarintPopulateTls(dAtA []byte, v uint64) []byte {
 	}
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
+}
+func (this *TLSOptions) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*TLSOptions)
+	if !ok {
+		that2, ok := that.(TLSOptions)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.CertFile != that1.CertFile {
+		return false
+	}
+	if this.KeyFile != that1.KeyFile {
+		return false
+	}
+	if this.TrustedCAFile != that1.TrustedCAFile {
+		return false
+	}
+	if this.InsecureSkipVerify != that1.InsecureSkipVerify {
+		return false
+	}
+	if this.ClientAuthType != that1.ClientAuthType {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
 }
 func (m *TLSOptions) Size() (n int) {
 	if m == nil {
