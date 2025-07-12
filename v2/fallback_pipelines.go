@@ -10,7 +10,7 @@ import (
 
 const (
 	// FallbackPipelinesResource is the name of this resource type
-	FallbackPipelinesResource = "fallbackPipelines"
+	FallbackPipelinesResource = "fallback_pipelines"
 )
 
 // GetObjectMeta returns the object metadata for the resource.
