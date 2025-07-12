@@ -4,6 +4,8 @@ import (
 	"errors"
 	"net/url"
 	"path"
+
+	stringsutil "github.com/sensu/core/v2/internal/stringutil"
 )
 
 const (
@@ -53,4 +55,38 @@ func (f *FallbackPipelines) Validate() error {
 		return errors.New("namespace must be set")
 	}
 	return nil
+}
+
+// FallbackPipelinesFields returns a set of fields that represent that resource.
+func FallbackPipelinesFields(r Resource) map[string]string {
+	resource := r.(*FallbackPipelines)
+	fields := map[string]string{
+		"fallbackPipelines.name":      resource.ObjectMeta.Name,
+		"fallbackPipelines.namespace": resource.ObjectMeta.Namespace,
+	}
+	stringsutil.MergeMapWithPrefix(fields, resource.ObjectMeta.Labels, "fallbackPipelines.labels.")
+	return fields
+}
+
+// Fields returns a set of fields that represent that resource.
+func (f *FallbackPipelines) Fields() map[string]string {
+	return FallbackPipelinesFields(f)
+}
+
+// FixtureFallbackPipelines returns a testing fixture for a FallbackPipelines object.
+func FixtureFallbackPipelines(name, namespace string) *FallbackPipelines {
+	return &FallbackPipelines{
+		ObjectMeta: NewObjectMeta(name, namespace),
+		Pipelines:  []*ResourceReference{},
+	}
+}
+
+// FixtureFallbackPipelineReference returns a testing fixture for a ResourceReference
+// object referencing a corev2.FallbackPipeline.
+func FixtureFallbackPipelineReference(name string) *ResourceReference {
+	return &ResourceReference{
+		APIVersion: "core/v2",
+		Type:       "FallbackPipelines",
+		Name:       name,
+	}
 }
