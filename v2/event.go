@@ -215,9 +215,9 @@ func (e *Event) validatePipelineReference(ref *ResourceReference) error {
 // acting as a pipeline.
 func (e *Event) validateFallbackPipelineReference(ref *ResourceReference) error {
 	switch ref.APIVersion {
-	case "core/v2":
+	case "fallback_pipelines/v1":
 		switch ref.Type {
-		case "LegacyPipeline":
+		case "FallbackPipelines":
 			return nil
 		}
 	}

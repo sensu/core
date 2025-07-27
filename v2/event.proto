@@ -51,5 +51,7 @@ message Event {
   // "Pipeline".
   repeated ResourceReference pipelines = 8 [ (gogoproto.jsontag) = "pipelines" ];
   //fallback pipelines
-  repeated ResourceReference fallback_pipelines = 9 [ (gogoproto.jsontag) = "fallback_pipelines" ];
+  repeated ResourceReference fallback_pipelines = 9 [
+        json_name = "fallback_pipelines"  // Explicitly sets JSON name
+  ];
 }
