@@ -76,10 +76,8 @@ func (e *Event) Validate() error {
 		}
 	}
 
-	for _, fallpipelines := range e.FallbackPipelines {
-		if err := e.validateFallbackPipelineReference(fallpipelines); err != nil {
-			return errors.New("Fallback-pipeline reference is invalid: " + err.Error())
-		}
+	if err := e.validateFallbackPipelineReference(e.FallbackPipeline); err != nil {
+		return errors.New("Fallback-pipeline reference is invalid: " + err.Error())
 	}
 
 	if e.Name != "" {
@@ -215,9 +213,9 @@ func (e *Event) validatePipelineReference(ref *ResourceReference) error {
 // acting as a pipeline.
 func (e *Event) validateFallbackPipelineReference(ref *ResourceReference) error {
 	switch ref.APIVersion {
-	case "fallback_pipelines/v1":
+	case "fallback_pipeline/v1":
 		switch ref.Type {
-		case "FallbackPipelines":
+		case "FallbackPipeline":
 			return nil
 		}
 	}

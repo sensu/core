@@ -344,17 +344,17 @@ func TestResolveExtension(t *testing.T) {
 	}
 }
 
-func TestResolveFallbackPipelines(t *testing.T) {
-	var value interface{} = new(FallbackPipelines)
+func TestResolveFallbackPipeline(t *testing.T) {
+	var value interface{} = new(FallbackPipeline)
 	if _, ok := value.(Resource); ok {
-		if actual, err := apitools.Resolve("core/v2", "FallbackPipelines"); err != nil {
+		if actual, err := apitools.Resolve("core/v2", "FallbackPipeline"); err != nil {
 			t.Fatal(err)
-		} else if _, ok := actual.(*FallbackPipelines); !ok {
+		} else if _, ok := actual.(*FallbackPipeline); !ok {
 			t.Fatal("expected to resolve to type ")
 		}
 		return
 	}
-	_, err := apitools.Resolve("core/v2", "FallbackPipelines")
+	_, err := apitools.Resolve("core/v2", "FallbackPipeline")
 	if err == nil {
 		t.Fatalf("expected non-nil error")
 	}

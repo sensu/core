@@ -50,8 +50,8 @@ message Event {
   // APIVersion should default to "core/v2" and Type should default to
   // "Pipeline".
   repeated ResourceReference pipelines = 8 [ (gogoproto.jsontag) = "pipelines" ];
-  //fallback pipelines
-  repeated ResourceReference fallback_pipelines = 9 [
-        json_name = "fallback_pipelines"  // Explicitly sets JSON name
+  //fallback pipeline
+  ResourceReference fallback_pipeline = 9 [
+        json_name = "fallback_pipeline"  // Explicitly sets JSON name
   ];
 }

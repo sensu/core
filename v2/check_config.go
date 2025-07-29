@@ -170,8 +170,8 @@ func (c *CheckConfig) Validate() error {
 	}
 
 	// we can't have pipelines and fallback pipelines at the same time
-	if len(c.Pipelines) > 0 && len(c.FallbackPipelines) > 0 {
-		return errors.New("cannot have both pipelines and fallback_pipelines defined at the same time")
+	if len(c.Pipelines) > 0 && c.FallbackPipeline != nil {
+		return errors.New("cannot have both pipelines and fallback_pipeline defined at the same time")
 	}
 
 	return c.Subdue.Validate()
