@@ -75,9 +75,10 @@ func (e *Event) Validate() error {
 			return errors.New("pipeline reference is invalid: " + err.Error())
 		}
 	}
-
-	if err := e.validateFallbackPipelineReference(e.FallbackPipeline); err != nil {
-		return errors.New("Fallback-pipeline reference is invalid: " + err.Error())
+	if e.FallbackPipeline != nil {
+		if err := e.validateFallbackPipelineReference(e.FallbackPipeline); err != nil {
+			return errors.New("Fallback-pipeline reference is invalid: " + err.Error())
+		}
 	}
 
 	if e.Name != "" {
