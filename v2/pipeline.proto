@@ -22,4 +22,6 @@ message Pipeline {
 
   // Workflows contains one or more pipeline workflows.
   repeated PipelineWorkflow Workflows = 2 [ (gogoproto.jsontag) = "workflows", (gogoproto.moretags) = "yaml: \"workflows\"" ];
+  // ContinueOnError determines if the pipeline should continue executing workflows when an error occurs.
+  bool ContinueOnError = 3 [ (gogoproto.jsontag) = "continue_on_error,omitempty", (gogoproto.moretags) = "yaml: \"continue_on_error\"" ];
 }
