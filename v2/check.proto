@@ -171,6 +171,9 @@ message CheckConfig {
   repeated MetricThreshold output_metric_thresholds = 33 [ (gogoproto.jsontag) = "output_metric_thresholds,omitempty", (gogoproto.moretags) = "yaml: \"output_metric_thresholds,omitempty\"" ];
 
   repeated TimeWindowRepeated subdues = 34  [ (gogoproto.jsontag) = "subdues,omitempty" ];
+
+  //added fallback piepline details in order of execution
+  ResourceReference fallback_pipeline = 35 [ (gogoproto.jsontag) = "fallback_pipeline" ,(gogoproto.moretags) = "yaml: \"fallback_pipeline,omitempty\"" ];
 }
 
 // A Check is a check specification and optionally the results of the check's
@@ -333,6 +336,9 @@ message Check {
   repeated MetricThreshold output_metric_thresholds = 47 [ (gogoproto.jsontag) = "output_metric_thresholds,omitempty", (gogoproto.moretags) = "yaml: \"output_metric_thresholds,omitempty\"" ];
 
   repeated TimeWindowRepeated subdues = 48  [ (gogoproto.jsontag) = "subdues,omitempty" ];
+
+  //fallback piepline details in order of execution
+  ResourceReference fallback_pipeline = 49 [ (gogoproto.jsontag) = "fallback_pipeline" ,(gogoproto.moretags) = "yaml: \"fallback_pipeline,omitempty\"" ];
 
   // ExtendedAttributes store serialized arbitrary JSON-encoded data
   bytes ExtendedAttributes = 99 [ (gogoproto.jsontag) = "-" ];

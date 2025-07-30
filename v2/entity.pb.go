@@ -530,366 +530,6 @@ var fileDescriptor_a59a6a61e3ffa305 = []byte{
 	0xff, 0xff, 0x3e, 0x5b, 0xe3, 0x80, 0xb9, 0x06, 0x00, 0x00,
 }
 
-func (this *Entity) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Entity)
-	if !ok {
-		that2, ok := that.(Entity)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.EntityClass != that1.EntityClass {
-		return false
-	}
-	if !this.System.Equal(&that1.System) {
-		return false
-	}
-	if len(this.Subscriptions) != len(that1.Subscriptions) {
-		return false
-	}
-	for i := range this.Subscriptions {
-		if this.Subscriptions[i] != that1.Subscriptions[i] {
-			return false
-		}
-	}
-	if this.LastSeen != that1.LastSeen {
-		return false
-	}
-	if this.Deregister != that1.Deregister {
-		return false
-	}
-	if !this.Deregistration.Equal(&that1.Deregistration) {
-		return false
-	}
-	if this.User != that1.User {
-		return false
-	}
-	if !bytes.Equal(this.ExtendedAttributes, that1.ExtendedAttributes) {
-		return false
-	}
-	if len(this.Redact) != len(that1.Redact) {
-		return false
-	}
-	for i := range this.Redact {
-		if this.Redact[i] != that1.Redact[i] {
-			return false
-		}
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if this.SensuAgentVersion != that1.SensuAgentVersion {
-		return false
-	}
-	if len(this.KeepaliveHandlers) != len(that1.KeepaliveHandlers) {
-		return false
-	}
-	for i := range this.KeepaliveHandlers {
-		if this.KeepaliveHandlers[i] != that1.KeepaliveHandlers[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *System) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*System)
-	if !ok {
-		that2, ok := that.(System)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Hostname != that1.Hostname {
-		return false
-	}
-	if this.OS != that1.OS {
-		return false
-	}
-	if this.Platform != that1.Platform {
-		return false
-	}
-	if this.PlatformFamily != that1.PlatformFamily {
-		return false
-	}
-	if this.PlatformVersion != that1.PlatformVersion {
-		return false
-	}
-	if !this.Network.Equal(&that1.Network) {
-		return false
-	}
-	if this.Arch != that1.Arch {
-		return false
-	}
-	if this.ARMVersion != that1.ARMVersion {
-		return false
-	}
-	if this.LibCType != that1.LibCType {
-		return false
-	}
-	if this.VMSystem != that1.VMSystem {
-		return false
-	}
-	if this.VMRole != that1.VMRole {
-		return false
-	}
-	if this.CloudProvider != that1.CloudProvider {
-		return false
-	}
-	if this.FloatType != that1.FloatType {
-		return false
-	}
-	if len(this.Processes) != len(that1.Processes) {
-		return false
-	}
-	for i := range this.Processes {
-		if !this.Processes[i].Equal(that1.Processes[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *Process) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Process)
-	if !ok {
-		that2, ok := that.(Process)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Name != that1.Name {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *Network) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Network)
-	if !ok {
-		that2, ok := that.(Network)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.Interfaces) != len(that1.Interfaces) {
-		return false
-	}
-	for i := range this.Interfaces {
-		if !this.Interfaces[i].Equal(&that1.Interfaces[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *NetworkInterface) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*NetworkInterface)
-	if !ok {
-		that2, ok := that.(NetworkInterface)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Name != that1.Name {
-		return false
-	}
-	if this.MAC != that1.MAC {
-		return false
-	}
-	if len(this.Addresses) != len(that1.Addresses) {
-		return false
-	}
-	for i := range this.Addresses {
-		if this.Addresses[i] != that1.Addresses[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *Deregistration) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Deregistration)
-	if !ok {
-		that2, ok := that.(Deregistration)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Handler != that1.Handler {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type EntityFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetEntityClass() string
-	GetSystem() System
-	GetSubscriptions() []string
-	GetLastSeen() int64
-	GetDeregister() bool
-	GetDeregistration() Deregistration
-	GetUser() string
-	GetExtendedAttributes() []byte
-	GetRedact() []string
-	GetObjectMeta() ObjectMeta
-	GetSensuAgentVersion() string
-	GetKeepaliveHandlers() []string
-}
-
-func (this *Entity) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *Entity) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewEntityFromFace(this)
-}
-
-func (this *Entity) GetEntityClass() string {
-	return this.EntityClass
-}
-
-func (this *Entity) GetSystem() System {
-	return this.System
-}
-
-func (this *Entity) GetSubscriptions() []string {
-	return this.Subscriptions
-}
-
-func (this *Entity) GetLastSeen() int64 {
-	return this.LastSeen
-}
-
-func (this *Entity) GetDeregister() bool {
-	return this.Deregister
-}
-
-func (this *Entity) GetDeregistration() Deregistration {
-	return this.Deregistration
-}
-
-func (this *Entity) GetUser() string {
-	return this.User
-}
-
-func (this *Entity) GetExtendedAttributes() []byte {
-	return this.ExtendedAttributes
-}
-
-func (this *Entity) GetRedact() []string {
-	return this.Redact
-}
-
-func (this *Entity) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *Entity) GetSensuAgentVersion() string {
-	return this.SensuAgentVersion
-}
-
-func (this *Entity) GetKeepaliveHandlers() []string {
-	return this.KeepaliveHandlers
-}
-
-func NewEntityFromFace(that EntityFace) *Entity {
-	this := &Entity{}
-	this.EntityClass = that.GetEntityClass()
-	this.System = that.GetSystem()
-	this.Subscriptions = that.GetSubscriptions()
-	this.LastSeen = that.GetLastSeen()
-	this.Deregister = that.GetDeregister()
-	this.Deregistration = that.GetDeregistration()
-	this.User = that.GetUser()
-	this.ExtendedAttributes = that.GetExtendedAttributes()
-	this.Redact = that.GetRedact()
-	this.ObjectMeta = that.GetObjectMeta()
-	this.SensuAgentVersion = that.GetSensuAgentVersion()
-	this.KeepaliveHandlers = that.GetKeepaliveHandlers()
-	return this
-}
-
 func (m *Entity) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -1517,6 +1157,366 @@ func encodeVarintPopulateEntity(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *Entity) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Entity)
+	if !ok {
+		that2, ok := that.(Entity)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.EntityClass != that1.EntityClass {
+		return false
+	}
+	if !this.System.Equal(&that1.System) {
+		return false
+	}
+	if len(this.Subscriptions) != len(that1.Subscriptions) {
+		return false
+	}
+	for i := range this.Subscriptions {
+		if this.Subscriptions[i] != that1.Subscriptions[i] {
+			return false
+		}
+	}
+	if this.LastSeen != that1.LastSeen {
+		return false
+	}
+	if this.Deregister != that1.Deregister {
+		return false
+	}
+	if !this.Deregistration.Equal(&that1.Deregistration) {
+		return false
+	}
+	if this.User != that1.User {
+		return false
+	}
+	if !bytes.Equal(this.ExtendedAttributes, that1.ExtendedAttributes) {
+		return false
+	}
+	if len(this.Redact) != len(that1.Redact) {
+		return false
+	}
+	for i := range this.Redact {
+		if this.Redact[i] != that1.Redact[i] {
+			return false
+		}
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if this.SensuAgentVersion != that1.SensuAgentVersion {
+		return false
+	}
+	if len(this.KeepaliveHandlers) != len(that1.KeepaliveHandlers) {
+		return false
+	}
+	for i := range this.KeepaliveHandlers {
+		if this.KeepaliveHandlers[i] != that1.KeepaliveHandlers[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *System) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*System)
+	if !ok {
+		that2, ok := that.(System)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Hostname != that1.Hostname {
+		return false
+	}
+	if this.OS != that1.OS {
+		return false
+	}
+	if this.Platform != that1.Platform {
+		return false
+	}
+	if this.PlatformFamily != that1.PlatformFamily {
+		return false
+	}
+	if this.PlatformVersion != that1.PlatformVersion {
+		return false
+	}
+	if !this.Network.Equal(&that1.Network) {
+		return false
+	}
+	if this.Arch != that1.Arch {
+		return false
+	}
+	if this.ARMVersion != that1.ARMVersion {
+		return false
+	}
+	if this.LibCType != that1.LibCType {
+		return false
+	}
+	if this.VMSystem != that1.VMSystem {
+		return false
+	}
+	if this.VMRole != that1.VMRole {
+		return false
+	}
+	if this.CloudProvider != that1.CloudProvider {
+		return false
+	}
+	if this.FloatType != that1.FloatType {
+		return false
+	}
+	if len(this.Processes) != len(that1.Processes) {
+		return false
+	}
+	for i := range this.Processes {
+		if !this.Processes[i].Equal(that1.Processes[i]) {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *Process) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Process)
+	if !ok {
+		that2, ok := that.(Process)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Name != that1.Name {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *Network) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Network)
+	if !ok {
+		that2, ok := that.(Network)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Interfaces) != len(that1.Interfaces) {
+		return false
+	}
+	for i := range this.Interfaces {
+		if !this.Interfaces[i].Equal(&that1.Interfaces[i]) {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *NetworkInterface) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*NetworkInterface)
+	if !ok {
+		that2, ok := that.(NetworkInterface)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Name != that1.Name {
+		return false
+	}
+	if this.MAC != that1.MAC {
+		return false
+	}
+	if len(this.Addresses) != len(that1.Addresses) {
+		return false
+	}
+	for i := range this.Addresses {
+		if this.Addresses[i] != that1.Addresses[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *Deregistration) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Deregistration)
+	if !ok {
+		that2, ok := that.(Deregistration)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Handler != that1.Handler {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type EntityFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetEntityClass() string
+	GetSystem() System
+	GetSubscriptions() []string
+	GetLastSeen() int64
+	GetDeregister() bool
+	GetDeregistration() Deregistration
+	GetUser() string
+	GetExtendedAttributes() []byte
+	GetRedact() []string
+	GetObjectMeta() ObjectMeta
+	GetSensuAgentVersion() string
+	GetKeepaliveHandlers() []string
+}
+
+func (this *Entity) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *Entity) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewEntityFromFace(this)
+}
+
+func (this *Entity) GetEntityClass() string {
+	return this.EntityClass
+}
+
+func (this *Entity) GetSystem() System {
+	return this.System
+}
+
+func (this *Entity) GetSubscriptions() []string {
+	return this.Subscriptions
+}
+
+func (this *Entity) GetLastSeen() int64 {
+	return this.LastSeen
+}
+
+func (this *Entity) GetDeregister() bool {
+	return this.Deregister
+}
+
+func (this *Entity) GetDeregistration() Deregistration {
+	return this.Deregistration
+}
+
+func (this *Entity) GetUser() string {
+	return this.User
+}
+
+func (this *Entity) GetExtendedAttributes() []byte {
+	return this.ExtendedAttributes
+}
+
+func (this *Entity) GetRedact() []string {
+	return this.Redact
+}
+
+func (this *Entity) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *Entity) GetSensuAgentVersion() string {
+	return this.SensuAgentVersion
+}
+
+func (this *Entity) GetKeepaliveHandlers() []string {
+	return this.KeepaliveHandlers
+}
+
+func NewEntityFromFace(that EntityFace) *Entity {
+	this := &Entity{}
+	this.EntityClass = that.GetEntityClass()
+	this.System = that.GetSystem()
+	this.Subscriptions = that.GetSubscriptions()
+	this.LastSeen = that.GetLastSeen()
+	this.Deregister = that.GetDeregister()
+	this.Deregistration = that.GetDeregistration()
+	this.User = that.GetUser()
+	this.ExtendedAttributes = that.GetExtendedAttributes()
+	this.Redact = that.GetRedact()
+	this.ObjectMeta = that.GetObjectMeta()
+	this.SensuAgentVersion = that.GetSensuAgentVersion()
+	this.KeepaliveHandlers = that.GetKeepaliveHandlers()
+	return this
+}
+
 func (m *Entity) Size() (n int) {
 	if m == nil {
 		return 0

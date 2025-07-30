@@ -123,129 +123,6 @@ var fileDescriptor_5ce65f7b157e0d5e = []byte{
 	0x00, 0x00, 0xff, 0xff, 0xf3, 0x21, 0x36, 0xcf, 0x65, 0x02, 0x00, 0x00,
 }
 
-func (this *Silenced) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Silenced)
-	if !ok {
-		that2, ok := that.(Silenced)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if this.Expire != that1.Expire {
-		return false
-	}
-	if this.ExpireOnResolve != that1.ExpireOnResolve {
-		return false
-	}
-	if this.Creator != that1.Creator {
-		return false
-	}
-	if this.Check != that1.Check {
-		return false
-	}
-	if this.Reason != that1.Reason {
-		return false
-	}
-	if this.Subscription != that1.Subscription {
-		return false
-	}
-	if this.Begin != that1.Begin {
-		return false
-	}
-	if this.ExpireAt != that1.ExpireAt {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type SilencedFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetObjectMeta() ObjectMeta
-	GetExpire() int64
-	GetExpireOnResolve() bool
-	GetCreator() string
-	GetCheck() string
-	GetReason() string
-	GetSubscription() string
-	GetBegin() int64
-	GetExpireAt() int64
-}
-
-func (this *Silenced) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *Silenced) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewSilencedFromFace(this)
-}
-
-func (this *Silenced) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *Silenced) GetExpire() int64 {
-	return this.Expire
-}
-
-func (this *Silenced) GetExpireOnResolve() bool {
-	return this.ExpireOnResolve
-}
-
-func (this *Silenced) GetCreator() string {
-	return this.Creator
-}
-
-func (this *Silenced) GetCheck() string {
-	return this.Check
-}
-
-func (this *Silenced) GetReason() string {
-	return this.Reason
-}
-
-func (this *Silenced) GetSubscription() string {
-	return this.Subscription
-}
-
-func (this *Silenced) GetBegin() int64 {
-	return this.Begin
-}
-
-func (this *Silenced) GetExpireAt() int64 {
-	return this.ExpireAt
-}
-
-func NewSilencedFromFace(that SilencedFace) *Silenced {
-	this := &Silenced{}
-	this.ObjectMeta = that.GetObjectMeta()
-	this.Expire = that.GetExpire()
-	this.ExpireOnResolve = that.GetExpireOnResolve()
-	this.Creator = that.GetCreator()
-	this.Check = that.GetCheck()
-	this.Reason = that.GetReason()
-	this.Subscription = that.GetSubscription()
-	this.Begin = that.GetBegin()
-	this.ExpireAt = that.GetExpireAt()
-	return this
-}
-
 func (m *Silenced) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -446,6 +323,129 @@ func encodeVarintPopulateSilenced(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *Silenced) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Silenced)
+	if !ok {
+		that2, ok := that.(Silenced)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if this.Expire != that1.Expire {
+		return false
+	}
+	if this.ExpireOnResolve != that1.ExpireOnResolve {
+		return false
+	}
+	if this.Creator != that1.Creator {
+		return false
+	}
+	if this.Check != that1.Check {
+		return false
+	}
+	if this.Reason != that1.Reason {
+		return false
+	}
+	if this.Subscription != that1.Subscription {
+		return false
+	}
+	if this.Begin != that1.Begin {
+		return false
+	}
+	if this.ExpireAt != that1.ExpireAt {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type SilencedFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetObjectMeta() ObjectMeta
+	GetExpire() int64
+	GetExpireOnResolve() bool
+	GetCreator() string
+	GetCheck() string
+	GetReason() string
+	GetSubscription() string
+	GetBegin() int64
+	GetExpireAt() int64
+}
+
+func (this *Silenced) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *Silenced) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewSilencedFromFace(this)
+}
+
+func (this *Silenced) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *Silenced) GetExpire() int64 {
+	return this.Expire
+}
+
+func (this *Silenced) GetExpireOnResolve() bool {
+	return this.ExpireOnResolve
+}
+
+func (this *Silenced) GetCreator() string {
+	return this.Creator
+}
+
+func (this *Silenced) GetCheck() string {
+	return this.Check
+}
+
+func (this *Silenced) GetReason() string {
+	return this.Reason
+}
+
+func (this *Silenced) GetSubscription() string {
+	return this.Subscription
+}
+
+func (this *Silenced) GetBegin() int64 {
+	return this.Begin
+}
+
+func (this *Silenced) GetExpireAt() int64 {
+	return this.ExpireAt
+}
+
+func NewSilencedFromFace(that SilencedFace) *Silenced {
+	this := &Silenced{}
+	this.ObjectMeta = that.GetObjectMeta()
+	this.Expire = that.GetExpire()
+	this.ExpireOnResolve = that.GetExpireOnResolve()
+	this.Creator = that.GetCreator()
+	this.Check = that.GetCheck()
+	this.Reason = that.GetReason()
+	this.Subscription = that.GetSubscription()
+	this.Begin = that.GetBegin()
+	this.ExpireAt = that.GetExpireAt()
+	return this
+}
+
 func (m *Silenced) Size() (n int) {
 	if m == nil {
 		return 0

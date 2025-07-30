@@ -252,117 +252,6 @@ var fileDescriptor_549caee108b74ca6 = []byte{
 	0xff, 0xff, 0xa5, 0xd5, 0xa4, 0x6f, 0xed, 0x01, 0x00, 0x00,
 }
 
-func (this *Metrics) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Metrics)
-	if !ok {
-		that2, ok := that.(Metrics)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.Handlers) != len(that1.Handlers) {
-		return false
-	}
-	for i := range this.Handlers {
-		if this.Handlers[i] != that1.Handlers[i] {
-			return false
-		}
-	}
-	if len(this.Points) != len(that1.Points) {
-		return false
-	}
-	for i := range this.Points {
-		if !this.Points[i].Equal(that1.Points[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *MetricPoint) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*MetricPoint)
-	if !ok {
-		that2, ok := that.(MetricPoint)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Name != that1.Name {
-		return false
-	}
-	if this.Value != that1.Value {
-		return false
-	}
-	if this.Timestamp != that1.Timestamp {
-		return false
-	}
-	if len(this.Tags) != len(that1.Tags) {
-		return false
-	}
-	for i := range this.Tags {
-		if !this.Tags[i].Equal(that1.Tags[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *MetricTag) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*MetricTag)
-	if !ok {
-		that2, ok := that.(MetricTag)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Name != that1.Name {
-		return false
-	}
-	if this.Value != that1.Value {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
 func (m *Metrics) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -649,6 +538,117 @@ func encodeVarintPopulateMetrics(dAtA []byte, v uint64) []byte {
 	}
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
+}
+func (this *Metrics) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Metrics)
+	if !ok {
+		that2, ok := that.(Metrics)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Handlers) != len(that1.Handlers) {
+		return false
+	}
+	for i := range this.Handlers {
+		if this.Handlers[i] != that1.Handlers[i] {
+			return false
+		}
+	}
+	if len(this.Points) != len(that1.Points) {
+		return false
+	}
+	for i := range this.Points {
+		if !this.Points[i].Equal(that1.Points[i]) {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *MetricPoint) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*MetricPoint)
+	if !ok {
+		that2, ok := that.(MetricPoint)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Name != that1.Name {
+		return false
+	}
+	if this.Value != that1.Value {
+		return false
+	}
+	if this.Timestamp != that1.Timestamp {
+		return false
+	}
+	if len(this.Tags) != len(that1.Tags) {
+		return false
+	}
+	for i := range this.Tags {
+		if !this.Tags[i].Equal(that1.Tags[i]) {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *MetricTag) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*MetricTag)
+	if !ok {
+		that2, ok := that.(MetricTag)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Name != that1.Name {
+		return false
+	}
+	if this.Value != that1.Value {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
 }
 func (m *Metrics) Size() (n int) {
 	if m == nil {

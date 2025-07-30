@@ -92,57 +92,6 @@ var fileDescriptor_eca8bf6c6e8e64ff = []byte{
 	0x30, 0x50, 0xd6, 0x00, 0x00, 0x00,
 }
 
-func (this *TessenConfig) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*TessenConfig)
-	if !ok {
-		that2, ok := that.(TessenConfig)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.OptOut != that1.OptOut {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type TessenConfigFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetOptOut() bool
-}
-
-func (this *TessenConfig) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *TessenConfig) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewTessenConfigFromFace(this)
-}
-
-func (this *TessenConfig) GetOptOut() bool {
-	return this.OptOut
-}
-
-func NewTessenConfigFromFace(that TessenConfigFace) *TessenConfig {
-	this := &TessenConfig{}
-	this.OptOut = that.GetOptOut()
-	return this
-}
-
 func (m *TessenConfig) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -272,6 +221,57 @@ func encodeVarintPopulateTessen(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *TessenConfig) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*TessenConfig)
+	if !ok {
+		that2, ok := that.(TessenConfig)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.OptOut != that1.OptOut {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type TessenConfigFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetOptOut() bool
+}
+
+func (this *TessenConfig) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *TessenConfig) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewTessenConfigFromFace(this)
+}
+
+func (this *TessenConfig) GetOptOut() bool {
+	return this.OptOut
+}
+
+func NewTessenConfigFromFace(that TessenConfigFace) *TessenConfig {
+	this := &TessenConfig{}
+	this.OptOut = that.GetOptOut()
+	return this
+}
+
 func (m *TessenConfig) Size() (n int) {
 	if m == nil {
 		return 0

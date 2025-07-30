@@ -182,69 +182,6 @@ var fileDescriptor_80e9ddc662fdc76f = []byte{
 	0x28, 0x89, 0x02, 0x00, 0x00,
 }
 
-func (this *EntityConfig) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*EntityConfig)
-	if !ok {
-		that2, ok := that.(EntityConfig)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.Metadata.Equal(that1.Metadata) {
-		return false
-	}
-	if this.EntityClass != that1.EntityClass {
-		return false
-	}
-	if this.User != that1.User {
-		return false
-	}
-	if len(this.Subscriptions) != len(that1.Subscriptions) {
-		return false
-	}
-	for i := range this.Subscriptions {
-		if this.Subscriptions[i] != that1.Subscriptions[i] {
-			return false
-		}
-	}
-	if this.Deregister != that1.Deregister {
-		return false
-	}
-	if !this.Deregistration.Equal(&that1.Deregistration) {
-		return false
-	}
-	if len(this.KeepaliveHandlers) != len(that1.KeepaliveHandlers) {
-		return false
-	}
-	for i := range this.KeepaliveHandlers {
-		if this.KeepaliveHandlers[i] != that1.KeepaliveHandlers[i] {
-			return false
-		}
-	}
-	if len(this.Redact) != len(that1.Redact) {
-		return false
-	}
-	for i := range this.Redact {
-		if this.Redact[i] != that1.Redact[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
 func (m *EntityConfig) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -458,6 +395,69 @@ func encodeVarintPopulateEntityConfig(dAtA []byte, v uint64) []byte {
 	}
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
+}
+func (this *EntityConfig) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*EntityConfig)
+	if !ok {
+		that2, ok := that.(EntityConfig)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.Metadata.Equal(that1.Metadata) {
+		return false
+	}
+	if this.EntityClass != that1.EntityClass {
+		return false
+	}
+	if this.User != that1.User {
+		return false
+	}
+	if len(this.Subscriptions) != len(that1.Subscriptions) {
+		return false
+	}
+	for i := range this.Subscriptions {
+		if this.Subscriptions[i] != that1.Subscriptions[i] {
+			return false
+		}
+	}
+	if this.Deregister != that1.Deregister {
+		return false
+	}
+	if !this.Deregistration.Equal(&that1.Deregistration) {
+		return false
+	}
+	if len(this.KeepaliveHandlers) != len(that1.KeepaliveHandlers) {
+		return false
+	}
+	for i := range this.KeepaliveHandlers {
+		if this.KeepaliveHandlers[i] != that1.KeepaliveHandlers[i] {
+			return false
+		}
+	}
+	if len(this.Redact) != len(that1.Redact) {
+		return false
+	}
+	for i := range this.Redact {
+		if this.Redact[i] != that1.Redact[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
 }
 func (m *EntityConfig) Size() (n int) {
 	if m == nil {

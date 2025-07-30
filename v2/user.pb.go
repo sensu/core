@@ -135,50 +135,6 @@ var fileDescriptor_5806ec6cd79c66e8 = []byte{
 	0x01, 0x00, 0x00, 0xff, 0xff, 0xf2, 0x93, 0xa7, 0x82, 0x3c, 0x01, 0x00, 0x00,
 }
 
-func (this *User) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*User)
-	if !ok {
-		that2, ok := that.(User)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Username != that1.Username {
-		return false
-	}
-	if this.Password != that1.Password {
-		return false
-	}
-	if len(this.Groups) != len(that1.Groups) {
-		return false
-	}
-	for i := range this.Groups {
-		if this.Groups[i] != that1.Groups[i] {
-			return false
-		}
-	}
-	if this.Disabled != that1.Disabled {
-		return false
-	}
-	if this.PasswordHash != that1.PasswordHash {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
 func (m *User) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -345,6 +301,50 @@ func encodeVarintPopulateUser(dAtA []byte, v uint64) []byte {
 	}
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
+}
+func (this *User) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*User)
+	if !ok {
+		that2, ok := that.(User)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Username != that1.Username {
+		return false
+	}
+	if this.Password != that1.Password {
+		return false
+	}
+	if len(this.Groups) != len(that1.Groups) {
+		return false
+	}
+	for i := range this.Groups {
+		if this.Groups[i] != that1.Groups[i] {
+			return false
+		}
+	}
+	if this.Disabled != that1.Disabled {
+		return false
+	}
+	if this.PasswordHash != that1.PasswordHash {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
 }
 func (m *User) Size() (n int) {
 	if m == nil {

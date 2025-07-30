@@ -262,115 +262,6 @@ var fileDescriptor_3f8467e1d4ce0952 = []byte{
 	0xff, 0xff, 0xd8, 0xbd, 0x73, 0xf9, 0x5f, 0x02, 0x00, 0x00,
 }
 
-func (this *MetricThresholdRule) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*MetricThresholdRule)
-	if !ok {
-		that2, ok := that.(MetricThresholdRule)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Min != that1.Min {
-		return false
-	}
-	if this.Max != that1.Max {
-		return false
-	}
-	if this.Status != that1.Status {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *MetricThresholdTag) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*MetricThresholdTag)
-	if !ok {
-		that2, ok := that.(MetricThresholdTag)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Name != that1.Name {
-		return false
-	}
-	if this.Value != that1.Value {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *MetricThreshold) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*MetricThreshold)
-	if !ok {
-		that2, ok := that.(MetricThreshold)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Name != that1.Name {
-		return false
-	}
-	if len(this.Tags) != len(that1.Tags) {
-		return false
-	}
-	for i := range this.Tags {
-		if !this.Tags[i].Equal(that1.Tags[i]) {
-			return false
-		}
-	}
-	if len(this.Thresholds) != len(that1.Thresholds) {
-		return false
-	}
-	for i := range this.Thresholds {
-		if !this.Thresholds[i].Equal(that1.Thresholds[i]) {
-			return false
-		}
-	}
-	if this.NullStatus != that1.NullStatus {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
 func (m *MetricThresholdRule) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -652,6 +543,115 @@ func encodeVarintPopulateMetricThreshold(dAtA []byte, v uint64) []byte {
 	}
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
+}
+func (this *MetricThresholdRule) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*MetricThresholdRule)
+	if !ok {
+		that2, ok := that.(MetricThresholdRule)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Min != that1.Min {
+		return false
+	}
+	if this.Max != that1.Max {
+		return false
+	}
+	if this.Status != that1.Status {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *MetricThresholdTag) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*MetricThresholdTag)
+	if !ok {
+		that2, ok := that.(MetricThresholdTag)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Name != that1.Name {
+		return false
+	}
+	if this.Value != that1.Value {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *MetricThreshold) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*MetricThreshold)
+	if !ok {
+		that2, ok := that.(MetricThreshold)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Name != that1.Name {
+		return false
+	}
+	if len(this.Tags) != len(that1.Tags) {
+		return false
+	}
+	for i := range this.Tags {
+		if !this.Tags[i].Equal(that1.Tags[i]) {
+			return false
+		}
+	}
+	if len(this.Thresholds) != len(that1.Thresholds) {
+		return false
+	}
+	for i := range this.Thresholds {
+		if !this.Thresholds[i].Equal(that1.Thresholds[i]) {
+			return false
+		}
+	}
+	if this.NullStatus != that1.NullStatus {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
 }
 func (m *MetricThresholdRule) Size() (n int) {
 	if m == nil {

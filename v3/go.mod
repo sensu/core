@@ -1,6 +1,6 @@
 module github.com/sensu/core/v3
 
-go 1.18
+go 1.22
 
 require (
 	github.com/gogo/protobuf v1.3.2

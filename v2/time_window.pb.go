@@ -347,189 +347,6 @@ var fileDescriptor_f39aea3522b8f661 = []byte{
 	0x00,
 }
 
-func (this *TimeWindowWhen) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*TimeWindowWhen)
-	if !ok {
-		that2, ok := that.(TimeWindowWhen)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.Days.Equal(&that1.Days) {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *TimeWindowDays) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*TimeWindowDays)
-	if !ok {
-		that2, ok := that.(TimeWindowDays)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.All) != len(that1.All) {
-		return false
-	}
-	for i := range this.All {
-		if !this.All[i].Equal(that1.All[i]) {
-			return false
-		}
-	}
-	if len(this.Sunday) != len(that1.Sunday) {
-		return false
-	}
-	for i := range this.Sunday {
-		if !this.Sunday[i].Equal(that1.Sunday[i]) {
-			return false
-		}
-	}
-	if len(this.Monday) != len(that1.Monday) {
-		return false
-	}
-	for i := range this.Monday {
-		if !this.Monday[i].Equal(that1.Monday[i]) {
-			return false
-		}
-	}
-	if len(this.Tuesday) != len(that1.Tuesday) {
-		return false
-	}
-	for i := range this.Tuesday {
-		if !this.Tuesday[i].Equal(that1.Tuesday[i]) {
-			return false
-		}
-	}
-	if len(this.Wednesday) != len(that1.Wednesday) {
-		return false
-	}
-	for i := range this.Wednesday {
-		if !this.Wednesday[i].Equal(that1.Wednesday[i]) {
-			return false
-		}
-	}
-	if len(this.Thursday) != len(that1.Thursday) {
-		return false
-	}
-	for i := range this.Thursday {
-		if !this.Thursday[i].Equal(that1.Thursday[i]) {
-			return false
-		}
-	}
-	if len(this.Friday) != len(that1.Friday) {
-		return false
-	}
-	for i := range this.Friday {
-		if !this.Friday[i].Equal(that1.Friday[i]) {
-			return false
-		}
-	}
-	if len(this.Saturday) != len(that1.Saturday) {
-		return false
-	}
-	for i := range this.Saturday {
-		if !this.Saturday[i].Equal(that1.Saturday[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *TimeWindowTimeRange) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*TimeWindowTimeRange)
-	if !ok {
-		that2, ok := that.(TimeWindowTimeRange)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Begin != that1.Begin {
-		return false
-	}
-	if this.End != that1.End {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *TimeWindowRepeated) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*TimeWindowRepeated)
-	if !ok {
-		that2, ok := that.(TimeWindowRepeated)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Begin != that1.Begin {
-		return false
-	}
-	if this.End != that1.End {
-		return false
-	}
-	if len(this.Repeat) != len(that1.Repeat) {
-		return false
-	}
-	for i := range this.Repeat {
-		if this.Repeat[i] != that1.Repeat[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
 func (m *TimeWindowWhen) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -978,6 +795,189 @@ func encodeVarintPopulateTimeWindow(dAtA []byte, v uint64) []byte {
 	}
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
+}
+func (this *TimeWindowWhen) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*TimeWindowWhen)
+	if !ok {
+		that2, ok := that.(TimeWindowWhen)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.Days.Equal(&that1.Days) {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *TimeWindowDays) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*TimeWindowDays)
+	if !ok {
+		that2, ok := that.(TimeWindowDays)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.All) != len(that1.All) {
+		return false
+	}
+	for i := range this.All {
+		if !this.All[i].Equal(that1.All[i]) {
+			return false
+		}
+	}
+	if len(this.Sunday) != len(that1.Sunday) {
+		return false
+	}
+	for i := range this.Sunday {
+		if !this.Sunday[i].Equal(that1.Sunday[i]) {
+			return false
+		}
+	}
+	if len(this.Monday) != len(that1.Monday) {
+		return false
+	}
+	for i := range this.Monday {
+		if !this.Monday[i].Equal(that1.Monday[i]) {
+			return false
+		}
+	}
+	if len(this.Tuesday) != len(that1.Tuesday) {
+		return false
+	}
+	for i := range this.Tuesday {
+		if !this.Tuesday[i].Equal(that1.Tuesday[i]) {
+			return false
+		}
+	}
+	if len(this.Wednesday) != len(that1.Wednesday) {
+		return false
+	}
+	for i := range this.Wednesday {
+		if !this.Wednesday[i].Equal(that1.Wednesday[i]) {
+			return false
+		}
+	}
+	if len(this.Thursday) != len(that1.Thursday) {
+		return false
+	}
+	for i := range this.Thursday {
+		if !this.Thursday[i].Equal(that1.Thursday[i]) {
+			return false
+		}
+	}
+	if len(this.Friday) != len(that1.Friday) {
+		return false
+	}
+	for i := range this.Friday {
+		if !this.Friday[i].Equal(that1.Friday[i]) {
+			return false
+		}
+	}
+	if len(this.Saturday) != len(that1.Saturday) {
+		return false
+	}
+	for i := range this.Saturday {
+		if !this.Saturday[i].Equal(that1.Saturday[i]) {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *TimeWindowTimeRange) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*TimeWindowTimeRange)
+	if !ok {
+		that2, ok := that.(TimeWindowTimeRange)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Begin != that1.Begin {
+		return false
+	}
+	if this.End != that1.End {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *TimeWindowRepeated) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*TimeWindowRepeated)
+	if !ok {
+		that2, ok := that.(TimeWindowRepeated)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Begin != that1.Begin {
+		return false
+	}
+	if this.End != that1.End {
+		return false
+	}
+	if len(this.Repeat) != len(that1.Repeat) {
+		return false
+	}
+	for i := range this.Repeat {
+		if this.Repeat[i] != that1.Repeat[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
 }
 func (m *TimeWindowWhen) Size() (n int) {
 	if m == nil {

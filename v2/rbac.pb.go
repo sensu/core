@@ -442,389 +442,6 @@ var fileDescriptor_10691f1f04652857 = []byte{
 	0x61, 0x10, 0x60, 0x27, 0x05, 0x00, 0x00,
 }
 
-func (this *Rule) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Rule)
-	if !ok {
-		that2, ok := that.(Rule)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.Verbs) != len(that1.Verbs) {
-		return false
-	}
-	for i := range this.Verbs {
-		if this.Verbs[i] != that1.Verbs[i] {
-			return false
-		}
-	}
-	if len(this.Resources) != len(that1.Resources) {
-		return false
-	}
-	for i := range this.Resources {
-		if this.Resources[i] != that1.Resources[i] {
-			return false
-		}
-	}
-	if len(this.ResourceNames) != len(that1.ResourceNames) {
-		return false
-	}
-	for i := range this.ResourceNames {
-		if this.ResourceNames[i] != that1.ResourceNames[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *ClusterRole) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*ClusterRole)
-	if !ok {
-		that2, ok := that.(ClusterRole)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.Rules) != len(that1.Rules) {
-		return false
-	}
-	for i := range this.Rules {
-		if !this.Rules[i].Equal(&that1.Rules[i]) {
-			return false
-		}
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *Role) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Role)
-	if !ok {
-		that2, ok := that.(Role)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.Rules) != len(that1.Rules) {
-		return false
-	}
-	for i := range this.Rules {
-		if !this.Rules[i].Equal(&that1.Rules[i]) {
-			return false
-		}
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *RoleRef) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*RoleRef)
-	if !ok {
-		that2, ok := that.(RoleRef)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Type != that1.Type {
-		return false
-	}
-	if this.Name != that1.Name {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *Subject) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Subject)
-	if !ok {
-		that2, ok := that.(Subject)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Type != that1.Type {
-		return false
-	}
-	if this.Name != that1.Name {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *ClusterRoleBinding) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*ClusterRoleBinding)
-	if !ok {
-		that2, ok := that.(ClusterRoleBinding)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.Subjects) != len(that1.Subjects) {
-		return false
-	}
-	for i := range this.Subjects {
-		if !this.Subjects[i].Equal(&that1.Subjects[i]) {
-			return false
-		}
-	}
-	if !this.RoleRef.Equal(&that1.RoleRef) {
-		return false
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *RoleBinding) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*RoleBinding)
-	if !ok {
-		that2, ok := that.(RoleBinding)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.Subjects) != len(that1.Subjects) {
-		return false
-	}
-	for i := range this.Subjects {
-		if !this.Subjects[i].Equal(&that1.Subjects[i]) {
-			return false
-		}
-	}
-	if !this.RoleRef.Equal(&that1.RoleRef) {
-		return false
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type ClusterRoleFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetRules() []Rule
-	GetObjectMeta() ObjectMeta
-}
-
-func (this *ClusterRole) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *ClusterRole) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewClusterRoleFromFace(this)
-}
-
-func (this *ClusterRole) GetRules() []Rule {
-	return this.Rules
-}
-
-func (this *ClusterRole) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func NewClusterRoleFromFace(that ClusterRoleFace) *ClusterRole {
-	this := &ClusterRole{}
-	this.Rules = that.GetRules()
-	this.ObjectMeta = that.GetObjectMeta()
-	return this
-}
-
-type RoleFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetRules() []Rule
-	GetObjectMeta() ObjectMeta
-}
-
-func (this *Role) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *Role) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewRoleFromFace(this)
-}
-
-func (this *Role) GetRules() []Rule {
-	return this.Rules
-}
-
-func (this *Role) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func NewRoleFromFace(that RoleFace) *Role {
-	this := &Role{}
-	this.Rules = that.GetRules()
-	this.ObjectMeta = that.GetObjectMeta()
-	return this
-}
-
-type ClusterRoleBindingFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetSubjects() []Subject
-	GetRoleRef() RoleRef
-	GetObjectMeta() ObjectMeta
-}
-
-func (this *ClusterRoleBinding) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *ClusterRoleBinding) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewClusterRoleBindingFromFace(this)
-}
-
-func (this *ClusterRoleBinding) GetSubjects() []Subject {
-	return this.Subjects
-}
-
-func (this *ClusterRoleBinding) GetRoleRef() RoleRef {
-	return this.RoleRef
-}
-
-func (this *ClusterRoleBinding) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func NewClusterRoleBindingFromFace(that ClusterRoleBindingFace) *ClusterRoleBinding {
-	this := &ClusterRoleBinding{}
-	this.Subjects = that.GetSubjects()
-	this.RoleRef = that.GetRoleRef()
-	this.ObjectMeta = that.GetObjectMeta()
-	return this
-}
-
-type RoleBindingFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetSubjects() []Subject
-	GetRoleRef() RoleRef
-	GetObjectMeta() ObjectMeta
-}
-
-func (this *RoleBinding) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *RoleBinding) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewRoleBindingFromFace(this)
-}
-
-func (this *RoleBinding) GetSubjects() []Subject {
-	return this.Subjects
-}
-
-func (this *RoleBinding) GetRoleRef() RoleRef {
-	return this.RoleRef
-}
-
-func (this *RoleBinding) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func NewRoleBindingFromFace(that RoleBindingFace) *RoleBinding {
-	this := &RoleBinding{}
-	this.Subjects = that.GetSubjects()
-	this.RoleRef = that.GetRoleRef()
-	this.ObjectMeta = that.GetObjectMeta()
-	return this
-}
-
 func (m *Rule) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -1387,6 +1004,389 @@ func encodeVarintPopulateRbac(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *Rule) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Rule)
+	if !ok {
+		that2, ok := that.(Rule)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Verbs) != len(that1.Verbs) {
+		return false
+	}
+	for i := range this.Verbs {
+		if this.Verbs[i] != that1.Verbs[i] {
+			return false
+		}
+	}
+	if len(this.Resources) != len(that1.Resources) {
+		return false
+	}
+	for i := range this.Resources {
+		if this.Resources[i] != that1.Resources[i] {
+			return false
+		}
+	}
+	if len(this.ResourceNames) != len(that1.ResourceNames) {
+		return false
+	}
+	for i := range this.ResourceNames {
+		if this.ResourceNames[i] != that1.ResourceNames[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *ClusterRole) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*ClusterRole)
+	if !ok {
+		that2, ok := that.(ClusterRole)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Rules) != len(that1.Rules) {
+		return false
+	}
+	for i := range this.Rules {
+		if !this.Rules[i].Equal(&that1.Rules[i]) {
+			return false
+		}
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *Role) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Role)
+	if !ok {
+		that2, ok := that.(Role)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Rules) != len(that1.Rules) {
+		return false
+	}
+	for i := range this.Rules {
+		if !this.Rules[i].Equal(&that1.Rules[i]) {
+			return false
+		}
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *RoleRef) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*RoleRef)
+	if !ok {
+		that2, ok := that.(RoleRef)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Type != that1.Type {
+		return false
+	}
+	if this.Name != that1.Name {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *Subject) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Subject)
+	if !ok {
+		that2, ok := that.(Subject)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Type != that1.Type {
+		return false
+	}
+	if this.Name != that1.Name {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *ClusterRoleBinding) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*ClusterRoleBinding)
+	if !ok {
+		that2, ok := that.(ClusterRoleBinding)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Subjects) != len(that1.Subjects) {
+		return false
+	}
+	for i := range this.Subjects {
+		if !this.Subjects[i].Equal(&that1.Subjects[i]) {
+			return false
+		}
+	}
+	if !this.RoleRef.Equal(&that1.RoleRef) {
+		return false
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *RoleBinding) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*RoleBinding)
+	if !ok {
+		that2, ok := that.(RoleBinding)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Subjects) != len(that1.Subjects) {
+		return false
+	}
+	for i := range this.Subjects {
+		if !this.Subjects[i].Equal(&that1.Subjects[i]) {
+			return false
+		}
+	}
+	if !this.RoleRef.Equal(&that1.RoleRef) {
+		return false
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type ClusterRoleFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetRules() []Rule
+	GetObjectMeta() ObjectMeta
+}
+
+func (this *ClusterRole) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *ClusterRole) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewClusterRoleFromFace(this)
+}
+
+func (this *ClusterRole) GetRules() []Rule {
+	return this.Rules
+}
+
+func (this *ClusterRole) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func NewClusterRoleFromFace(that ClusterRoleFace) *ClusterRole {
+	this := &ClusterRole{}
+	this.Rules = that.GetRules()
+	this.ObjectMeta = that.GetObjectMeta()
+	return this
+}
+
+type RoleFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetRules() []Rule
+	GetObjectMeta() ObjectMeta
+}
+
+func (this *Role) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *Role) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewRoleFromFace(this)
+}
+
+func (this *Role) GetRules() []Rule {
+	return this.Rules
+}
+
+func (this *Role) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func NewRoleFromFace(that RoleFace) *Role {
+	this := &Role{}
+	this.Rules = that.GetRules()
+	this.ObjectMeta = that.GetObjectMeta()
+	return this
+}
+
+type ClusterRoleBindingFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetSubjects() []Subject
+	GetRoleRef() RoleRef
+	GetObjectMeta() ObjectMeta
+}
+
+func (this *ClusterRoleBinding) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *ClusterRoleBinding) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewClusterRoleBindingFromFace(this)
+}
+
+func (this *ClusterRoleBinding) GetSubjects() []Subject {
+	return this.Subjects
+}
+
+func (this *ClusterRoleBinding) GetRoleRef() RoleRef {
+	return this.RoleRef
+}
+
+func (this *ClusterRoleBinding) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func NewClusterRoleBindingFromFace(that ClusterRoleBindingFace) *ClusterRoleBinding {
+	this := &ClusterRoleBinding{}
+	this.Subjects = that.GetSubjects()
+	this.RoleRef = that.GetRoleRef()
+	this.ObjectMeta = that.GetObjectMeta()
+	return this
+}
+
+type RoleBindingFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetSubjects() []Subject
+	GetRoleRef() RoleRef
+	GetObjectMeta() ObjectMeta
+}
+
+func (this *RoleBinding) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *RoleBinding) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewRoleBindingFromFace(this)
+}
+
+func (this *RoleBinding) GetSubjects() []Subject {
+	return this.Subjects
+}
+
+func (this *RoleBinding) GetRoleRef() RoleRef {
+	return this.RoleRef
+}
+
+func (this *RoleBinding) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func NewRoleBindingFromFace(that RoleBindingFace) *RoleBinding {
+	this := &RoleBinding{}
+	this.Subjects = that.GetSubjects()
+	this.RoleRef = that.GetRoleRef()
+	this.ObjectMeta = that.GetObjectMeta()
+	return this
+}
+
 func (m *Rule) Size() (n int) {
 	if m == nil {
 		return 0

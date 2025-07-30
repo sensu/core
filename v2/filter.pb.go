@@ -114,103 +114,6 @@ var fileDescriptor_74854cbfc0084f65 = []byte{
 	0x7e, 0x0b, 0x00, 0x00, 0xff, 0xff, 0x34, 0x73, 0xc0, 0x81, 0x11, 0x02, 0x00, 0x00,
 }
 
-func (this *EventFilter) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*EventFilter)
-	if !ok {
-		that2, ok := that.(EventFilter)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if this.Action != that1.Action {
-		return false
-	}
-	if len(this.Expressions) != len(that1.Expressions) {
-		return false
-	}
-	for i := range this.Expressions {
-		if this.Expressions[i] != that1.Expressions[i] {
-			return false
-		}
-	}
-	if !this.When.Equal(that1.When) {
-		return false
-	}
-	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
-		return false
-	}
-	for i := range this.RuntimeAssets {
-		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type EventFilterFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetObjectMeta() ObjectMeta
-	GetAction() string
-	GetExpressions() []string
-	GetWhen() *TimeWindowWhen
-	GetRuntimeAssets() []string
-}
-
-func (this *EventFilter) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *EventFilter) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewEventFilterFromFace(this)
-}
-
-func (this *EventFilter) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *EventFilter) GetAction() string {
-	return this.Action
-}
-
-func (this *EventFilter) GetExpressions() []string {
-	return this.Expressions
-}
-
-func (this *EventFilter) GetWhen() *TimeWindowWhen {
-	return this.When
-}
-
-func (this *EventFilter) GetRuntimeAssets() []string {
-	return this.RuntimeAssets
-}
-
-func NewEventFilterFromFace(that EventFilterFace) *EventFilter {
-	this := &EventFilter{}
-	this.ObjectMeta = that.GetObjectMeta()
-	this.Action = that.GetAction()
-	this.Expressions = that.GetExpressions()
-	this.When = that.GetWhen()
-	this.RuntimeAssets = that.GetRuntimeAssets()
-	return this
-}
-
 func (m *EventFilter) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -392,6 +295,103 @@ func encodeVarintPopulateFilter(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *EventFilter) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*EventFilter)
+	if !ok {
+		that2, ok := that.(EventFilter)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if this.Action != that1.Action {
+		return false
+	}
+	if len(this.Expressions) != len(that1.Expressions) {
+		return false
+	}
+	for i := range this.Expressions {
+		if this.Expressions[i] != that1.Expressions[i] {
+			return false
+		}
+	}
+	if !this.When.Equal(that1.When) {
+		return false
+	}
+	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
+		return false
+	}
+	for i := range this.RuntimeAssets {
+		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type EventFilterFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetObjectMeta() ObjectMeta
+	GetAction() string
+	GetExpressions() []string
+	GetWhen() *TimeWindowWhen
+	GetRuntimeAssets() []string
+}
+
+func (this *EventFilter) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *EventFilter) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewEventFilterFromFace(this)
+}
+
+func (this *EventFilter) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *EventFilter) GetAction() string {
+	return this.Action
+}
+
+func (this *EventFilter) GetExpressions() []string {
+	return this.Expressions
+}
+
+func (this *EventFilter) GetWhen() *TimeWindowWhen {
+	return this.When
+}
+
+func (this *EventFilter) GetRuntimeAssets() []string {
+	return this.RuntimeAssets
+}
+
+func NewEventFilterFromFace(that EventFilterFace) *EventFilter {
+	this := &EventFilter{}
+	this.ObjectMeta = that.GetObjectMeta()
+	this.Action = that.GetAction()
+	this.Expressions = that.GetExpressions()
+	this.When = that.GetWhen()
+	this.RuntimeAssets = that.GetRuntimeAssets()
+	return this
+}
+
 func (m *EventFilter) Size() (n int) {
 	if m == nil {
 		return 0
