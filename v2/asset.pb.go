@@ -176,204 +176,6 @@ var fileDescriptor_faaf3f0713af1249 = []byte{
 	0x50, 0x12, 0x6d, 0x29, 0x42, 0x03, 0x00, 0x00,
 }
 
-func (this *Asset) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Asset)
-	if !ok {
-		that2, ok := that.(Asset)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.URL != that1.URL {
-		return false
-	}
-	if this.Sha512 != that1.Sha512 {
-		return false
-	}
-	if len(this.Filters) != len(that1.Filters) {
-		return false
-	}
-	for i := range this.Filters {
-		if this.Filters[i] != that1.Filters[i] {
-			return false
-		}
-	}
-	if len(this.Builds) != len(that1.Builds) {
-		return false
-	}
-	for i := range this.Builds {
-		if !this.Builds[i].Equal(that1.Builds[i]) {
-			return false
-		}
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if len(this.Headers) != len(that1.Headers) {
-		return false
-	}
-	for i := range this.Headers {
-		if this.Headers[i] != that1.Headers[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *AssetBuild) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*AssetBuild)
-	if !ok {
-		that2, ok := that.(AssetBuild)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.URL != that1.URL {
-		return false
-	}
-	if this.Sha512 != that1.Sha512 {
-		return false
-	}
-	if len(this.Filters) != len(that1.Filters) {
-		return false
-	}
-	for i := range this.Filters {
-		if this.Filters[i] != that1.Filters[i] {
-			return false
-		}
-	}
-	if len(this.Headers) != len(that1.Headers) {
-		return false
-	}
-	for i := range this.Headers {
-		if this.Headers[i] != that1.Headers[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type AssetFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetURL() string
-	GetSha512() string
-	GetFilters() []string
-	GetBuilds() []*AssetBuild
-	GetObjectMeta() ObjectMeta
-	GetHeaders() map[string]string
-}
-
-func (this *Asset) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *Asset) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewAssetFromFace(this)
-}
-
-func (this *Asset) GetURL() string {
-	return this.URL
-}
-
-func (this *Asset) GetSha512() string {
-	return this.Sha512
-}
-
-func (this *Asset) GetFilters() []string {
-	return this.Filters
-}
-
-func (this *Asset) GetBuilds() []*AssetBuild {
-	return this.Builds
-}
-
-func (this *Asset) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *Asset) GetHeaders() map[string]string {
-	return this.Headers
-}
-
-func NewAssetFromFace(that AssetFace) *Asset {
-	this := &Asset{}
-	this.URL = that.GetURL()
-	this.Sha512 = that.GetSha512()
-	this.Filters = that.GetFilters()
-	this.Builds = that.GetBuilds()
-	this.ObjectMeta = that.GetObjectMeta()
-	this.Headers = that.GetHeaders()
-	return this
-}
-
-type AssetBuildFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetURL() string
-	GetSha512() string
-	GetFilters() []string
-	GetHeaders() map[string]string
-}
-
-func (this *AssetBuild) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *AssetBuild) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewAssetBuildFromFace(this)
-}
-
-func (this *AssetBuild) GetURL() string {
-	return this.URL
-}
-
-func (this *AssetBuild) GetSha512() string {
-	return this.Sha512
-}
-
-func (this *AssetBuild) GetFilters() []string {
-	return this.Filters
-}
-
-func (this *AssetBuild) GetHeaders() map[string]string {
-	return this.Headers
-}
-
-func NewAssetBuildFromFace(that AssetBuildFace) *AssetBuild {
-	this := &AssetBuild{}
-	this.URL = that.GetURL()
-	this.Sha512 = that.GetSha512()
-	this.Filters = that.GetFilters()
-	this.Headers = that.GetHeaders()
-	return this
-}
-
 func (m *Asset) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -672,6 +474,204 @@ func encodeVarintPopulateAsset(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *Asset) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Asset)
+	if !ok {
+		that2, ok := that.(Asset)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.URL != that1.URL {
+		return false
+	}
+	if this.Sha512 != that1.Sha512 {
+		return false
+	}
+	if len(this.Filters) != len(that1.Filters) {
+		return false
+	}
+	for i := range this.Filters {
+		if this.Filters[i] != that1.Filters[i] {
+			return false
+		}
+	}
+	if len(this.Builds) != len(that1.Builds) {
+		return false
+	}
+	for i := range this.Builds {
+		if !this.Builds[i].Equal(that1.Builds[i]) {
+			return false
+		}
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if len(this.Headers) != len(that1.Headers) {
+		return false
+	}
+	for i := range this.Headers {
+		if this.Headers[i] != that1.Headers[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *AssetBuild) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*AssetBuild)
+	if !ok {
+		that2, ok := that.(AssetBuild)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.URL != that1.URL {
+		return false
+	}
+	if this.Sha512 != that1.Sha512 {
+		return false
+	}
+	if len(this.Filters) != len(that1.Filters) {
+		return false
+	}
+	for i := range this.Filters {
+		if this.Filters[i] != that1.Filters[i] {
+			return false
+		}
+	}
+	if len(this.Headers) != len(that1.Headers) {
+		return false
+	}
+	for i := range this.Headers {
+		if this.Headers[i] != that1.Headers[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type AssetFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetURL() string
+	GetSha512() string
+	GetFilters() []string
+	GetBuilds() []*AssetBuild
+	GetObjectMeta() ObjectMeta
+	GetHeaders() map[string]string
+}
+
+func (this *Asset) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *Asset) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewAssetFromFace(this)
+}
+
+func (this *Asset) GetURL() string {
+	return this.URL
+}
+
+func (this *Asset) GetSha512() string {
+	return this.Sha512
+}
+
+func (this *Asset) GetFilters() []string {
+	return this.Filters
+}
+
+func (this *Asset) GetBuilds() []*AssetBuild {
+	return this.Builds
+}
+
+func (this *Asset) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *Asset) GetHeaders() map[string]string {
+	return this.Headers
+}
+
+func NewAssetFromFace(that AssetFace) *Asset {
+	this := &Asset{}
+	this.URL = that.GetURL()
+	this.Sha512 = that.GetSha512()
+	this.Filters = that.GetFilters()
+	this.Builds = that.GetBuilds()
+	this.ObjectMeta = that.GetObjectMeta()
+	this.Headers = that.GetHeaders()
+	return this
+}
+
+type AssetBuildFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetURL() string
+	GetSha512() string
+	GetFilters() []string
+	GetHeaders() map[string]string
+}
+
+func (this *AssetBuild) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *AssetBuild) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewAssetBuildFromFace(this)
+}
+
+func (this *AssetBuild) GetURL() string {
+	return this.URL
+}
+
+func (this *AssetBuild) GetSha512() string {
+	return this.Sha512
+}
+
+func (this *AssetBuild) GetFilters() []string {
+	return this.Filters
+}
+
+func (this *AssetBuild) GetHeaders() map[string]string {
+	return this.Headers
+}
+
+func NewAssetBuildFromFace(that AssetBuildFace) *AssetBuild {
+	this := &AssetBuild{}
+	this.URL = that.GetURL()
+	this.Sha512 = that.GetSha512()
+	this.Filters = that.GetFilters()
+	this.Headers = that.GetHeaders()
+	return this
+}
+
 func (m *Asset) Size() (n int) {
 	if m == nil {
 		return 0
