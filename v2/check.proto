@@ -351,4 +351,8 @@ message CheckHistory {
   // filters to trigger only on start and end of flapping. NB! This has been
   // disabled for 5.x releases.
   bool flapping = 3 [ (gogoproto.jsontag) = "-" ];
+
+
+  // Output contains the check output from this execution.
+  string output = 4 [(gogoproto.jsontag) = "output"];
 }
