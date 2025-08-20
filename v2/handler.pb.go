@@ -192,202 +192,6 @@ var fileDescriptor_5dc5222326228817 = []byte{
 	0x6f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x6e, 0x0a, 0x66, 0x66, 0x31, 0x03, 0x00, 0x00,
 }
 
-func (this *Handler) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Handler)
-	if !ok {
-		that2, ok := that.(Handler)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if this.Type != that1.Type {
-		return false
-	}
-	if this.Mutator != that1.Mutator {
-		return false
-	}
-	if this.Command != that1.Command {
-		return false
-	}
-	if this.Timeout != that1.Timeout {
-		return false
-	}
-	if !this.Socket.Equal(that1.Socket) {
-		return false
-	}
-	if len(this.Handlers) != len(that1.Handlers) {
-		return false
-	}
-	for i := range this.Handlers {
-		if this.Handlers[i] != that1.Handlers[i] {
-			return false
-		}
-	}
-	if len(this.Filters) != len(that1.Filters) {
-		return false
-	}
-	for i := range this.Filters {
-		if this.Filters[i] != that1.Filters[i] {
-			return false
-		}
-	}
-	if len(this.EnvVars) != len(that1.EnvVars) {
-		return false
-	}
-	for i := range this.EnvVars {
-		if this.EnvVars[i] != that1.EnvVars[i] {
-			return false
-		}
-	}
-	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
-		return false
-	}
-	for i := range this.RuntimeAssets {
-		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
-			return false
-		}
-	}
-	if len(this.Secrets) != len(that1.Secrets) {
-		return false
-	}
-	for i := range this.Secrets {
-		if !this.Secrets[i].Equal(that1.Secrets[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *HandlerSocket) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*HandlerSocket)
-	if !ok {
-		that2, ok := that.(HandlerSocket)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Host != that1.Host {
-		return false
-	}
-	if this.Port != that1.Port {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type HandlerFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetObjectMeta() ObjectMeta
-	GetType() string
-	GetMutator() string
-	GetCommand() string
-	GetTimeout() uint32
-	GetSocket() *HandlerSocket
-	GetHandlers() []string
-	GetFilters() []string
-	GetEnvVars() []string
-	GetRuntimeAssets() []string
-	GetSecrets() []*Secret
-}
-
-func (this *Handler) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *Handler) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewHandlerFromFace(this)
-}
-
-func (this *Handler) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *Handler) GetType() string {
-	return this.Type
-}
-
-func (this *Handler) GetMutator() string {
-	return this.Mutator
-}
-
-func (this *Handler) GetCommand() string {
-	return this.Command
-}
-
-func (this *Handler) GetTimeout() uint32 {
-	return this.Timeout
-}
-
-func (this *Handler) GetSocket() *HandlerSocket {
-	return this.Socket
-}
-
-func (this *Handler) GetHandlers() []string {
-	return this.Handlers
-}
-
-func (this *Handler) GetFilters() []string {
-	return this.Filters
-}
-
-func (this *Handler) GetEnvVars() []string {
-	return this.EnvVars
-}
-
-func (this *Handler) GetRuntimeAssets() []string {
-	return this.RuntimeAssets
-}
-
-func (this *Handler) GetSecrets() []*Secret {
-	return this.Secrets
-}
-
-func NewHandlerFromFace(that HandlerFace) *Handler {
-	this := &Handler{}
-	this.ObjectMeta = that.GetObjectMeta()
-	this.Type = that.GetType()
-	this.Mutator = that.GetMutator()
-	this.Command = that.GetCommand()
-	this.Timeout = that.GetTimeout()
-	this.Socket = that.GetSocket()
-	this.Handlers = that.GetHandlers()
-	this.Filters = that.GetFilters()
-	this.EnvVars = that.GetEnvVars()
-	this.RuntimeAssets = that.GetRuntimeAssets()
-	this.Secrets = that.GetSecrets()
-	return this
-}
-
 func (m *Handler) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -689,6 +493,202 @@ func encodeVarintPopulateHandler(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *Handler) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Handler)
+	if !ok {
+		that2, ok := that.(Handler)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if this.Type != that1.Type {
+		return false
+	}
+	if this.Mutator != that1.Mutator {
+		return false
+	}
+	if this.Command != that1.Command {
+		return false
+	}
+	if this.Timeout != that1.Timeout {
+		return false
+	}
+	if !this.Socket.Equal(that1.Socket) {
+		return false
+	}
+	if len(this.Handlers) != len(that1.Handlers) {
+		return false
+	}
+	for i := range this.Handlers {
+		if this.Handlers[i] != that1.Handlers[i] {
+			return false
+		}
+	}
+	if len(this.Filters) != len(that1.Filters) {
+		return false
+	}
+	for i := range this.Filters {
+		if this.Filters[i] != that1.Filters[i] {
+			return false
+		}
+	}
+	if len(this.EnvVars) != len(that1.EnvVars) {
+		return false
+	}
+	for i := range this.EnvVars {
+		if this.EnvVars[i] != that1.EnvVars[i] {
+			return false
+		}
+	}
+	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
+		return false
+	}
+	for i := range this.RuntimeAssets {
+		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
+			return false
+		}
+	}
+	if len(this.Secrets) != len(that1.Secrets) {
+		return false
+	}
+	for i := range this.Secrets {
+		if !this.Secrets[i].Equal(that1.Secrets[i]) {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *HandlerSocket) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*HandlerSocket)
+	if !ok {
+		that2, ok := that.(HandlerSocket)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Host != that1.Host {
+		return false
+	}
+	if this.Port != that1.Port {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type HandlerFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetObjectMeta() ObjectMeta
+	GetType() string
+	GetMutator() string
+	GetCommand() string
+	GetTimeout() uint32
+	GetSocket() *HandlerSocket
+	GetHandlers() []string
+	GetFilters() []string
+	GetEnvVars() []string
+	GetRuntimeAssets() []string
+	GetSecrets() []*Secret
+}
+
+func (this *Handler) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *Handler) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewHandlerFromFace(this)
+}
+
+func (this *Handler) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *Handler) GetType() string {
+	return this.Type
+}
+
+func (this *Handler) GetMutator() string {
+	return this.Mutator
+}
+
+func (this *Handler) GetCommand() string {
+	return this.Command
+}
+
+func (this *Handler) GetTimeout() uint32 {
+	return this.Timeout
+}
+
+func (this *Handler) GetSocket() *HandlerSocket {
+	return this.Socket
+}
+
+func (this *Handler) GetHandlers() []string {
+	return this.Handlers
+}
+
+func (this *Handler) GetFilters() []string {
+	return this.Filters
+}
+
+func (this *Handler) GetEnvVars() []string {
+	return this.EnvVars
+}
+
+func (this *Handler) GetRuntimeAssets() []string {
+	return this.RuntimeAssets
+}
+
+func (this *Handler) GetSecrets() []*Secret {
+	return this.Secrets
+}
+
+func NewHandlerFromFace(that HandlerFace) *Handler {
+	this := &Handler{}
+	this.ObjectMeta = that.GetObjectMeta()
+	this.Type = that.GetType()
+	this.Mutator = that.GetMutator()
+	this.Command = that.GetCommand()
+	this.Timeout = that.GetTimeout()
+	this.Socket = that.GetSocket()
+	this.Handlers = that.GetHandlers()
+	this.Filters = that.GetFilters()
+	this.EnvVars = that.GetEnvVars()
+	this.RuntimeAssets = that.GetRuntimeAssets()
+	this.Secrets = that.GetSecrets()
+	return this
+}
+
 func (m *Handler) Size() (n int) {
 	if m == nil {
 		return 0

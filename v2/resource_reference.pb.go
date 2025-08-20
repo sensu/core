@@ -25,6 +25,7 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // ResourceReference represents a reference to another resource.
+//
 //sensu:nogen
 type ResourceReference struct {
 	// Name is the name of the resource to reference.
@@ -121,39 +122,6 @@ var fileDescriptor_4f6ab958f47f0353 = []byte{
 	0x1a, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0x97, 0xab, 0x28, 0x89, 0x5c, 0x01, 0x00, 0x00,
 }
 
-func (this *ResourceReference) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*ResourceReference)
-	if !ok {
-		that2, ok := that.(ResourceReference)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Name != that1.Name {
-		return false
-	}
-	if this.Type != that1.Type {
-		return false
-	}
-	if this.APIVersion != that1.APIVersion {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
 func (m *ResourceReference) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -295,6 +263,39 @@ func encodeVarintPopulateResourceReference(dAtA []byte, v uint64) []byte {
 	}
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
+}
+func (this *ResourceReference) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*ResourceReference)
+	if !ok {
+		that2, ok := that.(ResourceReference)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Name != that1.Name {
+		return false
+	}
+	if this.Type != that1.Type {
+		return false
+	}
+	if this.APIVersion != that1.APIVersion {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
 }
 func (m *ResourceReference) Size() (n int) {
 	if m == nil {

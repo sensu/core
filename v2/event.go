@@ -75,6 +75,11 @@ func (e *Event) Validate() error {
 			return errors.New("pipeline reference is invalid: " + err.Error())
 		}
 	}
+	if e.FallbackPipeline != nil {
+		if err := e.validateFallbackPipelineReference(e.FallbackPipeline); err != nil {
+			return errors.New("Fallback-pipeline reference is invalid: " + err.Error())
+		}
+	}
 
 	if e.Name != "" {
 		return errors.New("events cannot be named")
@@ -203,6 +208,19 @@ func (e *Event) validatePipelineReference(ref *ResourceReference) error {
 		}
 	}
 	return fmt.Errorf("resource type not capable of acting as a pipeline: %s.%s", ref.APIVersion, ref.Type)
+}
+
+// validateFallbackPipelineReference validates that a resource reference is capable of
+// acting as a pipeline.
+func (e *Event) validateFallbackPipelineReference(ref *ResourceReference) error {
+	switch ref.APIVersion {
+	case "fallback_pipeline/v1":
+		switch ref.Type {
+		case "FallbackPipeline":
+			return nil
+		}
+	}
+	return fmt.Errorf("resource type not capable of acting as a fallbackpipeline: %s.%s", ref.APIVersion, ref.Type)
 }
 
 // FixtureEvent returns a testing fixture for an Event object.

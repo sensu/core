@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "github.com/gogo/protobuf@v1.3.2/gogoproto/gogo.proto";
 import "github.com/sensu/core/v2/meta.proto";
-import "github.com/sensu/core/v2/pipeline_workflow.proto";
+import "github.com/sensu/core/v2/resource_reference.proto";
 
 package sensu.core.v2;
 
@@ -14,14 +14,12 @@ option (gogoproto.unmarshaler_all) = true;
 option (gogoproto.sizer_all) = true;
 option (gogoproto.testgen_all) = true;
 
-// Pipeline represents a named collection of pipeline workflows.
-message Pipeline {
+// FallbackPipeline represents a named collection of pipeline workflows.
+message FallbackPipeline {
   // Metadata contains the name, namespace, labels and annotations of the
-  // pipeline.
+  // fallback pipelines.
   ObjectMeta Metadata = 1 [ (gogoproto.jsontag) = "metadata,omitempty", (gogoproto.embed) = true, (gogoproto.nullable) = false ];
 
-  // Workflows contains one or more pipeline workflows.
-  repeated PipelineWorkflow Workflows = 2 [ (gogoproto.jsontag) = "workflows", (gogoproto.moretags) = "yaml: \"workflows\"" ];
-  // ContinueOnError determines if the pipeline should continue executing workflows when an error occurs.
-  bool ContinueOnError = 3 [ (gogoproto.jsontag) = "continue_on_error,omitempty", (gogoproto.moretags) = "yaml: \"continue_on_error\"" ];
+  // Pipelines contains one or more fallback pipelines.
+  repeated ResourceReference pipelines = 2 [ (gogoproto.jsontag) = "pipelines" ,(gogoproto.moretags) = "yaml: \"pipelines,omitempty\"" ];
 }

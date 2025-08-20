@@ -105,84 +105,6 @@ var fileDescriptor_2e030266eca60c06 = []byte{
 	0x00, 0x00, 0xff, 0xff, 0xfd, 0x57, 0x4d, 0x95, 0x76, 0x01, 0x00, 0x00,
 }
 
-func (this *APIKey) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*APIKey)
-	if !ok {
-		that2, ok := that.(APIKey)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if this.Username != that1.Username {
-		return false
-	}
-	if this.CreatedAt != that1.CreatedAt {
-		return false
-	}
-	if !bytes.Equal(this.Hash, that1.Hash) {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type APIKeyFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetObjectMeta() ObjectMeta
-	GetUsername() string
-	GetCreatedAt() int64
-	GetHash() []byte
-}
-
-func (this *APIKey) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *APIKey) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewAPIKeyFromFace(this)
-}
-
-func (this *APIKey) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *APIKey) GetUsername() string {
-	return this.Username
-}
-
-func (this *APIKey) GetCreatedAt() int64 {
-	return this.CreatedAt
-}
-
-func (this *APIKey) GetHash() []byte {
-	return this.Hash
-}
-
-func NewAPIKeyFromFace(that APIKeyFace) *APIKey {
-	this := &APIKey{}
-	this.ObjectMeta = that.GetObjectMeta()
-	this.Username = that.GetUsername()
-	this.CreatedAt = that.GetCreatedAt()
-	this.Hash = that.GetHash()
-	return this
-}
-
 func (m *APIKey) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -342,6 +264,84 @@ func encodeVarintPopulateApikey(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *APIKey) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*APIKey)
+	if !ok {
+		that2, ok := that.(APIKey)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if this.Username != that1.Username {
+		return false
+	}
+	if this.CreatedAt != that1.CreatedAt {
+		return false
+	}
+	if !bytes.Equal(this.Hash, that1.Hash) {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type APIKeyFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetObjectMeta() ObjectMeta
+	GetUsername() string
+	GetCreatedAt() int64
+	GetHash() []byte
+}
+
+func (this *APIKey) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *APIKey) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewAPIKeyFromFace(this)
+}
+
+func (this *APIKey) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *APIKey) GetUsername() string {
+	return this.Username
+}
+
+func (this *APIKey) GetCreatedAt() int64 {
+	return this.CreatedAt
+}
+
+func (this *APIKey) GetHash() []byte {
+	return this.Hash
+}
+
+func NewAPIKeyFromFace(that APIKeyFace) *APIKey {
+	this := &APIKey{}
+	this.ObjectMeta = that.GetObjectMeta()
+	this.Username = that.GetUsername()
+	this.CreatedAt = that.GetCreatedAt()
+	this.Hash = that.GetHash()
+	return this
+}
+
 func (m *APIKey) Size() (n int) {
 	if m == nil {
 		return 0

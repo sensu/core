@@ -99,66 +99,6 @@ var fileDescriptor_71ca8de52c269641 = []byte{
 	0xff, 0xff, 0xee, 0x92, 0x6e, 0xb0, 0x51, 0x01, 0x00, 0x00,
 }
 
-func (this *KeepaliveRecord) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*KeepaliveRecord)
-	if !ok {
-		that2, ok := that.(KeepaliveRecord)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if this.Time != that1.Time {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type KeepaliveRecordFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetObjectMeta() ObjectMeta
-	GetTime() int64
-}
-
-func (this *KeepaliveRecord) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *KeepaliveRecord) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewKeepaliveRecordFromFace(this)
-}
-
-func (this *KeepaliveRecord) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *KeepaliveRecord) GetTime() int64 {
-	return this.Time
-}
-
-func NewKeepaliveRecordFromFace(that KeepaliveRecordFace) *KeepaliveRecord {
-	this := &KeepaliveRecord{}
-	this.ObjectMeta = that.GetObjectMeta()
-	this.Time = that.GetTime()
-	return this
-}
-
 func (m *KeepaliveRecord) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -298,6 +238,66 @@ func encodeVarintPopulateKeepalive(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *KeepaliveRecord) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*KeepaliveRecord)
+	if !ok {
+		that2, ok := that.(KeepaliveRecord)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if this.Time != that1.Time {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type KeepaliveRecordFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetObjectMeta() ObjectMeta
+	GetTime() int64
+}
+
+func (this *KeepaliveRecord) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *KeepaliveRecord) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewKeepaliveRecordFromFace(this)
+}
+
+func (this *KeepaliveRecord) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *KeepaliveRecord) GetTime() int64 {
+	return this.Time
+}
+
+func NewKeepaliveRecordFromFace(that KeepaliveRecordFace) *KeepaliveRecord {
+	this := &KeepaliveRecord{}
+	this.ObjectMeta = that.GetObjectMeta()
+	this.Time = that.GetTime()
+	return this
+}
+
 func (m *KeepaliveRecord) Size() (n int) {
 	if m == nil {
 		return 0

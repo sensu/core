@@ -123,47 +123,6 @@ var fileDescriptor_3f8ee9aba4d3ecc9 = []byte{
 	0x10, 0x00, 0x00, 0xff, 0xff, 0x03, 0x94, 0x6d, 0x55, 0x82, 0x01, 0x00, 0x00,
 }
 
-func (this *AdhocRequest) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*AdhocRequest)
-	if !ok {
-		that2, ok := that.(AdhocRequest)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.Subscriptions) != len(that1.Subscriptions) {
-		return false
-	}
-	for i := range this.Subscriptions {
-		if this.Subscriptions[i] != that1.Subscriptions[i] {
-			return false
-		}
-	}
-	if this.Creator != that1.Creator {
-		return false
-	}
-	if this.Reason != that1.Reason {
-		return false
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
 func (m *AdhocRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -323,6 +282,47 @@ func encodeVarintPopulateAdhoc(dAtA []byte, v uint64) []byte {
 	}
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
+}
+func (this *AdhocRequest) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*AdhocRequest)
+	if !ok {
+		that2, ok := that.(AdhocRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Subscriptions) != len(that1.Subscriptions) {
+		return false
+	}
+	for i := range this.Subscriptions {
+		if this.Subscriptions[i] != that1.Subscriptions[i] {
+			return false
+		}
+	}
+	if this.Creator != that1.Creator {
+		return false
+	}
+	if this.Reason != that1.Reason {
+		return false
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
 }
 func (m *AdhocRequest) Size() (n int) {
 	if m == nil {

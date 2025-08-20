@@ -316,9 +316,11 @@ type CheckConfig struct {
 	Pipelines              []*ResourceReference  `protobuf:"bytes,32,rep,name=pipelines,proto3" json:"pipelines"`
 	OutputMetricThresholds []*MetricThreshold    `protobuf:"bytes,33,rep,name=output_metric_thresholds,json=outputMetricThresholds,proto3" json:"output_metric_thresholds,omitempty" yaml: "output_metric_thresholds,omitempty"`
 	Subdues                []*TimeWindowRepeated `protobuf:"bytes,34,rep,name=subdues,proto3" json:"subdues,omitempty"`
-	XXX_NoUnkeyedLiteral   struct{}              `json:"-"`
-	XXX_unrecognized       []byte                `json:"-"`
-	XXX_sizecache          int32                 `json:"-"`
+	//added fallback piepline details in order of execution
+	FallbackPipeline     *ResourceReference `protobuf:"bytes,35,opt,name=fallback_pipeline,json=fallbackPipeline,proto3" json:"fallback_pipeline" yaml: "fallback_pipeline,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
+	XXX_unrecognized     []byte             `json:"-"`
+	XXX_sizecache        int32              `json:"-"`
 }
 
 func (m *CheckConfig) Reset()         { *m = CheckConfig{} }
@@ -468,6 +470,8 @@ type Check struct {
 	// the check status.
 	OutputMetricThresholds []*MetricThreshold    `protobuf:"bytes,47,rep,name=output_metric_thresholds,json=outputMetricThresholds,proto3" json:"output_metric_thresholds,omitempty" yaml: "output_metric_thresholds,omitempty"`
 	Subdues                []*TimeWindowRepeated `protobuf:"bytes,48,rep,name=subdues,proto3" json:"subdues,omitempty"`
+	//fallback piepline details in order of execution
+	FallbackPipeline *ResourceReference `protobuf:"bytes,49,opt,name=fallback_pipeline,json=fallbackPipeline,proto3" json:"fallback_pipeline" yaml: "fallback_pipeline,omitempty"`
 	// ExtendedAttributes store serialized arbitrary JSON-encoded data
 	ExtendedAttributes   []byte   `protobuf:"bytes,99,opt,name=ExtendedAttributes,proto3" json:"-"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -593,1168 +597,123 @@ func init() {
 }
 
 var fileDescriptor_d70eac2f90fbef24 = []byte{
-	// 1800 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x58, 0xcd, 0x73, 0xdb, 0xc6,
-	0x15, 0x37, 0x2c, 0x8b, 0x12, 0x97, 0xa6, 0x3e, 0xd6, 0x92, 0xbd, 0x56, 0x6c, 0x82, 0x66, 0x6c,
-	0x87, 0xb5, 0x63, 0xca, 0x66, 0x9a, 0x69, 0xea, 0xc9, 0xa1, 0x86, 0x6a, 0x57, 0x69, 0xe3, 0xd8,
-	0xb3, 0x56, 0xeb, 0x99, 0xce, 0x74, 0x30, 0x4b, 0x60, 0x45, 0xa2, 0x22, 0x01, 0x16, 0xbb, 0xa0,
-	0xc4, 0x5c, 0xda, 0x63, 0x8f, 0x3d, 0xf6, 0x98, 0x63, 0x7a, 0x69, 0xaf, 0xfd, 0x13, 0x72, 0xcc,
-	0xb5, 0x17, 0x4c, 0xab, 0xde, 0x70, 0xcc, 0xa9, 0xc7, 0xce, 0x3e, 0x2c, 0x40, 0x90, 0x22, 0xed,
-	0x74, 0xc6, 0x99, 0x66, 0x32, 0xb9, 0x10, 0xbb, 0xbf, 0xf7, 0x7b, 0xfb, 0xf1, 0xf6, 0xed, 0x7b,
-	0x6f, 0x89, 0x6e, 0x76, 0x3d, 0xd9, 0x8b, 0x3a, 0x2d, 0x27, 0x18, 0xec, 0x0a, 0xee, 0x8b, 0x68,
-	0xd7, 0x09, 0x42, 0xbe, 0x3b, 0x6a, 0xef, 0x3a, 0x3d, 0xee, 0x1c, 0xb5, 0x86, 0x61, 0x20, 0x03,
-	0x5c, 0x05, 0x51, 0x4b, 0x89, 0x5a, 0xa3, 0xf6, 0xce, 0x0f, 0x0b, 0x4a, 0xdd, 0xa0, 0x1b, 0xec,
-	0x02, 0xab, 0x13, 0x1d, 0xfe, 0x64, 0xf4, 0xa0, 0xf5, 0x5e, 0xab, 0x0d, 0x20, 0x60, 0xd0, 0x4a,
-	0x07, 0xd9, 0x59, 0x3c, 0x15, 0x13, 0x82, 0x4b, 0xcd, 0x7a, 0x7b, 0x21, 0xab, 0x17, 0x04, 0x47,
-	0xaf, 0x25, 0x0d, 0xb8, 0x64, 0x9a, 0xb4, 0xfb, 0x2a, 0x52, 0xe8, 0x39, 0xb6, 0xec, 0x85, 0x5c,
-	0xf4, 0x82, 0xbe, 0xab, 0x15, 0x6e, 0xbf, 0x46, 0x41, 0x68, 0xde, 0x83, 0x85, 0xbc, 0x90, 0x8b,
-	0x20, 0x0a, 0x1d, 0x6e, 0x87, 0xfc, 0x90, 0x87, 0xdc, 0x77, 0xb8, 0x56, 0xb9, 0xb5, 0x50, 0x45,
-	0x70, 0x27, 0xcc, 0x37, 0x7f, 0x67, 0x21, 0x4d, 0x7a, 0x03, 0x6e, 0x1f, 0x7b, 0xbe, 0x1b, 0x1c,
-	0xa7, 0xdc, 0xc6, 0x5f, 0x96, 0xd0, 0xc5, 0x3d, 0x75, 0x46, 0x94, 0xff, 0x2e, 0xe2, 0x42, 0xe2,
-	0x0f, 0x50, 0xc9, 0x09, 0xfc, 0x43, 0xaf, 0x4b, 0x8c, 0xba, 0xd1, 0xac, 0xb4, 0x77, 0x5a, 0x53,
-	0xa7, 0xd6, 0x02, 0xf2, 0x1e, 0x30, 0xac, 0x0b, 0x5f, 0xc4, 0xa6, 0x41, 0x35, 0x1f, 0xb7, 0x51,
-	0x09, 0x8e, 0x40, 0x90, 0xf3, 0xf5, 0xa5, 0x66, 0xa5, 0xbd, 0x35, 0xa3, 0xf9, 0x48, 0x09, 0x41,
-	0xe7, 0x1c, 0xd5, 0x4c, 0xfc, 0x3e, 0x5a, 0x56, 0x07, 0x22, 0xc8, 0x12, 0xa8, 0x5c, 0x9d, 0x51,
-	0xd9, 0x0f, 0x82, 0xe2, 0x5c, 0xe7, 0x68, 0xca, 0xc6, 0x0d, 0x54, 0xfa, 0x48, 0x88, 0x88, 0xbb,
-	0xe4, 0x42, 0xdd, 0x68, 0x2e, 0x59, 0x28, 0x89, 0xcd, 0x92, 0x07, 0x08, 0xd5, 0x12, 0xfc, 0x1b,
-	0x54, 0x51, 0x64, 0x5b, 0xaf, 0x69, 0x19, 0x26, 0xb8, 0x3b, 0x6f, 0x37, 0x7a, 0xeb, 0x30, 0x1b,
-	0x2c, 0x52, 0x3c, 0xf6, 0x65, 0x38, 0xb6, 0xd6, 0x93, 0xd8, 0x2c, 0x8e, 0x41, 0x51, 0x2f, 0x67,
-	0x60, 0x82, 0x56, 0x52, 0xa3, 0x0b, 0x52, 0xaa, 0x2f, 0x35, 0xcb, 0x34, 0xeb, 0xee, 0xbc, 0x44,
-	0xeb, 0x33, 0x23, 0xe1, 0x0d, 0xb4, 0x74, 0xc4, 0xc7, 0x60, 0xd1, 0x32, 0x55, 0x4d, 0xdc, 0x42,
-	0xcb, 0x23, 0xd6, 0x8f, 0x38, 0x39, 0x0f, 0x56, 0x26, 0xf3, 0x6c, 0xf5, 0xb1, 0x27, 0x24, 0x4d,
-	0x69, 0x0f, 0xcf, 0x7f, 0x60, 0x34, 0x3e, 0x42, 0xe5, 0x1c, 0xc7, 0x1f, 0xe6, 0xd6, 0x36, 0x5e,
-	0x61, 0xed, 0x35, 0x65, 0x35, 0x65, 0x1c, 0xbd, 0x03, 0xfd, 0x6d, 0xfc, 0xcd, 0x40, 0xd5, 0xe7,
-	0x61, 0x70, 0x32, 0xd6, 0x7b, 0x17, 0xd8, 0x42, 0x9b, 0xdc, 0x97, 0x9e, 0x1c, 0xdb, 0x4c, 0xca,
-	0xd0, 0xeb, 0x44, 0x92, 0xa7, 0x43, 0x97, 0xad, 0xed, 0x24, 0x36, 0xcf, 0x0a, 0xe9, 0x46, 0x0a,
-	0x3d, 0xca, 0x11, 0x6c, 0xa2, 0x65, 0x31, 0xec, 0xb3, 0x31, 0x6c, 0x6a, 0xd5, 0x2a, 0x27, 0xb1,
-	0x99, 0x02, 0x34, 0xfd, 0xe0, 0x1f, 0xa3, 0x35, 0x68, 0xd8, 0x4e, 0x30, 0xe2, 0x21, 0xeb, 0x72,
-	0xb2, 0x54, 0x37, 0x9a, 0x55, 0x0b, 0x27, 0xb1, 0x39, 0x23, 0xa1, 0x55, 0xe8, 0xef, 0xe9, 0x6e,
-	0xe3, 0x0f, 0xeb, 0xa8, 0x52, 0xf0, 0x3d, 0x65, 0x7f, 0x27, 0x18, 0x0c, 0x98, 0xef, 0x6a, 0xb3,
-	0x66, 0x5d, 0xdc, 0x44, 0xab, 0x3d, 0xe6, 0xbb, 0x7d, 0x1e, 0xa6, 0x6e, 0x55, 0xb6, 0x2e, 0x26,
-	0xb1, 0x99, 0x63, 0x34, 0x6f, 0xe1, 0x9f, 0xa1, 0x4b, 0x3d, 0xaf, 0xdb, 0xb3, 0x0f, 0xfb, 0x6c,
-	0x38, 0xb9, 0xc7, 0xe0, 0x53, 0x55, 0xeb, 0x4a, 0x12, 0x9b, 0xf3, 0xc4, 0x74, 0x53, 0x81, 0x4f,
-	0xfa, 0x6c, 0x78, 0x90, 0x41, 0x6a, 0x4a, 0xcf, 0x97, 0x3c, 0x1c, 0xb1, 0x3e, 0x59, 0x06, 0x6d,
-	0x98, 0x32, 0xc3, 0x68, 0xde, 0xc2, 0x3f, 0x45, 0xb8, 0x1f, 0x1c, 0xcf, 0xce, 0x58, 0x02, 0x9d,
-	0xcb, 0x49, 0x6c, 0xce, 0x91, 0xd2, 0x8d, 0x7e, 0x70, 0x3c, 0x3d, 0xdf, 0x2d, 0xb4, 0x32, 0x8c,
-	0x3a, 0x7d, 0x4f, 0xf4, 0x48, 0x19, 0x4c, 0x5d, 0x49, 0x62, 0x33, 0x83, 0x68, 0xd6, 0x50, 0xe6,
-	0x0e, 0x23, 0x1f, 0x2e, 0xbd, 0xf6, 0x15, 0x04, 0xf6, 0x00, 0x73, 0x4f, 0x4b, 0x68, 0x55, 0xf7,
-	0xb5, 0x7b, 0xff, 0x08, 0x55, 0x45, 0xd4, 0x11, 0x4e, 0xe8, 0x0d, 0xa5, 0x17, 0xf8, 0x82, 0x54,
-	0x40, 0x73, 0x33, 0x89, 0xcd, 0x69, 0x01, 0x9d, 0xee, 0xe2, 0xf7, 0x11, 0x7e, 0x7c, 0x22, 0xb9,
-	0xef, 0x72, 0x77, 0xe2, 0x19, 0xe4, 0x62, 0xdd, 0x68, 0x5e, 0xb4, 0x96, 0x93, 0xd8, 0x34, 0xee,
-	0xd1, 0x39, 0x04, 0x7c, 0x80, 0x36, 0x87, 0xca, 0x1f, 0x6d, 0xed, 0x67, 0x3e, 0x1b, 0x70, 0x52,
-	0x55, 0x07, 0x6b, 0x35, 0x4f, 0x63, 0x73, 0x1d, 0x9c, 0xf5, 0x31, 0xc8, 0x3e, 0x61, 0x03, 0xae,
-	0x3c, 0xf2, 0x0c, 0x9f, 0xae, 0x0f, 0xa7, 0x59, 0xf8, 0x29, 0xaa, 0x40, 0x02, 0xb2, 0xd3, 0x20,
-	0xb3, 0x06, 0x37, 0xe5, 0xca, 0x9c, 0x20, 0xa3, 0xae, 0x94, 0x75, 0x49, 0x5f, 0x96, 0xa2, 0x0e,
-	0x45, 0xd0, 0xd9, 0x87, 0xb0, 0xa3, 0xfc, 0x5b, 0xba, 0x9e, 0x4f, 0xd6, 0x0b, 0xfe, 0xad, 0x00,
-	0x9a, 0x7e, 0xf0, 0x23, 0x54, 0x12, 0x51, 0xc7, 0x8d, 0x38, 0xd9, 0x80, 0x6b, 0x7d, 0x7d, 0x66,
-	0xaa, 0x03, 0x6f, 0xc0, 0x5f, 0x42, 0xf8, 0x7d, 0xd9, 0xe3, 0x7e, 0x1a, 0xb6, 0x52, 0x05, 0xaa,
-	0xbf, 0x18, 0xa3, 0x0b, 0x4e, 0x18, 0xf8, 0x64, 0x13, 0x9c, 0x1a, 0xda, 0xf8, 0x2a, 0x5a, 0x92,
-	0xb2, 0x4f, 0x30, 0xc4, 0xba, 0x95, 0x24, 0x36, 0x55, 0x97, 0xaa, 0x1f, 0xe5, 0x09, 0xea, 0xd4,
-	0x82, 0x48, 0x92, 0x4b, 0xe0, 0x44, 0xe0, 0x09, 0x1a, 0xa2, 0x59, 0x03, 0xef, 0xa1, 0xb5, 0xd4,
-	0x5c, 0xa1, 0xbe, 0xef, 0x64, 0x0b, 0x16, 0x78, 0x6d, 0x66, 0x81, 0x53, 0x31, 0x81, 0x56, 0x87,
-	0x53, 0x21, 0xe2, 0x3e, 0xaa, 0x84, 0x41, 0xe4, 0xbb, 0x76, 0x18, 0x74, 0x3c, 0x9f, 0x6c, 0x83,
-	0x11, 0x20, 0x48, 0x16, 0x60, 0x8a, 0xa0, 0x43, 0x55, 0x1b, 0xff, 0x1c, 0x6d, 0x05, 0x91, 0x1c,
-	0x46, 0xd2, 0xd6, 0xc9, 0xf2, 0x30, 0x08, 0x07, 0x4c, 0x92, 0xcb, 0x70, 0xb0, 0x24, 0x89, 0xcd,
-	0xb9, 0x72, 0x8a, 0x53, 0xf4, 0x29, 0x80, 0x4f, 0x00, 0xc3, 0xcf, 0xd1, 0xe5, 0x69, 0x6e, 0x7e,
-	0xc9, 0xaf, 0x80, 0x6b, 0xee, 0x24, 0xb1, 0xb9, 0x80, 0x41, 0xb7, 0x8a, 0xe3, 0xed, 0x67, 0xd7,
-	0xff, 0x1d, 0xb4, 0xca, 0xfd, 0x91, 0x3d, 0x62, 0xa1, 0x20, 0x64, 0x12, 0x28, 0x32, 0x8c, 0xae,
-	0x70, 0x7f, 0xf4, 0x2b, 0x16, 0x0a, 0xfc, 0x4b, 0xb4, 0xaa, 0x2a, 0x02, 0x97, 0x49, 0x46, 0x76,
-	0xc0, 0x6e, 0xb3, 0x89, 0xea, 0x59, 0xe7, 0xb7, 0xdc, 0x51, 0xe3, 0x33, 0xab, 0xa6, 0xbc, 0xe8,
-	0xcb, 0xd8, 0x34, 0xd4, 0x6d, 0xce, 0xd4, 0xde, 0x0d, 0x06, 0x9e, 0xe4, 0x83, 0xa1, 0x1c, 0xd3,
-	0x7c, 0x28, 0x7c, 0x1b, 0xad, 0x0f, 0xd8, 0x89, 0xad, 0xd7, 0x2c, 0xbc, 0x4f, 0x39, 0x79, 0x4b,
-	0x1d, 0x31, 0xad, 0x0e, 0xd8, 0xc9, 0x33, 0x40, 0x5f, 0x78, 0x9f, 0x72, 0x7c, 0x0b, 0xad, 0xb9,
-	0x9e, 0x70, 0x58, 0xe8, 0x6a, 0x2e, 0xb9, 0xa6, 0x4c, 0x4f, 0xab, 0x1a, 0x4d, 0xa9, 0xf8, 0xc3,
-	0x49, 0x46, 0xba, 0x0e, 0x8e, 0xbe, 0x3d, 0xb3, 0xc8, 0x17, 0x20, 0x4d, 0x3d, 0x44, 0x33, 0xf3,
-	0xac, 0x85, 0xff, 0x64, 0x20, 0x3c, 0x6d, 0x3d, 0xc9, 0xba, 0x82, 0xd4, 0x60, 0xa4, 0xd9, 0xf4,
-	0x94, 0x1a, 0xf2, 0x80, 0x75, 0xad, 0xfd, 0x24, 0x36, 0xaf, 0x9d, 0xd5, 0x9b, 0xec, 0xf7, 0xab,
-	0xd8, 0xbc, 0x39, 0x66, 0x83, 0xfe, 0xc3, 0x7a, 0xe3, 0x55, 0xb4, 0x06, 0xdd, 0x28, 0x9e, 0xd1,
-	0x01, 0xeb, 0x2a, 0x7f, 0x2b, 0x0b, 0xa7, 0xc7, 0xdd, 0xa8, 0xcf, 0x43, 0x62, 0x82, 0xcb, 0x60,
-	0x88, 0x20, 0x5f, 0xc5, 0x66, 0x59, 0x8f, 0x79, 0xaf, 0x41, 0x27, 0x24, 0xfc, 0x14, 0x95, 0x87,
-	0xde, 0x90, 0xf7, 0x3d, 0x9f, 0x0b, 0x52, 0x87, 0xa5, 0xd7, 0x67, 0x96, 0x4e, 0x75, 0x71, 0x45,
-	0xb3, 0xda, 0xca, 0xaa, 0x26, 0xb1, 0x39, 0x51, 0xa3, 0x93, 0x26, 0xfe, 0xab, 0x81, 0xc8, 0xcc,
-	0xa2, 0xb3, 0x10, 0x2c, 0xc8, 0x0d, 0x18, 0xbe, 0x36, 0xdf, 0x32, 0x19, 0xcd, 0x3a, 0x48, 0x62,
-	0xb3, 0xb1, 0x68, 0x8c, 0x29, 0x2b, 0xdd, 0x99, 0x6f, 0xa5, 0x39, 0xe4, 0x06, 0xbd, 0x3c, 0x65,
-	0xab, 0x9c, 0x82, 0x29, 0x5a, 0x49, 0xc3, 0x88, 0x20, 0x0d, 0x58, 0xde, 0x8d, 0x85, 0x01, 0x88,
-	0xf2, 0x21, 0x67, 0x92, 0xbb, 0x69, 0x76, 0xd7, 0x5a, 0x05, 0x37, 0xcd, 0x06, 0x7a, 0xb8, 0xfa,
-	0xc7, 0xcf, 0xcc, 0x73, 0x9f, 0x7f, 0x66, 0x1a, 0x8d, 0x7f, 0x6c, 0xa1, 0x65, 0x48, 0xc1, 0xdf,
-	0x27, 0xdf, 0x6f, 0x69, 0xf2, 0xfd, 0x3e, 0x8b, 0x7e, 0x17, 0xb3, 0xe8, 0x0e, 0x5a, 0x75, 0xa3,
-	0x90, 0xa9, 0x23, 0x86, 0xcc, 0x69, 0xd0, 0xbc, 0xaf, 0x9c, 0x9f, 0x9f, 0x70, 0x27, 0x92, 0xdc,
-	0x25, 0x57, 0x60, 0x67, 0x69, 0x0e, 0xd3, 0x18, 0xcd, 0x5b, 0xf8, 0x09, 0x5a, 0xe9, 0x79, 0x42,
-	0x06, 0xe1, 0x18, 0x92, 0x5d, 0xa5, 0xfd, 0xd6, 0xbc, 0xb7, 0xd0, 0x7e, 0x4a, 0xb1, 0xd6, 0xf5,
-	0x29, 0x66, 0x3a, 0x34, 0x6b, 0xa8, 0xb7, 0x57, 0xfa, 0xd2, 0x22, 0x57, 0xcf, 0xbe, 0xbd, 0xd2,
-	0xaf, 0xe2, 0xe8, 0x4c, 0xb5, 0x03, 0xce, 0x07, 0x9c, 0x14, 0xa1, 0xfa, 0x8b, 0xb7, 0x94, 0x1b,
-	0x30, 0x99, 0xe6, 0xbc, 0x32, 0x4d, 0x3b, 0x4a, 0x53, 0x35, 0x22, 0x01, 0x39, 0xae, 0xaa, 0x0f,
-	0x17, 0x10, 0xaa, 0xbf, 0xea, 0x1a, 0xcb, 0x40, 0xb2, 0xbe, 0x0d, 0x2a, 0xb6, 0xd3, 0x63, 0x7e,
-	0x97, 0x93, 0xeb, 0x93, 0x6b, 0x7c, 0x56, 0x4a, 0x37, 0x00, 0x7b, 0xa1, 0xa0, 0x3d, 0x40, 0x70,
-	0x0b, 0xad, 0xf4, 0x99, 0x90, 0x76, 0x70, 0x44, 0x6a, 0xb0, 0x91, 0xed, 0xd3, 0xd8, 0x2c, 0x7d,
-	0xcc, 0x84, 0x7c, 0xf6, 0x0b, 0xb5, 0x71, 0x2d, 0xa4, 0x25, 0xd5, 0x78, 0x76, 0x84, 0x1f, 0xa0,
-	0x4a, 0xe0, 0x38, 0x51, 0x08, 0x49, 0x43, 0x40, 0x3e, 0x5a, 0x4a, 0xcf, 0xad, 0x00, 0xd3, 0x62,
-	0x07, 0x7f, 0x82, 0xb6, 0x0b, 0x5d, 0xfb, 0x98, 0x49, 0x1e, 0x0e, 0x58, 0x78, 0x44, 0xea, 0xa0,
-	0x7c, 0x35, 0x89, 0xcd, 0xf9, 0x04, 0xba, 0x55, 0x80, 0x5f, 0x66, 0x28, 0xae, 0xa3, 0x55, 0xe1,
-	0xf5, 0x15, 0xe8, 0x42, 0xfa, 0x29, 0xeb, 0x17, 0x78, 0x8e, 0xe2, 0xdd, 0xec, 0x3d, 0x9d, 0x86,
-	0xff, 0x4b, 0x73, 0x2e, 0xa9, 0xd6, 0xd1, 0x2f, 0xe9, 0x45, 0x15, 0xda, 0xdb, 0x6f, 0xb4, 0x42,
-	0xbb, 0xf9, 0x06, 0x2a, 0xb4, 0x5b, 0x5f, 0xb7, 0x42, 0xbb, 0xfd, 0x8d, 0x56, 0x68, 0xef, 0x7c,
-	0xbd, 0x0a, 0xad, 0xf9, 0x9a, 0x0a, 0xed, 0x07, 0xff, 0x7b, 0x85, 0x76, 0x1f, 0x55, 0x3c, 0x61,
-	0xe7, 0x0e, 0x70, 0x67, 0x12, 0x38, 0x0a, 0x30, 0x45, 0x9e, 0x78, 0x91, 0x79, 0xc3, 0x82, 0x9a,
-	0xee, 0xee, 0xff, 0xb1, 0xa6, 0xbb, 0x5b, 0xac, 0xe9, 0xde, 0x05, 0x27, 0x83, 0xfa, 0x2b, 0x07,
-	0x8b, 0xe5, 0xdc, 0x01, 0xaa, 0x3c, 0x0f, 0x03, 0x87, 0x0b, 0xc1, 0x5d, 0x6b, 0x4c, 0xee, 0x01,
-	0xbd, 0xad, 0xbc, 0x68, 0x98, 0xc1, 0x76, 0x67, 0x3c, 0xb5, 0xae, 0x2d, 0xbd, 0xae, 0x22, 0xa1,
-	0x41, 0x8b, 0xc3, 0x4c, 0x17, 0x89, 0xad, 0x6f, 0xb6, 0x48, 0xdc, 0xfd, 0x76, 0x17, 0x89, 0xf7,
-	0xdf, 0x50, 0x91, 0xb8, 0xe0, 0xd5, 0xef, 0xbc, 0xe6, 0xd5, 0x5f, 0xa8, 0x2d, 0x7f, 0xaf, 0xff,
-	0x86, 0xdc, 0x9f, 0x64, 0x19, 0x9d, 0x07, 0x8c, 0x85, 0x79, 0xa0, 0x98, 0xfb, 0xce, 0xbf, 0x32,
-	0xf7, 0xdd, 0x40, 0xab, 0xaa, 0xac, 0x1b, 0x7a, 0x7e, 0x17, 0xfe, 0x71, 0x5a, 0xcd, 0x16, 0x95,
-	0xc3, 0x56, 0xfd, 0x3f, 0xff, 0xaa, 0x19, 0x9f, 0x9f, 0xd6, 0x8c, 0xbf, 0x9f, 0xd6, 0x8c, 0x2f,
-	0x4e, 0x6b, 0xc6, 0x97, 0xa7, 0x35, 0xe3, 0x9f, 0xa7, 0x35, 0xe3, 0xcf, 0xff, 0xae, 0x9d, 0xfb,
-	0xf5, 0xf9, 0x51, 0xbb, 0x53, 0x82, 0x7f, 0x4c, 0xdf, 0xfb, 0x6f, 0x00, 0x00, 0x00, 0xff, 0xff,
-	0x15, 0xf7, 0xdc, 0x16, 0xed, 0x16, 0x00, 0x00,
-}
-
-func (this *CheckRequest) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*CheckRequest)
-	if !ok {
-		that2, ok := that.(CheckRequest)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.Config.Equal(that1.Config) {
-		return false
-	}
-	if len(this.Assets) != len(that1.Assets) {
-		return false
-	}
-	for i := range this.Assets {
-		if !this.Assets[i].Equal(&that1.Assets[i]) {
-			return false
-		}
-	}
-	if len(this.Hooks) != len(that1.Hooks) {
-		return false
-	}
-	for i := range this.Hooks {
-		if !this.Hooks[i].Equal(&that1.Hooks[i]) {
-			return false
-		}
-	}
-	if this.Issued != that1.Issued {
-		return false
-	}
-	if len(this.HookAssets) != len(that1.HookAssets) {
-		return false
-	}
-	for i := range this.HookAssets {
-		if !this.HookAssets[i].Equal(that1.HookAssets[i]) {
-			return false
-		}
-	}
-	if len(this.Secrets) != len(that1.Secrets) {
-		return false
-	}
-	for i := range this.Secrets {
-		if this.Secrets[i] != that1.Secrets[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *AssetList) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*AssetList)
-	if !ok {
-		that2, ok := that.(AssetList)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.Assets) != len(that1.Assets) {
-		return false
-	}
-	for i := range this.Assets {
-		if !this.Assets[i].Equal(&that1.Assets[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *ProxyRequests) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*ProxyRequests)
-	if !ok {
-		that2, ok := that.(ProxyRequests)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if len(this.EntityAttributes) != len(that1.EntityAttributes) {
-		return false
-	}
-	for i := range this.EntityAttributes {
-		if this.EntityAttributes[i] != that1.EntityAttributes[i] {
-			return false
-		}
-	}
-	if this.Splay != that1.Splay {
-		return false
-	}
-	if this.SplayCoverage != that1.SplayCoverage {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *CheckConfig) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*CheckConfig)
-	if !ok {
-		that2, ok := that.(CheckConfig)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Command != that1.Command {
-		return false
-	}
-	if len(this.Handlers) != len(that1.Handlers) {
-		return false
-	}
-	for i := range this.Handlers {
-		if this.Handlers[i] != that1.Handlers[i] {
-			return false
-		}
-	}
-	if this.HighFlapThreshold != that1.HighFlapThreshold {
-		return false
-	}
-	if this.Interval != that1.Interval {
-		return false
-	}
-	if this.LowFlapThreshold != that1.LowFlapThreshold {
-		return false
-	}
-	if this.Publish != that1.Publish {
-		return false
-	}
-	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
-		return false
-	}
-	for i := range this.RuntimeAssets {
-		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
-			return false
-		}
-	}
-	if len(this.Subscriptions) != len(that1.Subscriptions) {
-		return false
-	}
-	for i := range this.Subscriptions {
-		if this.Subscriptions[i] != that1.Subscriptions[i] {
-			return false
-		}
-	}
-	if !bytes.Equal(this.ExtendedAttributes, that1.ExtendedAttributes) {
-		return false
-	}
-	if this.ProxyEntityName != that1.ProxyEntityName {
-		return false
-	}
-	if len(this.CheckHooks) != len(that1.CheckHooks) {
-		return false
-	}
-	for i := range this.CheckHooks {
-		if !this.CheckHooks[i].Equal(&that1.CheckHooks[i]) {
-			return false
-		}
-	}
-	if this.Stdin != that1.Stdin {
-		return false
-	}
-	if !this.Subdue.Equal(that1.Subdue) {
-		return false
-	}
-	if this.Cron != that1.Cron {
-		return false
-	}
-	if this.Ttl != that1.Ttl {
-		return false
-	}
-	if this.Timeout != that1.Timeout {
-		return false
-	}
-	if !this.ProxyRequests.Equal(that1.ProxyRequests) {
-		return false
-	}
-	if this.RoundRobin != that1.RoundRobin {
-		return false
-	}
-	if this.OutputMetricFormat != that1.OutputMetricFormat {
-		return false
-	}
-	if len(this.OutputMetricHandlers) != len(that1.OutputMetricHandlers) {
-		return false
-	}
-	for i := range this.OutputMetricHandlers {
-		if this.OutputMetricHandlers[i] != that1.OutputMetricHandlers[i] {
-			return false
-		}
-	}
-	if len(this.EnvVars) != len(that1.EnvVars) {
-		return false
-	}
-	for i := range this.EnvVars {
-		if this.EnvVars[i] != that1.EnvVars[i] {
-			return false
-		}
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if this.MaxOutputSize != that1.MaxOutputSize {
-		return false
-	}
-	if this.DiscardOutput != that1.DiscardOutput {
-		return false
-	}
-	if len(this.Secrets) != len(that1.Secrets) {
-		return false
-	}
-	for i := range this.Secrets {
-		if !this.Secrets[i].Equal(that1.Secrets[i]) {
-			return false
-		}
-	}
-	if len(this.OutputMetricTags) != len(that1.OutputMetricTags) {
-		return false
-	}
-	for i := range this.OutputMetricTags {
-		if !this.OutputMetricTags[i].Equal(that1.OutputMetricTags[i]) {
-			return false
-		}
-	}
-	if this.Scheduler != that1.Scheduler {
-		return false
-	}
-	if len(this.Pipelines) != len(that1.Pipelines) {
-		return false
-	}
-	for i := range this.Pipelines {
-		if !this.Pipelines[i].Equal(that1.Pipelines[i]) {
-			return false
-		}
-	}
-	if len(this.OutputMetricThresholds) != len(that1.OutputMetricThresholds) {
-		return false
-	}
-	for i := range this.OutputMetricThresholds {
-		if !this.OutputMetricThresholds[i].Equal(that1.OutputMetricThresholds[i]) {
-			return false
-		}
-	}
-	if len(this.Subdues) != len(that1.Subdues) {
-		return false
-	}
-	for i := range this.Subdues {
-		if !this.Subdues[i].Equal(that1.Subdues[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *Check) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Check)
-	if !ok {
-		that2, ok := that.(Check)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Command != that1.Command {
-		return false
-	}
-	if len(this.Handlers) != len(that1.Handlers) {
-		return false
-	}
-	for i := range this.Handlers {
-		if this.Handlers[i] != that1.Handlers[i] {
-			return false
-		}
-	}
-	if this.HighFlapThreshold != that1.HighFlapThreshold {
-		return false
-	}
-	if this.Interval != that1.Interval {
-		return false
-	}
-	if this.LowFlapThreshold != that1.LowFlapThreshold {
-		return false
-	}
-	if this.Publish != that1.Publish {
-		return false
-	}
-	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
-		return false
-	}
-	for i := range this.RuntimeAssets {
-		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
-			return false
-		}
-	}
-	if len(this.Subscriptions) != len(that1.Subscriptions) {
-		return false
-	}
-	for i := range this.Subscriptions {
-		if this.Subscriptions[i] != that1.Subscriptions[i] {
-			return false
-		}
-	}
-	if this.ProxyEntityName != that1.ProxyEntityName {
-		return false
-	}
-	if len(this.CheckHooks) != len(that1.CheckHooks) {
-		return false
-	}
-	for i := range this.CheckHooks {
-		if !this.CheckHooks[i].Equal(&that1.CheckHooks[i]) {
-			return false
-		}
-	}
-	if this.Stdin != that1.Stdin {
-		return false
-	}
-	if !this.Subdue.Equal(that1.Subdue) {
-		return false
-	}
-	if this.Cron != that1.Cron {
-		return false
-	}
-	if this.Ttl != that1.Ttl {
-		return false
-	}
-	if this.Timeout != that1.Timeout {
-		return false
-	}
-	if !this.ProxyRequests.Equal(that1.ProxyRequests) {
-		return false
-	}
-	if this.RoundRobin != that1.RoundRobin {
-		return false
-	}
-	if this.Duration != that1.Duration {
-		return false
-	}
-	if this.Executed != that1.Executed {
-		return false
-	}
-	if len(this.History) != len(that1.History) {
-		return false
-	}
-	for i := range this.History {
-		if !this.History[i].Equal(&that1.History[i]) {
-			return false
-		}
-	}
-	if this.Issued != that1.Issued {
-		return false
-	}
-	if this.Output != that1.Output {
-		return false
-	}
-	if this.State != that1.State {
-		return false
-	}
-	if this.Status != that1.Status {
-		return false
-	}
-	if this.TotalStateChange != that1.TotalStateChange {
-		return false
-	}
-	if this.LastOK != that1.LastOK {
-		return false
-	}
-	if this.Occurrences != that1.Occurrences {
-		return false
-	}
-	if this.OccurrencesWatermark != that1.OccurrencesWatermark {
-		return false
-	}
-	if len(this.Silenced) != len(that1.Silenced) {
-		return false
-	}
-	for i := range this.Silenced {
-		if this.Silenced[i] != that1.Silenced[i] {
-			return false
-		}
-	}
-	if len(this.Hooks) != len(that1.Hooks) {
-		return false
-	}
-	for i := range this.Hooks {
-		if !this.Hooks[i].Equal(that1.Hooks[i]) {
-			return false
-		}
-	}
-	if this.OutputMetricFormat != that1.OutputMetricFormat {
-		return false
-	}
-	if len(this.OutputMetricHandlers) != len(that1.OutputMetricHandlers) {
-		return false
-	}
-	for i := range this.OutputMetricHandlers {
-		if this.OutputMetricHandlers[i] != that1.OutputMetricHandlers[i] {
-			return false
-		}
-	}
-	if len(this.EnvVars) != len(that1.EnvVars) {
-		return false
-	}
-	for i := range this.EnvVars {
-		if this.EnvVars[i] != that1.EnvVars[i] {
-			return false
-		}
-	}
-	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
-		return false
-	}
-	if this.MaxOutputSize != that1.MaxOutputSize {
-		return false
-	}
-	if this.DiscardOutput != that1.DiscardOutput {
-		return false
-	}
-	if len(this.Secrets) != len(that1.Secrets) {
-		return false
-	}
-	for i := range this.Secrets {
-		if !this.Secrets[i].Equal(that1.Secrets[i]) {
-			return false
-		}
-	}
-	if this.IsSilenced != that1.IsSilenced {
-		return false
-	}
-	if len(this.OutputMetricTags) != len(that1.OutputMetricTags) {
-		return false
-	}
-	for i := range this.OutputMetricTags {
-		if !this.OutputMetricTags[i].Equal(that1.OutputMetricTags[i]) {
-			return false
-		}
-	}
-	if this.Scheduler != that1.Scheduler {
-		return false
-	}
-	if this.ProcessedBy != that1.ProcessedBy {
-		return false
-	}
-	if len(this.Pipelines) != len(that1.Pipelines) {
-		return false
-	}
-	for i := range this.Pipelines {
-		if !this.Pipelines[i].Equal(that1.Pipelines[i]) {
-			return false
-		}
-	}
-	if len(this.OutputMetricThresholds) != len(that1.OutputMetricThresholds) {
-		return false
-	}
-	for i := range this.OutputMetricThresholds {
-		if !this.OutputMetricThresholds[i].Equal(that1.OutputMetricThresholds[i]) {
-			return false
-		}
-	}
-	if len(this.Subdues) != len(that1.Subdues) {
-		return false
-	}
-	for i := range this.Subdues {
-		if !this.Subdues[i].Equal(that1.Subdues[i]) {
-			return false
-		}
-	}
-	if !bytes.Equal(this.ExtendedAttributes, that1.ExtendedAttributes) {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-func (this *CheckHistory) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*CheckHistory)
-	if !ok {
-		that2, ok := that.(CheckHistory)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Status != that1.Status {
-		return false
-	}
-	if this.Executed != that1.Executed {
-		return false
-	}
-	if this.Flapping != that1.Flapping {
-		return false
-	}
-	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
-		return false
-	}
-	return true
-}
-
-type CheckConfigFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetCommand() string
-	GetHandlers() []string
-	GetHighFlapThreshold() uint32
-	GetInterval() uint32
-	GetLowFlapThreshold() uint32
-	GetPublish() bool
-	GetRuntimeAssets() []string
-	GetSubscriptions() []string
-	GetExtendedAttributes() []byte
-	GetProxyEntityName() string
-	GetCheckHooks() []HookList
-	GetStdin() bool
-	GetSubdue() *TimeWindowWhen
-	GetCron() string
-	GetTtl() int64
-	GetTimeout() uint32
-	GetProxyRequests() *ProxyRequests
-	GetRoundRobin() bool
-	GetOutputMetricFormat() string
-	GetOutputMetricHandlers() []string
-	GetEnvVars() []string
-	GetObjectMeta() ObjectMeta
-	GetMaxOutputSize() int64
-	GetDiscardOutput() bool
-	GetSecrets() []*Secret
-	GetOutputMetricTags() []*MetricTag
-	GetScheduler() string
-	GetPipelines() []*ResourceReference
-	GetOutputMetricThresholds() []*MetricThreshold
-	GetSubdues() []*TimeWindowRepeated
-}
-
-func (this *CheckConfig) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *CheckConfig) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewCheckConfigFromFace(this)
-}
-
-func (this *CheckConfig) GetCommand() string {
-	return this.Command
-}
-
-func (this *CheckConfig) GetHandlers() []string {
-	return this.Handlers
-}
-
-func (this *CheckConfig) GetHighFlapThreshold() uint32 {
-	return this.HighFlapThreshold
-}
-
-func (this *CheckConfig) GetInterval() uint32 {
-	return this.Interval
-}
-
-func (this *CheckConfig) GetLowFlapThreshold() uint32 {
-	return this.LowFlapThreshold
-}
-
-func (this *CheckConfig) GetPublish() bool {
-	return this.Publish
-}
-
-func (this *CheckConfig) GetRuntimeAssets() []string {
-	return this.RuntimeAssets
-}
-
-func (this *CheckConfig) GetSubscriptions() []string {
-	return this.Subscriptions
-}
-
-func (this *CheckConfig) GetExtendedAttributes() []byte {
-	return this.ExtendedAttributes
-}
-
-func (this *CheckConfig) GetProxyEntityName() string {
-	return this.ProxyEntityName
-}
-
-func (this *CheckConfig) GetCheckHooks() []HookList {
-	return this.CheckHooks
-}
-
-func (this *CheckConfig) GetStdin() bool {
-	return this.Stdin
-}
-
-func (this *CheckConfig) GetSubdue() *TimeWindowWhen {
-	return this.Subdue
-}
-
-func (this *CheckConfig) GetCron() string {
-	return this.Cron
-}
-
-func (this *CheckConfig) GetTtl() int64 {
-	return this.Ttl
-}
-
-func (this *CheckConfig) GetTimeout() uint32 {
-	return this.Timeout
-}
-
-func (this *CheckConfig) GetProxyRequests() *ProxyRequests {
-	return this.ProxyRequests
-}
-
-func (this *CheckConfig) GetRoundRobin() bool {
-	return this.RoundRobin
-}
-
-func (this *CheckConfig) GetOutputMetricFormat() string {
-	return this.OutputMetricFormat
-}
-
-func (this *CheckConfig) GetOutputMetricHandlers() []string {
-	return this.OutputMetricHandlers
-}
-
-func (this *CheckConfig) GetEnvVars() []string {
-	return this.EnvVars
-}
-
-func (this *CheckConfig) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *CheckConfig) GetMaxOutputSize() int64 {
-	return this.MaxOutputSize
-}
-
-func (this *CheckConfig) GetDiscardOutput() bool {
-	return this.DiscardOutput
-}
-
-func (this *CheckConfig) GetSecrets() []*Secret {
-	return this.Secrets
-}
-
-func (this *CheckConfig) GetOutputMetricTags() []*MetricTag {
-	return this.OutputMetricTags
-}
-
-func (this *CheckConfig) GetScheduler() string {
-	return this.Scheduler
-}
-
-func (this *CheckConfig) GetPipelines() []*ResourceReference {
-	return this.Pipelines
-}
-
-func (this *CheckConfig) GetOutputMetricThresholds() []*MetricThreshold {
-	return this.OutputMetricThresholds
-}
-
-func (this *CheckConfig) GetSubdues() []*TimeWindowRepeated {
-	return this.Subdues
-}
-
-func NewCheckConfigFromFace(that CheckConfigFace) *CheckConfig {
-	this := &CheckConfig{}
-	this.Command = that.GetCommand()
-	this.Handlers = that.GetHandlers()
-	this.HighFlapThreshold = that.GetHighFlapThreshold()
-	this.Interval = that.GetInterval()
-	this.LowFlapThreshold = that.GetLowFlapThreshold()
-	this.Publish = that.GetPublish()
-	this.RuntimeAssets = that.GetRuntimeAssets()
-	this.Subscriptions = that.GetSubscriptions()
-	this.ExtendedAttributes = that.GetExtendedAttributes()
-	this.ProxyEntityName = that.GetProxyEntityName()
-	this.CheckHooks = that.GetCheckHooks()
-	this.Stdin = that.GetStdin()
-	this.Subdue = that.GetSubdue()
-	this.Cron = that.GetCron()
-	this.Ttl = that.GetTtl()
-	this.Timeout = that.GetTimeout()
-	this.ProxyRequests = that.GetProxyRequests()
-	this.RoundRobin = that.GetRoundRobin()
-	this.OutputMetricFormat = that.GetOutputMetricFormat()
-	this.OutputMetricHandlers = that.GetOutputMetricHandlers()
-	this.EnvVars = that.GetEnvVars()
-	this.ObjectMeta = that.GetObjectMeta()
-	this.MaxOutputSize = that.GetMaxOutputSize()
-	this.DiscardOutput = that.GetDiscardOutput()
-	this.Secrets = that.GetSecrets()
-	this.OutputMetricTags = that.GetOutputMetricTags()
-	this.Scheduler = that.GetScheduler()
-	this.Pipelines = that.GetPipelines()
-	this.OutputMetricThresholds = that.GetOutputMetricThresholds()
-	this.Subdues = that.GetSubdues()
-	return this
-}
-
-type CheckFace interface {
-	Proto() github_com_golang_protobuf_proto.Message
-	GetCommand() string
-	GetHandlers() []string
-	GetHighFlapThreshold() uint32
-	GetInterval() uint32
-	GetLowFlapThreshold() uint32
-	GetPublish() bool
-	GetRuntimeAssets() []string
-	GetSubscriptions() []string
-	GetProxyEntityName() string
-	GetCheckHooks() []HookList
-	GetStdin() bool
-	GetSubdue() *TimeWindowWhen
-	GetCron() string
-	GetTtl() int64
-	GetTimeout() uint32
-	GetProxyRequests() *ProxyRequests
-	GetRoundRobin() bool
-	GetDuration() float64
-	GetExecuted() int64
-	GetHistory() []CheckHistory
-	GetIssued() int64
-	GetOutput() string
-	GetState() string
-	GetStatus() uint32
-	GetTotalStateChange() uint32
-	GetLastOK() int64
-	GetOccurrences() int64
-	GetOccurrencesWatermark() int64
-	GetSilenced() []string
-	GetHooks() []*Hook
-	GetOutputMetricFormat() string
-	GetOutputMetricHandlers() []string
-	GetEnvVars() []string
-	GetObjectMeta() ObjectMeta
-	GetMaxOutputSize() int64
-	GetDiscardOutput() bool
-	GetSecrets() []*Secret
-	GetIsSilenced() bool
-	GetOutputMetricTags() []*MetricTag
-	GetScheduler() string
-	GetProcessedBy() string
-	GetPipelines() []*ResourceReference
-	GetOutputMetricThresholds() []*MetricThreshold
-	GetSubdues() []*TimeWindowRepeated
-	GetExtendedAttributes() []byte
-}
-
-func (this *Check) Proto() github_com_golang_protobuf_proto.Message {
-	return this
-}
-
-func (this *Check) TestProto() github_com_golang_protobuf_proto.Message {
-	return NewCheckFromFace(this)
-}
-
-func (this *Check) GetCommand() string {
-	return this.Command
-}
-
-func (this *Check) GetHandlers() []string {
-	return this.Handlers
-}
-
-func (this *Check) GetHighFlapThreshold() uint32 {
-	return this.HighFlapThreshold
-}
-
-func (this *Check) GetInterval() uint32 {
-	return this.Interval
-}
-
-func (this *Check) GetLowFlapThreshold() uint32 {
-	return this.LowFlapThreshold
-}
-
-func (this *Check) GetPublish() bool {
-	return this.Publish
-}
-
-func (this *Check) GetRuntimeAssets() []string {
-	return this.RuntimeAssets
-}
-
-func (this *Check) GetSubscriptions() []string {
-	return this.Subscriptions
-}
-
-func (this *Check) GetProxyEntityName() string {
-	return this.ProxyEntityName
-}
-
-func (this *Check) GetCheckHooks() []HookList {
-	return this.CheckHooks
-}
-
-func (this *Check) GetStdin() bool {
-	return this.Stdin
-}
-
-func (this *Check) GetSubdue() *TimeWindowWhen {
-	return this.Subdue
-}
-
-func (this *Check) GetCron() string {
-	return this.Cron
-}
-
-func (this *Check) GetTtl() int64 {
-	return this.Ttl
-}
-
-func (this *Check) GetTimeout() uint32 {
-	return this.Timeout
-}
-
-func (this *Check) GetProxyRequests() *ProxyRequests {
-	return this.ProxyRequests
-}
-
-func (this *Check) GetRoundRobin() bool {
-	return this.RoundRobin
-}
-
-func (this *Check) GetDuration() float64 {
-	return this.Duration
-}
-
-func (this *Check) GetExecuted() int64 {
-	return this.Executed
-}
-
-func (this *Check) GetHistory() []CheckHistory {
-	return this.History
-}
-
-func (this *Check) GetIssued() int64 {
-	return this.Issued
-}
-
-func (this *Check) GetOutput() string {
-	return this.Output
-}
-
-func (this *Check) GetState() string {
-	return this.State
-}
-
-func (this *Check) GetStatus() uint32 {
-	return this.Status
-}
-
-func (this *Check) GetTotalStateChange() uint32 {
-	return this.TotalStateChange
-}
-
-func (this *Check) GetLastOK() int64 {
-	return this.LastOK
-}
-
-func (this *Check) GetOccurrences() int64 {
-	return this.Occurrences
-}
-
-func (this *Check) GetOccurrencesWatermark() int64 {
-	return this.OccurrencesWatermark
-}
-
-func (this *Check) GetSilenced() []string {
-	return this.Silenced
-}
-
-func (this *Check) GetHooks() []*Hook {
-	return this.Hooks
-}
-
-func (this *Check) GetOutputMetricFormat() string {
-	return this.OutputMetricFormat
-}
-
-func (this *Check) GetOutputMetricHandlers() []string {
-	return this.OutputMetricHandlers
-}
-
-func (this *Check) GetEnvVars() []string {
-	return this.EnvVars
-}
-
-func (this *Check) GetObjectMeta() ObjectMeta {
-	return this.ObjectMeta
-}
-
-func (this *Check) GetMaxOutputSize() int64 {
-	return this.MaxOutputSize
-}
-
-func (this *Check) GetDiscardOutput() bool {
-	return this.DiscardOutput
-}
-
-func (this *Check) GetSecrets() []*Secret {
-	return this.Secrets
-}
-
-func (this *Check) GetIsSilenced() bool {
-	return this.IsSilenced
-}
-
-func (this *Check) GetOutputMetricTags() []*MetricTag {
-	return this.OutputMetricTags
-}
-
-func (this *Check) GetScheduler() string {
-	return this.Scheduler
-}
-
-func (this *Check) GetProcessedBy() string {
-	return this.ProcessedBy
-}
-
-func (this *Check) GetPipelines() []*ResourceReference {
-	return this.Pipelines
-}
-
-func (this *Check) GetOutputMetricThresholds() []*MetricThreshold {
-	return this.OutputMetricThresholds
-}
-
-func (this *Check) GetSubdues() []*TimeWindowRepeated {
-	return this.Subdues
-}
-
-func (this *Check) GetExtendedAttributes() []byte {
-	return this.ExtendedAttributes
-}
-
-func NewCheckFromFace(that CheckFace) *Check {
-	this := &Check{}
-	this.Command = that.GetCommand()
-	this.Handlers = that.GetHandlers()
-	this.HighFlapThreshold = that.GetHighFlapThreshold()
-	this.Interval = that.GetInterval()
-	this.LowFlapThreshold = that.GetLowFlapThreshold()
-	this.Publish = that.GetPublish()
-	this.RuntimeAssets = that.GetRuntimeAssets()
-	this.Subscriptions = that.GetSubscriptions()
-	this.ProxyEntityName = that.GetProxyEntityName()
-	this.CheckHooks = that.GetCheckHooks()
-	this.Stdin = that.GetStdin()
-	this.Subdue = that.GetSubdue()
-	this.Cron = that.GetCron()
-	this.Ttl = that.GetTtl()
-	this.Timeout = that.GetTimeout()
-	this.ProxyRequests = that.GetProxyRequests()
-	this.RoundRobin = that.GetRoundRobin()
-	this.Duration = that.GetDuration()
-	this.Executed = that.GetExecuted()
-	this.History = that.GetHistory()
-	this.Issued = that.GetIssued()
-	this.Output = that.GetOutput()
-	this.State = that.GetState()
-	this.Status = that.GetStatus()
-	this.TotalStateChange = that.GetTotalStateChange()
-	this.LastOK = that.GetLastOK()
-	this.Occurrences = that.GetOccurrences()
-	this.OccurrencesWatermark = that.GetOccurrencesWatermark()
-	this.Silenced = that.GetSilenced()
-	this.Hooks = that.GetHooks()
-	this.OutputMetricFormat = that.GetOutputMetricFormat()
-	this.OutputMetricHandlers = that.GetOutputMetricHandlers()
-	this.EnvVars = that.GetEnvVars()
-	this.ObjectMeta = that.GetObjectMeta()
-	this.MaxOutputSize = that.GetMaxOutputSize()
-	this.DiscardOutput = that.GetDiscardOutput()
-	this.Secrets = that.GetSecrets()
-	this.IsSilenced = that.GetIsSilenced()
-	this.OutputMetricTags = that.GetOutputMetricTags()
-	this.Scheduler = that.GetScheduler()
-	this.ProcessedBy = that.GetProcessedBy()
-	this.Pipelines = that.GetPipelines()
-	this.OutputMetricThresholds = that.GetOutputMetricThresholds()
-	this.Subdues = that.GetSubdues()
-	this.ExtendedAttributes = that.GetExtendedAttributes()
-	return this
+	// 1848 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x58, 0xcd, 0x6f, 0x1b, 0xc7,
+	0x15, 0xf7, 0x4a, 0x16, 0x25, 0x0e, 0x4d, 0x7d, 0x8c, 0x25, 0x7b, 0xac, 0xd8, 0x5c, 0x9a, 0xfe,
+	0x88, 0x6a, 0xc7, 0x94, 0xad, 0x34, 0x68, 0x6a, 0xf8, 0x50, 0xaf, 0x6a, 0x57, 0x69, 0xe3, 0xd8,
+	0x18, 0xab, 0x35, 0x50, 0xa0, 0x58, 0x0c, 0x77, 0x47, 0xe4, 0x56, 0xcb, 0x5d, 0x76, 0x67, 0x96,
+	0x12, 0x73, 0xe9, 0xb5, 0x40, 0x81, 0xa2, 0xc7, 0x1e, 0x73, 0x4c, 0x2f, 0xed, 0xb5, 0x7f, 0x42,
+	0x8e, 0xf9, 0x0b, 0x16, 0xad, 0x7a, 0x28, 0xc0, 0xa3, 0x4f, 0x3d, 0x16, 0xf3, 0x76, 0x76, 0xb9,
+	0xa4, 0x48, 0x2b, 0x05, 0x62, 0x24, 0x08, 0x72, 0xe1, 0xcc, 0xfc, 0xde, 0xef, 0xcd, 0xc7, 0x9b,
+	0x37, 0xef, 0x3d, 0x2e, 0xba, 0xd9, 0xf6, 0x64, 0x27, 0x6e, 0x35, 0x9d, 0xb0, 0xbb, 0x2d, 0x78,
+	0x20, 0xe2, 0x6d, 0x27, 0x8c, 0xf8, 0x76, 0x7f, 0x67, 0xdb, 0xe9, 0x70, 0xe7, 0xb0, 0xd9, 0x8b,
+	0x42, 0x19, 0xe2, 0x2a, 0x88, 0x9a, 0x4a, 0xd4, 0xec, 0xef, 0x6c, 0xfe, 0xb0, 0xa0, 0xd4, 0x0e,
+	0xdb, 0xe1, 0x36, 0xb0, 0x5a, 0xf1, 0xc1, 0x4f, 0xfa, 0x0f, 0x9a, 0xef, 0x37, 0x77, 0x00, 0x04,
+	0x0c, 0x7a, 0xe9, 0x24, 0x9b, 0xb3, 0x97, 0x62, 0x42, 0x70, 0xa9, 0x59, 0x37, 0x66, 0xb2, 0x3a,
+	0x61, 0x78, 0x78, 0x26, 0xa9, 0xcb, 0x25, 0xd3, 0xa4, 0xed, 0x37, 0x91, 0x22, 0xcf, 0xb1, 0x65,
+	0x27, 0xe2, 0xa2, 0x13, 0xfa, 0xae, 0x56, 0xb8, 0x7d, 0x86, 0x82, 0xd0, 0xbc, 0x07, 0x33, 0x79,
+	0x11, 0x17, 0x61, 0x1c, 0x39, 0xdc, 0x8e, 0xf8, 0x01, 0x8f, 0x78, 0xe0, 0x70, 0xad, 0x72, 0x6b,
+	0xa6, 0x8a, 0xe0, 0x4e, 0x94, 0x1f, 0xfe, 0xce, 0x4c, 0x9a, 0xf4, 0xba, 0xdc, 0x3e, 0xf2, 0x02,
+	0x37, 0x3c, 0x4a, 0xb9, 0x8d, 0xbf, 0xce, 0xa3, 0x0b, 0xbb, 0xea, 0x8e, 0x28, 0xff, 0x5d, 0xcc,
+	0x85, 0xc4, 0x1f, 0xa2, 0x92, 0x13, 0x06, 0x07, 0x5e, 0x9b, 0x18, 0x75, 0x63, 0xab, 0xb2, 0xb3,
+	0xd9, 0x1c, 0xbb, 0xb5, 0x26, 0x90, 0x77, 0x81, 0x61, 0x9d, 0xff, 0x22, 0x31, 0x0d, 0xaa, 0xf9,
+	0x78, 0x07, 0x95, 0xe0, 0x0a, 0x04, 0x99, 0xab, 0xcf, 0x6f, 0x55, 0x76, 0xd6, 0x27, 0x34, 0x1f,
+	0x2b, 0x21, 0xe8, 0x9c, 0xa3, 0x9a, 0x89, 0x3f, 0x40, 0x0b, 0xea, 0x42, 0x04, 0x99, 0x07, 0x95,
+	0x2b, 0x13, 0x2a, 0x7b, 0x61, 0x58, 0x5c, 0xeb, 0x1c, 0x4d, 0xd9, 0xb8, 0x81, 0x4a, 0x1f, 0x09,
+	0x11, 0x73, 0x97, 0x9c, 0xaf, 0x1b, 0x5b, 0xf3, 0x16, 0x1a, 0x26, 0x66, 0xc9, 0x03, 0x84, 0x6a,
+	0x09, 0xfe, 0x0d, 0xaa, 0x28, 0xb2, 0xad, 0xf7, 0xb4, 0x00, 0x0b, 0xdc, 0x9d, 0x76, 0x1a, 0x7d,
+	0x74, 0x58, 0x0d, 0x36, 0x29, 0x9e, 0x04, 0x32, 0x1a, 0x58, 0x2b, 0xc3, 0xc4, 0x2c, 0xce, 0x41,
+	0x51, 0x27, 0x67, 0x60, 0x82, 0x16, 0x53, 0xa3, 0x0b, 0x52, 0xaa, 0xcf, 0x6f, 0x95, 0x69, 0x36,
+	0xdc, 0x7c, 0x85, 0x56, 0x26, 0x66, 0xc2, 0xab, 0x68, 0xfe, 0x90, 0x0f, 0xc0, 0xa2, 0x65, 0xaa,
+	0xba, 0xb8, 0x89, 0x16, 0xfa, 0xcc, 0x8f, 0x39, 0x99, 0x03, 0x2b, 0x93, 0x69, 0xb6, 0xfa, 0xd8,
+	0x13, 0x92, 0xa6, 0xb4, 0x87, 0x73, 0x1f, 0x1a, 0x8d, 0x8f, 0x50, 0x39, 0xc7, 0xf1, 0xa3, 0xdc,
+	0xda, 0xc6, 0x1b, 0xac, 0xbd, 0xac, 0xac, 0xa6, 0x8c, 0xa3, 0x4f, 0xa0, 0xdb, 0xc6, 0xdf, 0x0d,
+	0x54, 0x7d, 0x11, 0x85, 0xc7, 0x03, 0x7d, 0x76, 0x81, 0x2d, 0xb4, 0xc6, 0x03, 0xe9, 0xc9, 0x81,
+	0xcd, 0xa4, 0x8c, 0xbc, 0x56, 0x2c, 0x79, 0x3a, 0x75, 0xd9, 0xda, 0x18, 0x26, 0xe6, 0x69, 0x21,
+	0x5d, 0x4d, 0xa1, 0xc7, 0x39, 0x82, 0x4d, 0xb4, 0x20, 0x7a, 0x3e, 0x1b, 0xc0, 0xa1, 0x96, 0xac,
+	0xf2, 0x30, 0x31, 0x53, 0x80, 0xa6, 0x0d, 0xfe, 0x31, 0x5a, 0x86, 0x8e, 0xed, 0x84, 0x7d, 0x1e,
+	0xb1, 0x36, 0x27, 0xf3, 0x75, 0x63, 0xab, 0x6a, 0xe1, 0x61, 0x62, 0x4e, 0x48, 0x68, 0x15, 0xc6,
+	0xbb, 0x7a, 0xd8, 0xf8, 0xd3, 0x2a, 0xaa, 0x14, 0x7c, 0x4f, 0xd9, 0xdf, 0x09, 0xbb, 0x5d, 0x16,
+	0xb8, 0xda, 0xac, 0xd9, 0x10, 0x6f, 0xa1, 0xa5, 0x0e, 0x0b, 0x5c, 0x9f, 0x47, 0xa9, 0x5b, 0x95,
+	0xad, 0x0b, 0xc3, 0xc4, 0xcc, 0x31, 0x9a, 0xf7, 0xf0, 0xcf, 0xd0, 0xc5, 0x8e, 0xd7, 0xee, 0xd8,
+	0x07, 0x3e, 0xeb, 0x8d, 0xde, 0x31, 0xf8, 0x54, 0xd5, 0xba, 0x3c, 0x4c, 0xcc, 0x69, 0x62, 0xba,
+	0xa6, 0xc0, 0xa7, 0x3e, 0xeb, 0xed, 0x67, 0x90, 0x5a, 0xd2, 0x0b, 0x24, 0x8f, 0xfa, 0xcc, 0x27,
+	0x0b, 0xa0, 0x0d, 0x4b, 0x66, 0x18, 0xcd, 0x7b, 0xf8, 0xa7, 0x08, 0xfb, 0xe1, 0xd1, 0xe4, 0x8a,
+	0x25, 0xd0, 0xb9, 0x34, 0x4c, 0xcc, 0x29, 0x52, 0xba, 0xea, 0x87, 0x47, 0xe3, 0xeb, 0xdd, 0x42,
+	0x8b, 0xbd, 0xb8, 0xe5, 0x7b, 0xa2, 0x43, 0xca, 0x60, 0xea, 0xca, 0x30, 0x31, 0x33, 0x88, 0x66,
+	0x1d, 0x65, 0xee, 0x28, 0x0e, 0xe0, 0xd1, 0x6b, 0x5f, 0x41, 0x60, 0x0f, 0x30, 0xf7, 0xb8, 0x84,
+	0x56, 0xf5, 0x58, 0xbb, 0xf7, 0x8f, 0x50, 0x55, 0xc4, 0x2d, 0xe1, 0x44, 0x5e, 0x4f, 0x7a, 0x61,
+	0x20, 0x48, 0x05, 0x34, 0xd7, 0x86, 0x89, 0x39, 0x2e, 0xa0, 0xe3, 0x43, 0xfc, 0x01, 0xc2, 0x4f,
+	0x8e, 0x25, 0x0f, 0x5c, 0xee, 0x8e, 0x3c, 0x83, 0x5c, 0xa8, 0x1b, 0x5b, 0x17, 0xac, 0x85, 0x61,
+	0x62, 0x1a, 0xf7, 0xe8, 0x14, 0x02, 0xde, 0x47, 0x6b, 0x3d, 0xe5, 0x8f, 0xb6, 0xf6, 0xb3, 0x80,
+	0x75, 0x39, 0xa9, 0xaa, 0x8b, 0xb5, 0xb6, 0x4e, 0x12, 0x73, 0x05, 0x9c, 0xf5, 0x09, 0xc8, 0x3e,
+	0x61, 0x5d, 0xae, 0x3c, 0xf2, 0x14, 0x9f, 0xae, 0xf4, 0xc6, 0x59, 0xf8, 0x19, 0xaa, 0x40, 0x02,
+	0xb2, 0xd3, 0x20, 0xb3, 0x0c, 0x2f, 0xe5, 0xf2, 0x94, 0x20, 0xa3, 0x9e, 0x94, 0x75, 0x51, 0x3f,
+	0x96, 0xa2, 0x0e, 0x45, 0x30, 0xd8, 0x83, 0xb0, 0xa3, 0xfc, 0x5b, 0xba, 0x5e, 0x40, 0x56, 0x0a,
+	0xfe, 0xad, 0x00, 0x9a, 0x36, 0xf8, 0x31, 0x2a, 0x89, 0xb8, 0xe5, 0xc6, 0x9c, 0xac, 0xc2, 0xb3,
+	0xbe, 0x36, 0xb1, 0xd4, 0xbe, 0xd7, 0xe5, 0xaf, 0x20, 0xfc, 0xbe, 0xea, 0xf0, 0x20, 0x0d, 0x5b,
+	0xa9, 0x02, 0xd5, 0x2d, 0xc6, 0xe8, 0xbc, 0x13, 0x85, 0x01, 0x59, 0x03, 0xa7, 0x86, 0x3e, 0xbe,
+	0x82, 0xe6, 0xa5, 0xf4, 0x09, 0x86, 0x58, 0xb7, 0x38, 0x4c, 0x4c, 0x35, 0xa4, 0xea, 0x47, 0x79,
+	0x82, 0xba, 0xb5, 0x30, 0x96, 0xe4, 0x22, 0x38, 0x11, 0x78, 0x82, 0x86, 0x68, 0xd6, 0xc1, 0xbb,
+	0x68, 0x39, 0x35, 0x57, 0xa4, 0xdf, 0x3b, 0x59, 0x87, 0x0d, 0x5e, 0x9d, 0xd8, 0xe0, 0x58, 0x4c,
+	0xa0, 0xd5, 0xde, 0x58, 0x88, 0xb8, 0x8f, 0x2a, 0x51, 0x18, 0x07, 0xae, 0x1d, 0x85, 0x2d, 0x2f,
+	0x20, 0x1b, 0x60, 0x04, 0x08, 0x92, 0x05, 0x98, 0x22, 0x18, 0x50, 0xd5, 0xc7, 0x3f, 0x47, 0xeb,
+	0x61, 0x2c, 0x7b, 0xb1, 0xb4, 0x75, 0xb2, 0x3c, 0x08, 0xa3, 0x2e, 0x93, 0xe4, 0x12, 0x5c, 0x2c,
+	0x19, 0x26, 0xe6, 0x54, 0x39, 0xc5, 0x29, 0xfa, 0x0c, 0xc0, 0xa7, 0x80, 0xe1, 0x17, 0xe8, 0xd2,
+	0x38, 0x37, 0x7f, 0xe4, 0x97, 0xc1, 0x35, 0x37, 0x87, 0x89, 0x39, 0x83, 0x41, 0xd7, 0x8b, 0xf3,
+	0xed, 0x65, 0xcf, 0xff, 0x5d, 0xb4, 0xc4, 0x83, 0xbe, 0xdd, 0x67, 0x91, 0x20, 0x64, 0x14, 0x28,
+	0x32, 0x8c, 0x2e, 0xf2, 0xa0, 0xff, 0x2b, 0x16, 0x09, 0xfc, 0x4b, 0xb4, 0xa4, 0x2a, 0x02, 0x97,
+	0x49, 0x46, 0x36, 0xc1, 0x6e, 0x93, 0x89, 0xea, 0x79, 0xeb, 0xb7, 0xdc, 0x51, 0xf3, 0x33, 0xab,
+	0xa6, 0xbc, 0xe8, 0xcb, 0xc4, 0x34, 0xd4, 0x6b, 0xce, 0xd4, 0xde, 0x0b, 0xbb, 0x9e, 0xe4, 0xdd,
+	0x9e, 0x1c, 0xd0, 0x7c, 0x2a, 0x7c, 0x1b, 0xad, 0x74, 0xd9, 0xb1, 0xad, 0xf7, 0x2c, 0xbc, 0x4f,
+	0x39, 0x79, 0x47, 0x5d, 0x31, 0xad, 0x76, 0xd9, 0xf1, 0x73, 0x40, 0x5f, 0x7a, 0x9f, 0x72, 0x7c,
+	0x0b, 0x2d, 0xbb, 0x9e, 0x70, 0x58, 0xe4, 0x6a, 0x2e, 0xb9, 0xaa, 0x4c, 0x4f, 0xab, 0x1a, 0x4d,
+	0xa9, 0xf8, 0xd1, 0x28, 0x23, 0x5d, 0x03, 0x47, 0xdf, 0x98, 0xd8, 0xe4, 0x4b, 0x90, 0xa6, 0x1e,
+	0xa2, 0x99, 0x79, 0xd6, 0xc2, 0x7f, 0x36, 0x10, 0x1e, 0xb7, 0x9e, 0x64, 0x6d, 0x41, 0x6a, 0x30,
+	0xd3, 0x64, 0x7a, 0x4a, 0x0d, 0xb9, 0xcf, 0xda, 0xd6, 0xde, 0x30, 0x31, 0xaf, 0x9e, 0xd6, 0x1b,
+	0x9d, 0xf7, 0x75, 0x62, 0xde, 0x1c, 0xb0, 0xae, 0xff, 0xb0, 0xde, 0x78, 0x13, 0xad, 0x41, 0x57,
+	0x8b, 0x77, 0xb4, 0xcf, 0xda, 0xca, 0xdf, 0xca, 0xc2, 0xe9, 0x70, 0x37, 0xf6, 0x79, 0x44, 0x4c,
+	0x70, 0x19, 0x0c, 0x11, 0xe4, 0x75, 0x62, 0x96, 0xf5, 0x9c, 0xf7, 0x1a, 0x74, 0x44, 0xc2, 0xcf,
+	0x50, 0xb9, 0xe7, 0xf5, 0xb8, 0xef, 0x05, 0x5c, 0x90, 0x3a, 0x6c, 0xbd, 0x3e, 0xb1, 0x75, 0xaa,
+	0x8b, 0x2b, 0x9a, 0xd5, 0x56, 0x56, 0x75, 0x98, 0x98, 0x23, 0x35, 0x3a, 0xea, 0xe2, 0xbf, 0x19,
+	0x88, 0x4c, 0x6c, 0x3a, 0x0b, 0xc1, 0x82, 0x5c, 0x87, 0xe9, 0x6b, 0xd3, 0x2d, 0x93, 0xd1, 0xac,
+	0xfd, 0x61, 0x62, 0x36, 0x66, 0xcd, 0x31, 0x66, 0xa5, 0x3b, 0xd3, 0xad, 0x34, 0x85, 0xdc, 0xa0,
+	0x97, 0xc6, 0x6c, 0x95, 0x53, 0x30, 0x45, 0x8b, 0x69, 0x18, 0x11, 0xa4, 0x01, 0xdb, 0xbb, 0x3e,
+	0x33, 0x00, 0x51, 0xde, 0xe3, 0x4c, 0x72, 0x37, 0xcd, 0xee, 0x5a, 0xab, 0xe0, 0xa6, 0xd9, 0x44,
+	0xf8, 0x8f, 0x06, 0x5a, 0x3b, 0x60, 0xbe, 0xdf, 0x62, 0xce, 0xa1, 0x9d, 0xd9, 0x86, 0xdc, 0x80,
+	0x67, 0x70, 0xb6, 0x71, 0x1f, 0xa9, 0xd9, 0x4f, 0xa9, 0xbf, 0x4e, 0xcc, 0x1b, 0xfa, 0xb8, 0xa7,
+	0x64, 0x63, 0x3e, 0x91, 0x49, 0x5f, 0x68, 0xe1, 0xc3, 0xa5, 0x3f, 0x7c, 0x66, 0x9e, 0xfb, 0xfc,
+	0x33, 0xd3, 0x68, 0xfc, 0x67, 0x03, 0x2d, 0x40, 0x41, 0xf0, 0x7d, 0x29, 0xf0, 0x2d, 0x2d, 0x05,
+	0xbe, 0xcf, 0xe9, 0xdf, 0xc5, 0x9c, 0xbe, 0x89, 0x96, 0xdc, 0x38, 0x62, 0xea, 0x8a, 0x21, 0x8f,
+	0x1b, 0x34, 0x1f, 0x2b, 0xe7, 0xe7, 0xc7, 0xdc, 0x89, 0x25, 0x77, 0xc9, 0x65, 0x38, 0x59, 0x9a,
+	0x51, 0x35, 0x46, 0xf3, 0x1e, 0x7e, 0x8a, 0x16, 0x3b, 0x9e, 0x90, 0x61, 0x34, 0x80, 0xd4, 0x5b,
+	0xd9, 0x79, 0x67, 0xda, 0x3f, 0xb3, 0xbd, 0x94, 0x62, 0xad, 0xe8, 0x5b, 0xcc, 0x74, 0x68, 0xd6,
+	0x51, 0xff, 0x04, 0xd3, 0xff, 0x7d, 0xe4, 0xca, 0xe9, 0x7f, 0x82, 0x69, 0xab, 0x38, 0x3a, 0x6f,
+	0x6e, 0x82, 0xf3, 0x01, 0x27, 0x45, 0xa8, 0x6e, 0xf1, 0xba, 0x72, 0x03, 0x26, 0xd3, 0x0c, 0x5c,
+	0xa6, 0xe9, 0x40, 0x69, 0xaa, 0x4e, 0x2c, 0x20, 0xe3, 0x56, 0xf5, 0xe5, 0x02, 0x42, 0x75, 0xab,
+	0x9e, 0xb1, 0x0c, 0x25, 0xf3, 0x6d, 0x50, 0xb1, 0x9d, 0x0e, 0x0b, 0xda, 0x9c, 0x5c, 0x1b, 0x3d,
+	0xe3, 0xd3, 0x52, 0xba, 0x0a, 0xd8, 0x4b, 0x05, 0xed, 0x02, 0x82, 0x9b, 0x68, 0xd1, 0x67, 0x42,
+	0xda, 0xe1, 0x21, 0xa9, 0xc1, 0x41, 0x36, 0x4e, 0x12, 0xb3, 0xf4, 0x31, 0x13, 0xf2, 0xf9, 0x2f,
+	0xd4, 0xc1, 0xb5, 0x90, 0x96, 0x54, 0xe7, 0xf9, 0x21, 0x7e, 0x80, 0x2a, 0xa1, 0xe3, 0xc4, 0x11,
+	0x44, 0x59, 0x01, 0xd9, 0x71, 0x3e, 0xbd, 0xb7, 0x02, 0x4c, 0x8b, 0x03, 0xfc, 0x09, 0xda, 0x28,
+	0x0c, 0xed, 0x23, 0x26, 0x79, 0xd4, 0x65, 0xd1, 0x21, 0xa9, 0x83, 0xf2, 0x95, 0x61, 0x62, 0x4e,
+	0x27, 0xd0, 0xf5, 0x02, 0xfc, 0x2a, 0x43, 0x71, 0x1d, 0x2d, 0x09, 0xcf, 0x57, 0xa0, 0x0b, 0xc9,
+	0xb0, 0xac, 0xbf, 0x07, 0xe4, 0x28, 0xde, 0xce, 0xfe, 0xdd, 0xa7, 0xc9, 0xe8, 0xe2, 0x94, 0x47,
+	0xaa, 0x75, 0xf4, 0xff, 0xfa, 0x59, 0xf5, 0xe2, 0x8d, 0xaf, 0xb5, 0x5e, 0xbc, 0xf9, 0x35, 0xd4,
+	0x8b, 0xb7, 0xbe, 0x6a, 0xbd, 0x78, 0xfb, 0xad, 0xd6, 0x8b, 0xef, 0x7e, 0xb5, 0x7a, 0x71, 0xeb,
+	0x8c, 0x7a, 0xf1, 0x07, 0xff, 0x7f, 0xbd, 0x78, 0x1f, 0x55, 0x3c, 0x61, 0xe7, 0x0e, 0x70, 0x67,
+	0x14, 0x38, 0x0a, 0x30, 0x45, 0x9e, 0x78, 0x99, 0x79, 0xc3, 0x8c, 0x0a, 0xf3, 0xee, 0x37, 0x58,
+	0x61, 0xde, 0x2d, 0x56, 0x98, 0xef, 0x81, 0x93, 0x41, 0x35, 0x98, 0x83, 0xc5, 0xe2, 0x72, 0x1f,
+	0x55, 0x5e, 0x44, 0xa1, 0xc3, 0x85, 0xe0, 0xae, 0x35, 0x20, 0xf7, 0x80, 0xbe, 0xa3, 0xbc, 0xa8,
+	0x97, 0xc1, 0x76, 0x6b, 0x30, 0xb6, 0xaf, 0x75, 0xbd, 0xaf, 0x22, 0xa1, 0x41, 0x8b, 0xd3, 0x8c,
+	0x97, 0xac, 0xcd, 0xb7, 0x5b, 0xb2, 0x6e, 0x7f, 0xbb, 0x4b, 0xd6, 0xfb, 0x6f, 0xb7, 0x64, 0x7d,
+	0xf0, 0xcd, 0x94, 0xac, 0x33, 0xbe, 0x88, 0x38, 0x67, 0x7c, 0x11, 0x29, 0x54, 0xba, 0xbf, 0xd7,
+	0x9f, 0x68, 0xf7, 0x46, 0x39, 0x4f, 0x67, 0x25, 0x63, 0x66, 0x56, 0x2a, 0x66, 0xe2, 0xb9, 0x37,
+	0x66, 0xe2, 0xeb, 0x68, 0x49, 0x15, 0x99, 0x3d, 0x2f, 0x68, 0xc3, 0xd7, 0xb8, 0xa5, 0x6c, 0x53,
+	0x39, 0x6c, 0xd5, 0xff, 0xfb, 0xaf, 0x9a, 0xf1, 0xf9, 0x49, 0xcd, 0xf8, 0xc7, 0x49, 0xcd, 0xf8,
+	0xe2, 0xa4, 0x66, 0x7c, 0x79, 0x52, 0x33, 0xfe, 0x79, 0x52, 0x33, 0xfe, 0xf2, 0xef, 0xda, 0xb9,
+	0x5f, 0xcf, 0xf5, 0x77, 0x5a, 0x25, 0xf8, 0x9a, 0xfc, 0xfe, 0xff, 0x02, 0x00, 0x00, 0xff, 0xff,
+	0xeb, 0x4f, 0x70, 0x47, 0x09, 0x18, 0x00, 0x00,
 }
 
 func (m *CheckRequest) Marshal() (dAtA []byte, err error) {
@@ -1979,6 +938,20 @@ func (m *CheckConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	if m.XXX_unrecognized != nil {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.FallbackPipeline != nil {
+		{
+			size, err := m.FallbackPipeline.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintCheck(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x2
+		i--
+		dAtA[i] = 0x9a
 	}
 	if len(m.Subdues) > 0 {
 		for iNdEx := len(m.Subdues) - 1; iNdEx >= 0; iNdEx-- {
@@ -2326,6 +1299,20 @@ func (m *Check) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x6
 		i--
 		dAtA[i] = 0x9a
+	}
+	if m.FallbackPipeline != nil {
+		{
+			size, err := m.FallbackPipeline.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintCheck(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x3
+		i--
+		dAtA[i] = 0x8a
 	}
 	if len(m.Subdues) > 0 {
 		for iNdEx := len(m.Subdues) - 1; iNdEx >= 0; iNdEx-- {
@@ -3009,8 +1996,11 @@ func NewPopulatedCheckConfig(r randyCheck, easy bool) *CheckConfig {
 			this.Subdues[i] = NewPopulatedTimeWindowRepeated(r, easy)
 		}
 	}
+	if r.Intn(5) != 0 {
+		this.FallbackPipeline = NewPopulatedResourceReference(r, easy)
+	}
 	if !easy && r.Intn(10) != 0 {
-		this.XXX_unrecognized = randUnrecognizedCheck(r, 35)
+		this.XXX_unrecognized = randUnrecognizedCheck(r, 36)
 	}
 	return this
 }
@@ -3164,6 +2154,9 @@ func NewPopulatedCheck(r randyCheck, easy bool) *Check {
 			this.Subdues[i] = NewPopulatedTimeWindowRepeated(r, easy)
 		}
 	}
+	if r.Intn(5) != 0 {
+		this.FallbackPipeline = NewPopulatedResourceReference(r, easy)
+	}
 	v41 := r.Intn(100)
 	this.ExtendedAttributes = make([]byte, v41)
 	for i := 0; i < v41; i++ {
@@ -3261,6 +2254,1072 @@ func encodeVarintPopulateCheck(dAtA []byte, v uint64) []byte {
 	dAtA = append(dAtA, uint8(v))
 	return dAtA
 }
+func (this *CheckRequest) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CheckRequest)
+	if !ok {
+		that2, ok := that.(CheckRequest)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.Config.Equal(that1.Config) {
+		return false
+	}
+	if len(this.Assets) != len(that1.Assets) {
+		return false
+	}
+	for i := range this.Assets {
+		if !this.Assets[i].Equal(&that1.Assets[i]) {
+			return false
+		}
+	}
+	if len(this.Hooks) != len(that1.Hooks) {
+		return false
+	}
+	for i := range this.Hooks {
+		if !this.Hooks[i].Equal(&that1.Hooks[i]) {
+			return false
+		}
+	}
+	if this.Issued != that1.Issued {
+		return false
+	}
+	if len(this.HookAssets) != len(that1.HookAssets) {
+		return false
+	}
+	for i := range this.HookAssets {
+		if !this.HookAssets[i].Equal(that1.HookAssets[i]) {
+			return false
+		}
+	}
+	if len(this.Secrets) != len(that1.Secrets) {
+		return false
+	}
+	for i := range this.Secrets {
+		if this.Secrets[i] != that1.Secrets[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *AssetList) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*AssetList)
+	if !ok {
+		that2, ok := that.(AssetList)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.Assets) != len(that1.Assets) {
+		return false
+	}
+	for i := range this.Assets {
+		if !this.Assets[i].Equal(&that1.Assets[i]) {
+			return false
+		}
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *ProxyRequests) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*ProxyRequests)
+	if !ok {
+		that2, ok := that.(ProxyRequests)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if len(this.EntityAttributes) != len(that1.EntityAttributes) {
+		return false
+	}
+	for i := range this.EntityAttributes {
+		if this.EntityAttributes[i] != that1.EntityAttributes[i] {
+			return false
+		}
+	}
+	if this.Splay != that1.Splay {
+		return false
+	}
+	if this.SplayCoverage != that1.SplayCoverage {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *CheckConfig) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CheckConfig)
+	if !ok {
+		that2, ok := that.(CheckConfig)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Command != that1.Command {
+		return false
+	}
+	if len(this.Handlers) != len(that1.Handlers) {
+		return false
+	}
+	for i := range this.Handlers {
+		if this.Handlers[i] != that1.Handlers[i] {
+			return false
+		}
+	}
+	if this.HighFlapThreshold != that1.HighFlapThreshold {
+		return false
+	}
+	if this.Interval != that1.Interval {
+		return false
+	}
+	if this.LowFlapThreshold != that1.LowFlapThreshold {
+		return false
+	}
+	if this.Publish != that1.Publish {
+		return false
+	}
+	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
+		return false
+	}
+	for i := range this.RuntimeAssets {
+		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
+			return false
+		}
+	}
+	if len(this.Subscriptions) != len(that1.Subscriptions) {
+		return false
+	}
+	for i := range this.Subscriptions {
+		if this.Subscriptions[i] != that1.Subscriptions[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(this.ExtendedAttributes, that1.ExtendedAttributes) {
+		return false
+	}
+	if this.ProxyEntityName != that1.ProxyEntityName {
+		return false
+	}
+	if len(this.CheckHooks) != len(that1.CheckHooks) {
+		return false
+	}
+	for i := range this.CheckHooks {
+		if !this.CheckHooks[i].Equal(&that1.CheckHooks[i]) {
+			return false
+		}
+	}
+	if this.Stdin != that1.Stdin {
+		return false
+	}
+	if !this.Subdue.Equal(that1.Subdue) {
+		return false
+	}
+	if this.Cron != that1.Cron {
+		return false
+	}
+	if this.Ttl != that1.Ttl {
+		return false
+	}
+	if this.Timeout != that1.Timeout {
+		return false
+	}
+	if !this.ProxyRequests.Equal(that1.ProxyRequests) {
+		return false
+	}
+	if this.RoundRobin != that1.RoundRobin {
+		return false
+	}
+	if this.OutputMetricFormat != that1.OutputMetricFormat {
+		return false
+	}
+	if len(this.OutputMetricHandlers) != len(that1.OutputMetricHandlers) {
+		return false
+	}
+	for i := range this.OutputMetricHandlers {
+		if this.OutputMetricHandlers[i] != that1.OutputMetricHandlers[i] {
+			return false
+		}
+	}
+	if len(this.EnvVars) != len(that1.EnvVars) {
+		return false
+	}
+	for i := range this.EnvVars {
+		if this.EnvVars[i] != that1.EnvVars[i] {
+			return false
+		}
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if this.MaxOutputSize != that1.MaxOutputSize {
+		return false
+	}
+	if this.DiscardOutput != that1.DiscardOutput {
+		return false
+	}
+	if len(this.Secrets) != len(that1.Secrets) {
+		return false
+	}
+	for i := range this.Secrets {
+		if !this.Secrets[i].Equal(that1.Secrets[i]) {
+			return false
+		}
+	}
+	if len(this.OutputMetricTags) != len(that1.OutputMetricTags) {
+		return false
+	}
+	for i := range this.OutputMetricTags {
+		if !this.OutputMetricTags[i].Equal(that1.OutputMetricTags[i]) {
+			return false
+		}
+	}
+	if this.Scheduler != that1.Scheduler {
+		return false
+	}
+	if len(this.Pipelines) != len(that1.Pipelines) {
+		return false
+	}
+	for i := range this.Pipelines {
+		if !this.Pipelines[i].Equal(that1.Pipelines[i]) {
+			return false
+		}
+	}
+	if len(this.OutputMetricThresholds) != len(that1.OutputMetricThresholds) {
+		return false
+	}
+	for i := range this.OutputMetricThresholds {
+		if !this.OutputMetricThresholds[i].Equal(that1.OutputMetricThresholds[i]) {
+			return false
+		}
+	}
+	if len(this.Subdues) != len(that1.Subdues) {
+		return false
+	}
+	for i := range this.Subdues {
+		if !this.Subdues[i].Equal(that1.Subdues[i]) {
+			return false
+		}
+	}
+	if !this.FallbackPipeline.Equal(that1.FallbackPipeline) {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *Check) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Check)
+	if !ok {
+		that2, ok := that.(Check)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Command != that1.Command {
+		return false
+	}
+	if len(this.Handlers) != len(that1.Handlers) {
+		return false
+	}
+	for i := range this.Handlers {
+		if this.Handlers[i] != that1.Handlers[i] {
+			return false
+		}
+	}
+	if this.HighFlapThreshold != that1.HighFlapThreshold {
+		return false
+	}
+	if this.Interval != that1.Interval {
+		return false
+	}
+	if this.LowFlapThreshold != that1.LowFlapThreshold {
+		return false
+	}
+	if this.Publish != that1.Publish {
+		return false
+	}
+	if len(this.RuntimeAssets) != len(that1.RuntimeAssets) {
+		return false
+	}
+	for i := range this.RuntimeAssets {
+		if this.RuntimeAssets[i] != that1.RuntimeAssets[i] {
+			return false
+		}
+	}
+	if len(this.Subscriptions) != len(that1.Subscriptions) {
+		return false
+	}
+	for i := range this.Subscriptions {
+		if this.Subscriptions[i] != that1.Subscriptions[i] {
+			return false
+		}
+	}
+	if this.ProxyEntityName != that1.ProxyEntityName {
+		return false
+	}
+	if len(this.CheckHooks) != len(that1.CheckHooks) {
+		return false
+	}
+	for i := range this.CheckHooks {
+		if !this.CheckHooks[i].Equal(&that1.CheckHooks[i]) {
+			return false
+		}
+	}
+	if this.Stdin != that1.Stdin {
+		return false
+	}
+	if !this.Subdue.Equal(that1.Subdue) {
+		return false
+	}
+	if this.Cron != that1.Cron {
+		return false
+	}
+	if this.Ttl != that1.Ttl {
+		return false
+	}
+	if this.Timeout != that1.Timeout {
+		return false
+	}
+	if !this.ProxyRequests.Equal(that1.ProxyRequests) {
+		return false
+	}
+	if this.RoundRobin != that1.RoundRobin {
+		return false
+	}
+	if this.Duration != that1.Duration {
+		return false
+	}
+	if this.Executed != that1.Executed {
+		return false
+	}
+	if len(this.History) != len(that1.History) {
+		return false
+	}
+	for i := range this.History {
+		if !this.History[i].Equal(&that1.History[i]) {
+			return false
+		}
+	}
+	if this.Issued != that1.Issued {
+		return false
+	}
+	if this.Output != that1.Output {
+		return false
+	}
+	if this.State != that1.State {
+		return false
+	}
+	if this.Status != that1.Status {
+		return false
+	}
+	if this.TotalStateChange != that1.TotalStateChange {
+		return false
+	}
+	if this.LastOK != that1.LastOK {
+		return false
+	}
+	if this.Occurrences != that1.Occurrences {
+		return false
+	}
+	if this.OccurrencesWatermark != that1.OccurrencesWatermark {
+		return false
+	}
+	if len(this.Silenced) != len(that1.Silenced) {
+		return false
+	}
+	for i := range this.Silenced {
+		if this.Silenced[i] != that1.Silenced[i] {
+			return false
+		}
+	}
+	if len(this.Hooks) != len(that1.Hooks) {
+		return false
+	}
+	for i := range this.Hooks {
+		if !this.Hooks[i].Equal(that1.Hooks[i]) {
+			return false
+		}
+	}
+	if this.OutputMetricFormat != that1.OutputMetricFormat {
+		return false
+	}
+	if len(this.OutputMetricHandlers) != len(that1.OutputMetricHandlers) {
+		return false
+	}
+	for i := range this.OutputMetricHandlers {
+		if this.OutputMetricHandlers[i] != that1.OutputMetricHandlers[i] {
+			return false
+		}
+	}
+	if len(this.EnvVars) != len(that1.EnvVars) {
+		return false
+	}
+	for i := range this.EnvVars {
+		if this.EnvVars[i] != that1.EnvVars[i] {
+			return false
+		}
+	}
+	if !this.ObjectMeta.Equal(&that1.ObjectMeta) {
+		return false
+	}
+	if this.MaxOutputSize != that1.MaxOutputSize {
+		return false
+	}
+	if this.DiscardOutput != that1.DiscardOutput {
+		return false
+	}
+	if len(this.Secrets) != len(that1.Secrets) {
+		return false
+	}
+	for i := range this.Secrets {
+		if !this.Secrets[i].Equal(that1.Secrets[i]) {
+			return false
+		}
+	}
+	if this.IsSilenced != that1.IsSilenced {
+		return false
+	}
+	if len(this.OutputMetricTags) != len(that1.OutputMetricTags) {
+		return false
+	}
+	for i := range this.OutputMetricTags {
+		if !this.OutputMetricTags[i].Equal(that1.OutputMetricTags[i]) {
+			return false
+		}
+	}
+	if this.Scheduler != that1.Scheduler {
+		return false
+	}
+	if this.ProcessedBy != that1.ProcessedBy {
+		return false
+	}
+	if len(this.Pipelines) != len(that1.Pipelines) {
+		return false
+	}
+	for i := range this.Pipelines {
+		if !this.Pipelines[i].Equal(that1.Pipelines[i]) {
+			return false
+		}
+	}
+	if len(this.OutputMetricThresholds) != len(that1.OutputMetricThresholds) {
+		return false
+	}
+	for i := range this.OutputMetricThresholds {
+		if !this.OutputMetricThresholds[i].Equal(that1.OutputMetricThresholds[i]) {
+			return false
+		}
+	}
+	if len(this.Subdues) != len(that1.Subdues) {
+		return false
+	}
+	for i := range this.Subdues {
+		if !this.Subdues[i].Equal(that1.Subdues[i]) {
+			return false
+		}
+	}
+	if !this.FallbackPipeline.Equal(that1.FallbackPipeline) {
+		return false
+	}
+	if !bytes.Equal(this.ExtendedAttributes, that1.ExtendedAttributes) {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+func (this *CheckHistory) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*CheckHistory)
+	if !ok {
+		that2, ok := that.(CheckHistory)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Status != that1.Status {
+		return false
+	}
+	if this.Executed != that1.Executed {
+		return false
+	}
+	if this.Flapping != that1.Flapping {
+		return false
+	}
+	if !bytes.Equal(this.XXX_unrecognized, that1.XXX_unrecognized) {
+		return false
+	}
+	return true
+}
+
+type CheckConfigFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetCommand() string
+	GetHandlers() []string
+	GetHighFlapThreshold() uint32
+	GetInterval() uint32
+	GetLowFlapThreshold() uint32
+	GetPublish() bool
+	GetRuntimeAssets() []string
+	GetSubscriptions() []string
+	GetExtendedAttributes() []byte
+	GetProxyEntityName() string
+	GetCheckHooks() []HookList
+	GetStdin() bool
+	GetSubdue() *TimeWindowWhen
+	GetCron() string
+	GetTtl() int64
+	GetTimeout() uint32
+	GetProxyRequests() *ProxyRequests
+	GetRoundRobin() bool
+	GetOutputMetricFormat() string
+	GetOutputMetricHandlers() []string
+	GetEnvVars() []string
+	GetObjectMeta() ObjectMeta
+	GetMaxOutputSize() int64
+	GetDiscardOutput() bool
+	GetSecrets() []*Secret
+	GetOutputMetricTags() []*MetricTag
+	GetScheduler() string
+	GetPipelines() []*ResourceReference
+	GetOutputMetricThresholds() []*MetricThreshold
+	GetSubdues() []*TimeWindowRepeated
+	GetFallbackPipeline() *ResourceReference
+}
+
+func (this *CheckConfig) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *CheckConfig) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewCheckConfigFromFace(this)
+}
+
+func (this *CheckConfig) GetCommand() string {
+	return this.Command
+}
+
+func (this *CheckConfig) GetHandlers() []string {
+	return this.Handlers
+}
+
+func (this *CheckConfig) GetHighFlapThreshold() uint32 {
+	return this.HighFlapThreshold
+}
+
+func (this *CheckConfig) GetInterval() uint32 {
+	return this.Interval
+}
+
+func (this *CheckConfig) GetLowFlapThreshold() uint32 {
+	return this.LowFlapThreshold
+}
+
+func (this *CheckConfig) GetPublish() bool {
+	return this.Publish
+}
+
+func (this *CheckConfig) GetRuntimeAssets() []string {
+	return this.RuntimeAssets
+}
+
+func (this *CheckConfig) GetSubscriptions() []string {
+	return this.Subscriptions
+}
+
+func (this *CheckConfig) GetExtendedAttributes() []byte {
+	return this.ExtendedAttributes
+}
+
+func (this *CheckConfig) GetProxyEntityName() string {
+	return this.ProxyEntityName
+}
+
+func (this *CheckConfig) GetCheckHooks() []HookList {
+	return this.CheckHooks
+}
+
+func (this *CheckConfig) GetStdin() bool {
+	return this.Stdin
+}
+
+func (this *CheckConfig) GetSubdue() *TimeWindowWhen {
+	return this.Subdue
+}
+
+func (this *CheckConfig) GetCron() string {
+	return this.Cron
+}
+
+func (this *CheckConfig) GetTtl() int64 {
+	return this.Ttl
+}
+
+func (this *CheckConfig) GetTimeout() uint32 {
+	return this.Timeout
+}
+
+func (this *CheckConfig) GetProxyRequests() *ProxyRequests {
+	return this.ProxyRequests
+}
+
+func (this *CheckConfig) GetRoundRobin() bool {
+	return this.RoundRobin
+}
+
+func (this *CheckConfig) GetOutputMetricFormat() string {
+	return this.OutputMetricFormat
+}
+
+func (this *CheckConfig) GetOutputMetricHandlers() []string {
+	return this.OutputMetricHandlers
+}
+
+func (this *CheckConfig) GetEnvVars() []string {
+	return this.EnvVars
+}
+
+func (this *CheckConfig) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *CheckConfig) GetMaxOutputSize() int64 {
+	return this.MaxOutputSize
+}
+
+func (this *CheckConfig) GetDiscardOutput() bool {
+	return this.DiscardOutput
+}
+
+func (this *CheckConfig) GetSecrets() []*Secret {
+	return this.Secrets
+}
+
+func (this *CheckConfig) GetOutputMetricTags() []*MetricTag {
+	return this.OutputMetricTags
+}
+
+func (this *CheckConfig) GetScheduler() string {
+	return this.Scheduler
+}
+
+func (this *CheckConfig) GetPipelines() []*ResourceReference {
+	return this.Pipelines
+}
+
+func (this *CheckConfig) GetOutputMetricThresholds() []*MetricThreshold {
+	return this.OutputMetricThresholds
+}
+
+func (this *CheckConfig) GetSubdues() []*TimeWindowRepeated {
+	return this.Subdues
+}
+
+func (this *CheckConfig) GetFallbackPipeline() *ResourceReference {
+	return this.FallbackPipeline
+}
+
+func NewCheckConfigFromFace(that CheckConfigFace) *CheckConfig {
+	this := &CheckConfig{}
+	this.Command = that.GetCommand()
+	this.Handlers = that.GetHandlers()
+	this.HighFlapThreshold = that.GetHighFlapThreshold()
+	this.Interval = that.GetInterval()
+	this.LowFlapThreshold = that.GetLowFlapThreshold()
+	this.Publish = that.GetPublish()
+	this.RuntimeAssets = that.GetRuntimeAssets()
+	this.Subscriptions = that.GetSubscriptions()
+	this.ExtendedAttributes = that.GetExtendedAttributes()
+	this.ProxyEntityName = that.GetProxyEntityName()
+	this.CheckHooks = that.GetCheckHooks()
+	this.Stdin = that.GetStdin()
+	this.Subdue = that.GetSubdue()
+	this.Cron = that.GetCron()
+	this.Ttl = that.GetTtl()
+	this.Timeout = that.GetTimeout()
+	this.ProxyRequests = that.GetProxyRequests()
+	this.RoundRobin = that.GetRoundRobin()
+	this.OutputMetricFormat = that.GetOutputMetricFormat()
+	this.OutputMetricHandlers = that.GetOutputMetricHandlers()
+	this.EnvVars = that.GetEnvVars()
+	this.ObjectMeta = that.GetObjectMeta()
+	this.MaxOutputSize = that.GetMaxOutputSize()
+	this.DiscardOutput = that.GetDiscardOutput()
+	this.Secrets = that.GetSecrets()
+	this.OutputMetricTags = that.GetOutputMetricTags()
+	this.Scheduler = that.GetScheduler()
+	this.Pipelines = that.GetPipelines()
+	this.OutputMetricThresholds = that.GetOutputMetricThresholds()
+	this.Subdues = that.GetSubdues()
+	this.FallbackPipeline = that.GetFallbackPipeline()
+	return this
+}
+
+type CheckFace interface {
+	Proto() github_com_golang_protobuf_proto.Message
+	GetCommand() string
+	GetHandlers() []string
+	GetHighFlapThreshold() uint32
+	GetInterval() uint32
+	GetLowFlapThreshold() uint32
+	GetPublish() bool
+	GetRuntimeAssets() []string
+	GetSubscriptions() []string
+	GetProxyEntityName() string
+	GetCheckHooks() []HookList
+	GetStdin() bool
+	GetSubdue() *TimeWindowWhen
+	GetCron() string
+	GetTtl() int64
+	GetTimeout() uint32
+	GetProxyRequests() *ProxyRequests
+	GetRoundRobin() bool
+	GetDuration() float64
+	GetExecuted() int64
+	GetHistory() []CheckHistory
+	GetIssued() int64
+	GetOutput() string
+	GetState() string
+	GetStatus() uint32
+	GetTotalStateChange() uint32
+	GetLastOK() int64
+	GetOccurrences() int64
+	GetOccurrencesWatermark() int64
+	GetSilenced() []string
+	GetHooks() []*Hook
+	GetOutputMetricFormat() string
+	GetOutputMetricHandlers() []string
+	GetEnvVars() []string
+	GetObjectMeta() ObjectMeta
+	GetMaxOutputSize() int64
+	GetDiscardOutput() bool
+	GetSecrets() []*Secret
+	GetIsSilenced() bool
+	GetOutputMetricTags() []*MetricTag
+	GetScheduler() string
+	GetProcessedBy() string
+	GetPipelines() []*ResourceReference
+	GetOutputMetricThresholds() []*MetricThreshold
+	GetSubdues() []*TimeWindowRepeated
+	GetFallbackPipeline() *ResourceReference
+	GetExtendedAttributes() []byte
+}
+
+func (this *Check) Proto() github_com_golang_protobuf_proto.Message {
+	return this
+}
+
+func (this *Check) TestProto() github_com_golang_protobuf_proto.Message {
+	return NewCheckFromFace(this)
+}
+
+func (this *Check) GetCommand() string {
+	return this.Command
+}
+
+func (this *Check) GetHandlers() []string {
+	return this.Handlers
+}
+
+func (this *Check) GetHighFlapThreshold() uint32 {
+	return this.HighFlapThreshold
+}
+
+func (this *Check) GetInterval() uint32 {
+	return this.Interval
+}
+
+func (this *Check) GetLowFlapThreshold() uint32 {
+	return this.LowFlapThreshold
+}
+
+func (this *Check) GetPublish() bool {
+	return this.Publish
+}
+
+func (this *Check) GetRuntimeAssets() []string {
+	return this.RuntimeAssets
+}
+
+func (this *Check) GetSubscriptions() []string {
+	return this.Subscriptions
+}
+
+func (this *Check) GetProxyEntityName() string {
+	return this.ProxyEntityName
+}
+
+func (this *Check) GetCheckHooks() []HookList {
+	return this.CheckHooks
+}
+
+func (this *Check) GetStdin() bool {
+	return this.Stdin
+}
+
+func (this *Check) GetSubdue() *TimeWindowWhen {
+	return this.Subdue
+}
+
+func (this *Check) GetCron() string {
+	return this.Cron
+}
+
+func (this *Check) GetTtl() int64 {
+	return this.Ttl
+}
+
+func (this *Check) GetTimeout() uint32 {
+	return this.Timeout
+}
+
+func (this *Check) GetProxyRequests() *ProxyRequests {
+	return this.ProxyRequests
+}
+
+func (this *Check) GetRoundRobin() bool {
+	return this.RoundRobin
+}
+
+func (this *Check) GetDuration() float64 {
+	return this.Duration
+}
+
+func (this *Check) GetExecuted() int64 {
+	return this.Executed
+}
+
+func (this *Check) GetHistory() []CheckHistory {
+	return this.History
+}
+
+func (this *Check) GetIssued() int64 {
+	return this.Issued
+}
+
+func (this *Check) GetOutput() string {
+	return this.Output
+}
+
+func (this *Check) GetState() string {
+	return this.State
+}
+
+func (this *Check) GetStatus() uint32 {
+	return this.Status
+}
+
+func (this *Check) GetTotalStateChange() uint32 {
+	return this.TotalStateChange
+}
+
+func (this *Check) GetLastOK() int64 {
+	return this.LastOK
+}
+
+func (this *Check) GetOccurrences() int64 {
+	return this.Occurrences
+}
+
+func (this *Check) GetOccurrencesWatermark() int64 {
+	return this.OccurrencesWatermark
+}
+
+func (this *Check) GetSilenced() []string {
+	return this.Silenced
+}
+
+func (this *Check) GetHooks() []*Hook {
+	return this.Hooks
+}
+
+func (this *Check) GetOutputMetricFormat() string {
+	return this.OutputMetricFormat
+}
+
+func (this *Check) GetOutputMetricHandlers() []string {
+	return this.OutputMetricHandlers
+}
+
+func (this *Check) GetEnvVars() []string {
+	return this.EnvVars
+}
+
+func (this *Check) GetObjectMeta() ObjectMeta {
+	return this.ObjectMeta
+}
+
+func (this *Check) GetMaxOutputSize() int64 {
+	return this.MaxOutputSize
+}
+
+func (this *Check) GetDiscardOutput() bool {
+	return this.DiscardOutput
+}
+
+func (this *Check) GetSecrets() []*Secret {
+	return this.Secrets
+}
+
+func (this *Check) GetIsSilenced() bool {
+	return this.IsSilenced
+}
+
+func (this *Check) GetOutputMetricTags() []*MetricTag {
+	return this.OutputMetricTags
+}
+
+func (this *Check) GetScheduler() string {
+	return this.Scheduler
+}
+
+func (this *Check) GetProcessedBy() string {
+	return this.ProcessedBy
+}
+
+func (this *Check) GetPipelines() []*ResourceReference {
+	return this.Pipelines
+}
+
+func (this *Check) GetOutputMetricThresholds() []*MetricThreshold {
+	return this.OutputMetricThresholds
+}
+
+func (this *Check) GetSubdues() []*TimeWindowRepeated {
+	return this.Subdues
+}
+
+func (this *Check) GetFallbackPipeline() *ResourceReference {
+	return this.FallbackPipeline
+}
+
+func (this *Check) GetExtendedAttributes() []byte {
+	return this.ExtendedAttributes
+}
+
+func NewCheckFromFace(that CheckFace) *Check {
+	this := &Check{}
+	this.Command = that.GetCommand()
+	this.Handlers = that.GetHandlers()
+	this.HighFlapThreshold = that.GetHighFlapThreshold()
+	this.Interval = that.GetInterval()
+	this.LowFlapThreshold = that.GetLowFlapThreshold()
+	this.Publish = that.GetPublish()
+	this.RuntimeAssets = that.GetRuntimeAssets()
+	this.Subscriptions = that.GetSubscriptions()
+	this.ProxyEntityName = that.GetProxyEntityName()
+	this.CheckHooks = that.GetCheckHooks()
+	this.Stdin = that.GetStdin()
+	this.Subdue = that.GetSubdue()
+	this.Cron = that.GetCron()
+	this.Ttl = that.GetTtl()
+	this.Timeout = that.GetTimeout()
+	this.ProxyRequests = that.GetProxyRequests()
+	this.RoundRobin = that.GetRoundRobin()
+	this.Duration = that.GetDuration()
+	this.Executed = that.GetExecuted()
+	this.History = that.GetHistory()
+	this.Issued = that.GetIssued()
+	this.Output = that.GetOutput()
+	this.State = that.GetState()
+	this.Status = that.GetStatus()
+	this.TotalStateChange = that.GetTotalStateChange()
+	this.LastOK = that.GetLastOK()
+	this.Occurrences = that.GetOccurrences()
+	this.OccurrencesWatermark = that.GetOccurrencesWatermark()
+	this.Silenced = that.GetSilenced()
+	this.Hooks = that.GetHooks()
+	this.OutputMetricFormat = that.GetOutputMetricFormat()
+	this.OutputMetricHandlers = that.GetOutputMetricHandlers()
+	this.EnvVars = that.GetEnvVars()
+	this.ObjectMeta = that.GetObjectMeta()
+	this.MaxOutputSize = that.GetMaxOutputSize()
+	this.DiscardOutput = that.GetDiscardOutput()
+	this.Secrets = that.GetSecrets()
+	this.IsSilenced = that.GetIsSilenced()
+	this.OutputMetricTags = that.GetOutputMetricTags()
+	this.Scheduler = that.GetScheduler()
+	this.ProcessedBy = that.GetProcessedBy()
+	this.Pipelines = that.GetPipelines()
+	this.OutputMetricThresholds = that.GetOutputMetricThresholds()
+	this.Subdues = that.GetSubdues()
+	this.FallbackPipeline = that.GetFallbackPipeline()
+	this.ExtendedAttributes = that.GetExtendedAttributes()
+	return this
+}
+
 func (m *CheckRequest) Size() (n int) {
 	if m == nil {
 		return 0
@@ -3489,6 +3548,10 @@ func (m *CheckConfig) Size() (n int) {
 			n += 2 + l + sovCheck(uint64(l))
 		}
 	}
+	if m.FallbackPipeline != nil {
+		l = m.FallbackPipeline.Size()
+		n += 2 + l + sovCheck(uint64(l))
+	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
 	}
@@ -3683,6 +3746,10 @@ func (m *Check) Size() (n int) {
 			l = e.Size()
 			n += 2 + l + sovCheck(uint64(l))
 		}
+	}
+	if m.FallbackPipeline != nil {
+		l = m.FallbackPipeline.Size()
+		n += 2 + l + sovCheck(uint64(l))
 	}
 	l = len(m.ExtendedAttributes)
 	if l > 0 {
@@ -5149,6 +5216,42 @@ func (m *CheckConfig) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			iNdEx = postIndex
+		case 35:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FallbackPipeline", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowCheck
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthCheck
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthCheck
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.FallbackPipeline == nil {
+				m.FallbackPipeline = &ResourceReference{}
+			}
+			if err := m.FallbackPipeline.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipCheck(dAtA[iNdEx:])
@@ -6380,6 +6483,42 @@ func (m *Check) Unmarshal(dAtA []byte) error {
 			}
 			m.Subdues = append(m.Subdues, &TimeWindowRepeated{})
 			if err := m.Subdues[len(m.Subdues)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 49:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FallbackPipeline", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowCheck
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthCheck
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthCheck
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.FallbackPipeline == nil {
+				m.FallbackPipeline = &ResourceReference{}
+			}
+			if err := m.FallbackPipeline.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
