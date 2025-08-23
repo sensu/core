@@ -119,6 +119,7 @@ func NewCheck(c *CheckConfig) *Check {
 		Subdue:                 c.Subdue,
 		Cron:                   c.Cron,
 		Ttl:                    c.Ttl,
+		TtlStatus:              c.TtlStatus,
 		Timeout:                c.Timeout,
 		ProxyRequests:          c.ProxyRequests,
 		RoundRobin:             c.RoundRobin,
