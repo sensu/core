@@ -7,7 +7,6 @@ import (
 	"net/url"
 	"path"
 	"strconv"
-	"strings"
 
 	"github.com/sensu/core/v2/internal/stringutil"
 )
@@ -170,11 +169,11 @@ func FixtureEntity(name string) *Entity {
 func EntityFields(r Resource) map[string]string {
 	resource := r.(*Entity)
 	fields := map[string]string{
-		"entity.name":          resource.ObjectMeta.Name,
-		"entity.namespace":     resource.ObjectMeta.Namespace,
-		"entity.deregister":    strconv.FormatBool(resource.Deregister),
-		"entity.entity_class":  resource.EntityClass,
-		"entity.subscriptions": strings.Join(resource.Subscriptions, ","),
+		"entity.name":         resource.ObjectMeta.Name,
+		"entity.namespace":    resource.ObjectMeta.Namespace,
+		"entity.deregister":   strconv.FormatBool(resource.Deregister),
+		"entity.entity_class": resource.EntityClass,
+		"entity.user":         resource.User,
 	}
 	stringutil.MergeMapWithPrefix(fields, resource.ObjectMeta.Labels, "entity.labels.")
 	return fields
