@@ -175,6 +175,9 @@ message CheckConfig {
   //added fallback piepline details in order of execution
   ResourceReference fallback_pipeline = 35 [ (gogoproto.jsontag) = "fallback_pipeline" ,(gogoproto.moretags) = "yaml: \"fallback_pipeline,omitempty\"" ];
   int32 ttl_status = 36 [ (gogoproto.jsontag) = "ttl_status,omitempty", (gogoproto.moretags) = "yaml: \"ttl_status\"" ];
+
+  // AssetStatus is an array of strings representing the status of assets.
+  repeated string asset_status = 37 [ (gogoproto.jsontag) = "asset_status,omitempty", (gogoproto.moretags) = "yaml: \"asset_status\"" ];
 }
 
 // A Check is a check specification and optionally the results of the check's
@@ -342,6 +345,9 @@ message Check {
   ResourceReference fallback_pipeline = 49 [ (gogoproto.jsontag) = "fallback_pipeline" ,(gogoproto.moretags) = "yaml: \"fallback_pipeline,omitempty\"" ];
 
   int32 ttl_status = 50 [ (gogoproto.jsontag) = "ttl_status,omitempty", (gogoproto.moretags) = "yaml: \"ttl_status\"" ];
+
+  // AssetStatus is an array of strings representing the status of assets.
+  repeated string asset_status = 51 [ (gogoproto.jsontag) = "asset_status,omitempty", (gogoproto.moretags) = "yaml: \"asset_status\"" ];
 
   // ExtendedAttributes store serialized arbitrary JSON-encoded data
   bytes ExtendedAttributes = 99 [ (gogoproto.jsontag) = "-" ];
