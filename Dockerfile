@@ -1,4 +1,4 @@
-FROM golang:1.22-bullseye
+FROM golang:1.26.0
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y unzip
 
