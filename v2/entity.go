@@ -175,6 +175,7 @@ func EntityFields(r Resource) map[string]string {
 		"entity.deregister":    strconv.FormatBool(resource.Deregister),
 		"entity.entity_class":  resource.EntityClass,
 		"entity.subscriptions": strings.Join(resource.Subscriptions, ","),
+		"entity.user":          resource.User,
 	}
 	stringutil.MergeMapWithPrefix(fields, resource.ObjectMeta.Labels, "entity.labels.")
 	return fields
