@@ -133,6 +133,7 @@ func NewCheck(c *CheckConfig) *Check {
 		Scheduler:              c.Scheduler,
 		Pipelines:              c.Pipelines,
 		FallbackPipeline:       c.FallbackPipeline,
+		AssetStatus:            c.AssetStatus,
 	}
 	if check.Labels == nil {
 		check.Labels = make(map[string]string)
