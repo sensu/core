@@ -223,6 +223,15 @@ func TestSilencedFields(t *testing.T) {
 			want:    "false",
 		},
 		{
+			name: "exposes reason",
+			args: &Silenced{
+				ObjectMeta: NewObjectMeta("a:b", "default"),
+				Reason:     "maintenance window",
+			},
+			wantKey: "silenced.reason",
+			want:    "maintenance window",
+		},
+		{
 			name: "exposes labels",
 			args: &Silenced{
 				ObjectMeta: ObjectMeta{
