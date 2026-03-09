@@ -220,6 +220,7 @@ func SilencedFields(r Resource) map[string]string {
 		"silenced.creator":           resource.Creator,
 		"silenced.expire_on_resolve": strconv.FormatBool(resource.ExpireOnResolve),
 		"silenced.subscription":      resource.Subscription,
+		"silenced.reason":            resource.Reason,
 	}
 	stringsutil.MergeMapWithPrefix(fields, resource.ObjectMeta.Labels, "silenced.labels.")
 	return fields
