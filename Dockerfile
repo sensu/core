@@ -1,7 +1,7 @@
 FROM golang:1.26.0
 RUN apt-get update && apt-get upgrade -y && apt-get install -y unzip
 
-ARG protoc_version=3.19.4
+ARG protoc_version=36.1
 ARG protoc_arch=x86_64
 ARG protoc_release=https://github.com/protocolbuffers/protobuf/releases/download/v${protoc_version}/protoc-${protoc_version}-linux-${protoc_arch}.zip
 
