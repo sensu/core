@@ -1,4 +1,4 @@
-FROM golang:1.26.0
+FROM golang:1.26.8
 RUN apt-get update && apt-get upgrade -y && apt-get install -y unzip
 
 ARG protoc_version=3.19.4
