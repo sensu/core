@@ -130,6 +130,7 @@ func NewCheck(c *CheckConfig) *Check {
 		EnvVars:                c.EnvVars,
 		DiscardOutput:          c.DiscardOutput,
 		MaxOutputSize:          c.MaxOutputSize,
+		StoreOutputHistory:     c.StoreOutputHistory,
 		Scheduler:              c.Scheduler,
 		Pipelines:              c.Pipelines,
 		FallbackPipeline:       c.FallbackPipeline,
@@ -289,6 +290,9 @@ func (c *Check) MergeWith(prevCheck *Check) {
 	histEntry := CheckHistory{
 		Status:   c.Status,
 		Executed: c.Executed,
+	}
+	if c.StoreOutputHistory {
+		histEntry.Output = c.Output
 	}
 
 	history = append(history, histEntry)

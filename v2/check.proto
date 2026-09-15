@@ -178,6 +178,10 @@ message CheckConfig {
 
   // AssetStatus is an array of strings representing the status of assets.
   repeated string asset_status = 37 [ (gogoproto.jsontag) = "asset_status,omitempty", (gogoproto.moretags) = "yaml: \"asset_status\"" ];
+
+  // StoreOutputHistory indicates whether each history entry should retain the
+  // check output from that execution.
+  bool store_output_history = 38 [ (gogoproto.jsontag) = "store_output_history,omitempty", (gogoproto.moretags) = "yaml: \"store_output_history\"" ];
 }
 
 // A Check is a check specification and optionally the results of the check's
@@ -349,6 +353,10 @@ message Check {
   // AssetStatus is an array of strings representing the status of assets.
   repeated string asset_status = 51 [ (gogoproto.jsontag) = "asset_status,omitempty", (gogoproto.moretags) = "yaml: \"asset_status\"" ];
 
+  // StoreOutputHistory indicates whether each history entry should retain the
+  // check output from that execution.
+  bool store_output_history = 52 [ (gogoproto.jsontag) = "store_output_history,omitempty", (gogoproto.moretags) = "yaml: \"store_output_history\"" ];
+
   // ExtendedAttributes store serialized arbitrary JSON-encoded data
   bytes ExtendedAttributes = 99 [ (gogoproto.jsontag) = "-" ];
 }
@@ -366,4 +374,8 @@ message CheckHistory {
   // filters to trigger only on start and end of flapping. NB! This has been
   // disabled for 5.x releases.
   bool flapping = 3 [ (gogoproto.jsontag) = "-" ];
+
+  // Output contains the check output from this execution. Only populated when
+  // the check sets store_output_history.
+  string output = 4 [ (gogoproto.jsontag) = "output,omitempty" ];
 }
