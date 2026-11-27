@@ -5,7 +5,7 @@ go 1.27.4
 require (
 	github.com/gogo/protobuf v1.3.2
 	github.com/golang/protobuf v1.5.4
-	github.com/sensu/core/v2 v2.21.7
+	github.com/sensu/core/v2 v2.21.8
 	github.com/sensu/sensu-api-tools v0.2.2
 	github.com/stretchr/testify v1.12.1
 )

@@ -24,8 +24,12 @@ github.com/robertkrimen/otto v0.5.1 h1:avDI4ToRk8k1hppLdYFTuuzND41n37vPGJU7547dG
 github.com/robertkrimen/otto v0.5.1/go.mod h1:bS433I4Q9p+E5pZLu7r17vP6FkE6/wLxBdmKjoqJXF8=
 github.com/robfig/cron/v3 v3.0.1 h1:WdRxkvbJztn8LMz/QEvLN5sBU+xKpSqwwUO1Pjr4qDs=
 github.com/robfig/cron/v3 v3.0.1/go.mod h1:eQICP3HwyT7UooqI/z+Ov+PtYAWygg1TEWWzGIFLtro=
+github.com/sensu/core v3.10.8+incompatible h1:/jecsosbUiRlTckCRH9HO/MBYbh3BIINZdVAMrf6P6I=
+github.com/sensu/core v3.10.8+incompatible/go.mod h1:mAyyk8qlw7FtPvHCvhVU8jcIOF3Fgf8mGDAaWSkIIe8=
 github.com/sensu/core/v2 v2.21.7 h1:GngisXw9f6suED5inE6k56R2ttfSzzg+uBRubgrkFyQ=
 github.com/sensu/core/v2 v2.21.7/go.mod h1:l13TJvQe2r1zvlcuqQjb64lA1KVkrzC/xrOwZTAgi/0=
+github.com/sensu/core/v2 v2.21.8 h1:4or3gtfCmy2P1ErHD1EMVy1t8+tMyi77l2DTDvKrfMY=
+github.com/sensu/core/v2 v2.21.8/go.mod h1:i4F5JKufJY/TJoUN54Xj8dQNxeqwFPS3C8Yt9kbLy9k=
 github.com/sensu/sensu-api-tools v0.2.2 h1:pS5ryv2p6THhAVWQXDzczX3zTy/n+SOyQBIWOqTZsUA=
 github.com/sensu/sensu-api-tools v0.2.2/go.mod h1:AkWtOJQscnbRyP93I+sNvf/4TufmryWBuj8vElSkvnE=
 github.com/sirupsen/logrus v1.10.2 h1:G2SED73/qrAu6YwbdxOD6peLkCBI3z7L+ykJFTXJBBo=
